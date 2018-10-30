@@ -1,0 +1,234 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0px;
+    text-decoration: none;
+}
+
+.main-nav {
+    width: 220px;
+    background-color: rgb(46, 62, 78);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    height: 100%;
+    min-height:500px;
+}
+
+.sidebar-link, a.sidebar-link {
+    display: block;
+    padding: 1.0rem 1.25rem;
+    color: #ced4da;
+    background: #2e3e4e;
+    transition: background .1s ease-in-out,color .1s ease-in-out;
+    position: relative;
+    text-decoration: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.align-middle {
+    vertical-align: middle !important;
+    color: #E7E7E7;
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 30px;
+    color: #f8f9fa;
+    display: block;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background-color: rgb(42, 57, 72);
+    width: 220px;
+}
+
+.sidebar-link .feather, .sidebar-link svg {
+    margin-right: 0.75rem;
+    color: #fff;
+}
+
+.feather {
+    width: 18px;
+    height: 18px;
+}
+
+.sidebar-link:hover {
+    color: #ced4da;
+    background: #263441;
+}
+
+.sidebar [data-toggle=collapse] {
+    position: relative;
+}
+
+    .sidebar [data-toggle=collapse]:before {
+        content: " ";
+        border: solid;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 2px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 1.6rem;
+        right: 1.25rem;
+        transition: all .2s ease-out;
+    }
+
+    .sidebar [aria-expanded=true]:before, .sidebar [data-toggle=collapse]:not(.collapsed):before {
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+        top: 1.4rem;
+    }
+
+.sidebar-dropdown .sidebar-link {
+    padding-left: 2.5rem;
+    color: #adb5bd;
+    background: #2a3948;
+}
+
+.sidebar-header {
+    background: transparent;
+    color: #adb5bd;
+    padding: 0.8rem 1.25rem;
+}
+
+.main-top-nav {
+    height: 80px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 0.05rem 0.2rem;
+    background: #fff !important;
+    border-bottom: 1px solid #D9DEE4;
+    /*background: #EDEDED;
+    border-bottom: 1px solid #D9DEE4;*/
+}
+.x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+}
+
+.x_panel, .x_title {
+    margin-bottom: 10px;
+}
+    .x_title h2 {
+        margin: 5px 0 6px;
+        float: left;
+        display: block;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: #73879c;
+    }
+.main-bottom-time {
+    width: 220px;
+    background: rgb(42, 57, 72);
+    height: 120px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    color: white;
+    font-size: 18px;
+    padding-top: 8px;
+}
+
+.main-time {
+    height: 50px;
+    line-height: 60px;
+    padding: 0px 35px;
+}
+
+.nav-men {
+    padding-left: 220px;
+    width: 100%;
+    height: 80px;
+    position: relative;
+    min-width: 1100px;
+    background: #fff !important;
+}
+
+.main-counts {
+    padding-left: 240px;
+    width: 100%;
+    height: 100%;
+    background: #F7F7F7;
+    padding-top: 10px;
+    padding-right: 10px;
+    /*background: #EDEDED;*/
+}
+
+.nav-men ul {
+    width: 500px;
+    height: 80px;
+    padding-right: 30px;
+    position:absolute;
+    right:0px;
+}
+
+    .nav-men ul li {
+        width: 140px;
+        height: 80px;
+        float: right;
+        /*background-color: #7e0a0a;
+            border:1px solid #fff;*/
+        line-height: 80px;
+        text-align: center;
+    }
+
+.main-user {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-Name {
+    color: #2e3e4e !important;
+    font-size: 24px;
+    position: relative;
+    top: 3px;
+}
+
+.msg {
+    width: 42px;
+    height: 42px;
+}
+#software-Name {
+    width: 550px;
+    margin:0px auto;
+    height:80px;
+    line-height:80px;
+    font-size:40px;
+    font-weight:bold;
+}
+.count-panel {
+    width: 100%;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+}
+
+@media screen and (max-width: 1500px) {
+    #software-Name {
+        width: 550px;
+        margin: 0px auto;
+        height: 80px;
+        line-height: 80px;
+        font-size: 32px;
+        font-weight: bold;
+        margin-right:300px;
+    }
+}

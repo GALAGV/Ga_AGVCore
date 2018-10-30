@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.Core", "Ga_AGV.Core\Ga_AGV.Core.csproj", "{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E204A9FA-0820-4B31-BD9B-81EEA6C24A9D}
+	EndGlobalSection
+EndGlobal

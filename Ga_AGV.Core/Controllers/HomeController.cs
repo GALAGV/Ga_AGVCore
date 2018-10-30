@@ -8,6 +8,7 @@ namespace Ga_AGV.Core.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Login()
         {
             return View();

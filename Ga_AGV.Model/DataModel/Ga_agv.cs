@@ -62,5 +62,14 @@ namespace Ga_AGV.Model.DataModel
         /// </summary>
         public string agvFirmware { get; set; }
 
+        /// <summary>
+        /// agv当前行驶速度
+        /// </summary>
+        public float agvSpeed { get; set; }
+
+        /// <summary>
+        /// agv当前角度方向
+        /// </summary>
+        public float agvAngel { get; set; }
     }
 }

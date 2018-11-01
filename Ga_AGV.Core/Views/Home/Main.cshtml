@@ -10,19 +10,13 @@
     <title>Main</title>
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
           name="viewport">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
+    <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #F7F7F7;height:100%">
     <div>
@@ -40,31 +34,37 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid align-middle"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> <span class="align-middle">仓库管理</span>
                             </a>
                             <ul id="ui1" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">库位管理</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:" url="">货架管理</a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
                             <a href="#ui2" data-toggle="collapse" class="sidebar-link collapsed">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid align-middle"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> <span class="align-middle">仓库管理</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg> <span class="align-middle">设备操作</span>
                             </a>
                             <ul id="ui2" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">库位管理</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:" url="@Url.Action("AGVManagement","Equipment")">AGV管理</a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
                             <a href="#ui3" data-toggle="collapse" class="sidebar-link collapsed">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid align-middle"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> <span class="align-middle">仓库管理</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open align-middle"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                <span class="align-middle">统计数据</span>
                             </a>
                             <ul id="ui3" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">库位管理</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">运行统计</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">系统日志</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">任务日志</a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
                             <a href="#ui4" data-toggle="collapse" class="sidebar-link collapsed">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open align-middle"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> <span class="align-middle">仓库管理</span>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor align-middle"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                <span class="align-middle">AGV系统</span>
                             </a>
                             <ul id="ui4" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">库位管理</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">运行监控</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">二维码管理</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -79,18 +79,22 @@
         <!-- 头部菜单 -->
         <div class="main-top-nav">
             <div class="nav-men">
-                <ul>
-                    <li>
-                        <form action="/Home/Login">
-                            <button style="width:100px;height:40px;font-size:16px;" type="submit" class="btn btn-primary">退出系统</button>
-                        </form>
-                    </li>
-                    <li>
-                        <img class="main-user" src="~/image/user.png" />
-                        <span class="user-Name">Admin</span>
-                    </li>
-                    <li>
-                        <img class="msg" src="~/image/msg.png" />
+                <ul class="nav navbar-nav">
+                    <li class="active nav-li"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
+                    @*<li class=" nav-li"><a href="#" id="nav-a">SVN</a></li>*@
+                    <li class="dropdown  nav-li">
+                        <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
+                            <li><a href="#">系统配置</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Home/Login">
+                                    退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <div id="software-Name">GALAXIS AGV智能调度系统</div>
@@ -99,36 +103,14 @@
         <!-- 头部菜单end -->
         <!-- 内容 -->
         <div class="main-counts" style="overflow:hidden;">
-            @*<div class="count-panel" style="width:50%;height:500px;min-width:500px">
-            <div class="x_title">
-                <h2>统计</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="count-panel" style="width:50%;height:300px;min-width:500px">
-            <div class="x_title">
-                <h2>统计</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-        </div>*@
-            <iframe  src="" frameborder="0" scrolling="yes" width="100%"  id="external-frame" ></iframe>
+            <iframe src="/Statistics/RunningLog" frameborder="0" scrolling="yes" width="100%" id="external-frame"></iframe>
         </div>
         <!-- 内容end -->
-        @*<div style="clear: both;"></div>*@
     </div>
-
-  
-
     <script>
         $(function () {
 
-            $("#external-frame").height($(window).height()-100);
+            $("#external-frame").height($(window).height() - 100);
 
             CirculationTimes();
 
@@ -136,14 +118,14 @@
                 CirculationTimes();
                 msg();
             }, 1000);
-            setInterval(function () { 
+            setInterval(function () {
                 msg();
-            }, 500);
+            }, 800);
 
             function CirculationTimes() {
 
                 var year = new Date().getFullYear();
-                var m = new Date().getMonth();
+                var m = new Date().getMonth() + 1;
                 var d = new Date().getDate();
 
                 var hours = new Date().getHours();
@@ -169,7 +151,7 @@
 
         window.onresize = function () {
             $("#external-frame").height($(window).height() - 100);
-        }  
+        }
     </script>
 </body>
 </html>

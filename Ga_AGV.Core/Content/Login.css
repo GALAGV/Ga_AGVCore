@@ -1,0 +1,107 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0px;
+    text-decoration: none;
+}
+
+.main-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    margin-top: 0px;
+}
+
+.main-bg img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-top {
+    width: 100%;
+    height: 150px;
+    /*margin-top: 40px;*/
+    line-height: 150px;
+    text-align: center;
+}
+
+.main-middle {
+    width: 100%;
+    height: 100px;
+    /*margin-top: 10px;*/
+    line-height: 100px;
+    font-size: 60px;
+    text-align: center;
+    font-family: "微软雅黑";
+    font-weight: bold;
+}
+
+.main-middle-count {
+    height: 100px;
+    width: 600px;
+    margin: 0px auto;
+    line-height: 100px;
+}
+
+.main-centre {
+    width: 100%;
+    height: 400px;
+}
+
+.main-centre-count {
+    width: 550px;
+    height: 300px;
+    margin: 0px auto;
+    background-color: #808080;
+    /*opacity:0.4;*/
+    margin-top: 60px;
+    border-radius: 2%;
+    -moz-box-shadow: 3px 3px 8px #333333;
+    -webkit-box-shadow: 3px 3px 8px #333333;
+    box-shadow: 3px 3px 8px #333333;
+}
+
+.main-centre-count ul {
+    height: 300px;
+}
+
+.main-centre-count ul li {
+    height: 100px;
+    line-height: 100px;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.main-centre-count ul li input {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    width: 450px;
+    margin: 0px auto;
+}
+
+.main-bottom {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8a8888;
+    margin-top: 50px;
+}
+
+.main-group {
+    width: 400px;
+    margin: 0px auto;
+    height: 80px;
+    line-height: 400px;
+}
+
+.main-form {
+    width: 400px;
+    margin: 0px auto;
+    height: 80px;
+}

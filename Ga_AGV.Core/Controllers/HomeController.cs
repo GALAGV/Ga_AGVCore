@@ -9,12 +9,25 @@ namespace Ga_AGV.Core.Controllers
     public class HomeController : Controller
     {
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Main()
+        {
+            return View();
+        }
+
+        public ActionResult Main1()
         {
             return View();
         }

@@ -9,124 +9,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>用户登录</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <style type="text/css">
-        * {
-            margin: 0px;
-            padding: 0px;
-            list-style: none;
-            border: 0px;
-            text-decoration: none;
-        }
-
-        .main-bg {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            z-index: -1;
-            margin-top: 0px;
-        }
-
-        .main-bg img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .main-top {
-            width: 100%;
-            height: 150px;
-            /*margin-top: 40px;*/
-            line-height: 150px;
-            text-align: center;
-        }
-
-        .main-middle {
-            width: 100%;
-            height: 100px;
-            /*margin-top: 10px;*/
-            line-height: 100px;
-            font-size: 60px;
-            text-align: center;
-            font-family: "微软雅黑";
-            font-weight: bold;
-        }
-
-        .main-middle-count {
-            height: 100px;
-            width: 600px;
-            margin: 0px auto;
-            line-height: 100px;
-        }
-
-        .main-centre {
-            width: 100%;
-            height: 400px;
-        }
-
-        .main-centre-count {
-            width: 550px;
-            height: 300px;
-            margin: 0px auto;
-            background-color: #808080;
-            /*opacity:0.4;*/
-            margin-top: 60px;
-            border-radius: 2%;
-            -moz-box-shadow: 3px 3px 8px #333333;
-            -webkit-box-shadow: 3px 3px 8px #333333;
-            box-shadow: 3px 3px 8px #333333;
-        }
-
-        .main-centre-count ul {
-            height: 300px;
-        }
-
-        .main-centre-count ul li {
-            height: 100px;
-            line-height: 100px;
-            position: relative;
-            display: block;
-            text-align: center;
-        }
-
-        .main-centre-count ul li input {
-            position: absolute;
-            top: 30px;
-            left: 60px;
-            width: 450px;
-            margin: 0px auto;
-        }
-
-        .main-bottom {
-            text-align: center;
-            height: 50px;
-            line-height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #8a8888;
-            margin-top: 50px;
-        }
-
-        .main-group {
-            width: 400px;
-            margin: 0px auto;
-            height: 80px;
-            line-height: 400px;
-        }
-
-        .main-form {
-            width: 400px;
-            margin: 0px auto;
-            height: 80px;
-        }
-    </style>
+    <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div>
@@ -160,12 +48,15 @@
                                 <button style="width:400px;background-color: #ffba19;color:white;font-weight:bold" class="btn btn-login" type="submit">登&nbsp;录</button>
                             </div>
                         </div>
-                        <div class="main-bottom"><p>Copyright ©
-                        <script>document.write((new Date()).getFullYear());</script>  Galaxis</p></div>
+                        <div class="main-bottom">
+                            <p>
+                                Copyright &copy;
+                                <script>document.write((new Date()).getFullYear());</script>  Galaxis
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
-          
         </div>
     </div>
 </body>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- bootstrap样式文件 -->
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- bootstrap默认主题 -->
+    <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/commonality.css" rel="stylesheet" />
+    <!--animate动画文件 -->
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <!-- table表格组件样式 -->
+    <link href="~/Content/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    <!-- 日期组件样式 -->
+    <link href="~/Scripts/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <!-- 下拉框组件样式 -->
+    <link href="~/Scripts/bootstrap-select-1.13.2/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap-table/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-select-1.13.2/dist/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="~/Scripts/bootstrap-select-1.13.2/dist/js/i18n/defaults-zh_CN.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+</head>
+<body>
+    <div>
+        <ol class="breadcrumb">
+            <li><a href="javascript:;">@ViewBag.PageTitle</a></li>
+            <li class="active">@ViewBag.PageColumn</li>
+        </ol>
+        @RenderBody()
+    </div>
+</body>
+</html>

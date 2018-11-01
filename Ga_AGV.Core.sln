@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.Core", "Ga_AGV.Core\Ga_AGV.Core.csproj", "{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.WEB", "Ga_AGV.Core\Ga_AGV.WEB.csproj", "{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.Model", "Ga_AGV.Model\Ga_AGV.Model.csproj", "{2ABAEA35-390F-453C-9350-71FDD2D5A4BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.DAL", "Ga_AGV.DAL\Ga_AGV.DAL.csproj", "{69D812EB-77B4-403D-86BF-5253AC3EE83C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.BLL", "Ga_AGV.BLL\Ga_AGV.BLL.csproj", "{2844DA55-3820-4957-8BB2-5A2B8180313D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2966A0-14EC-4BE6-A021-1A25CBB4EB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABAEA35-390F-453C-9350-71FDD2D5A4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABAEA35-390F-453C-9350-71FDD2D5A4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABAEA35-390F-453C-9350-71FDD2D5A4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABAEA35-390F-453C-9350-71FDD2D5A4BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69D812EB-77B4-403D-86BF-5253AC3EE83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69D812EB-77B4-403D-86BF-5253AC3EE83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69D812EB-77B4-403D-86BF-5253AC3EE83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69D812EB-77B4-403D-86BF-5253AC3EE83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2844DA55-3820-4957-8BB2-5A2B8180313D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2844DA55-3820-4957-8BB2-5A2B8180313D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2844DA55-3820-4957-8BB2-5A2B8180313D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2844DA55-3820-4957-8BB2-5A2B8180313D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

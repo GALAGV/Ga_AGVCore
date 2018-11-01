@@ -9,6 +9,6 @@ namespace Ga_AGV.Core.API
 {
     public class AGVAPIController : ApiController
     {
-        public 
+        //public 
     }
 }

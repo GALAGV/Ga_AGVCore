@@ -45,7 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MySqlHelper.cs" />
+    <Compile Include="DataAccess\Ga_agvlogDAL.cs" />
+    <Compile Include="DataHelper\MySqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

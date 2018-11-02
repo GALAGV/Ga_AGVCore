@@ -30,10 +30,5 @@ namespace Ga_AGV.Core.API
             return data;
         }
 
-
-
-
-
-
     }
 }

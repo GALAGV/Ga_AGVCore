@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace Ga_AGV.DAL
 {
-   public class MySqlHelper
+    public class MySqlHelper
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["MySQLconn"].ConnectionString;
-
 
         ////存储过程
         public static DataTable ExecuteDataTableCommand(string CommandText)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = CommandText;
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandText = CommandText
+                };
                 using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                 {
                     DataSet ds = new DataSet();
@@ -60,7 +61,7 @@ namespace Ga_AGV.DAL
                         int rows = cmd.ExecuteNonQuery();
                         return rows;
                     }
-                    catch (MySql.Data.MySqlClient.MySqlException e)
+                    catch (MySql.Data.MySqlClient.MySqlException)
                     {
                         connection.Close();
                         return 0;
@@ -87,7 +88,7 @@ namespace Ga_AGV.DAL
                         cmd.Parameters.Clear();
                         return rows;
                     }
-                    catch (MySql.Data.MySqlClient.MySqlException e)
+                    catch (MySql.Data.MySqlClient.MySqlException)
                     {
                         return 0;
                     }
@@ -187,14 +188,16 @@ namespace Ga_AGV.DAL
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">多条SQL语句</param>		
+        /// <param name="SQLStringList">多条SQL语句</param>
         public static bool ExecuteSqlTran(List<String> SQLStringList)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = conn
+                };
                 MySqlTransaction tx = conn.BeginTransaction();
                 cmd.Transaction = tx;
                 try
@@ -363,7 +366,7 @@ namespace Ga_AGV.DAL
                     MySqlDataAdapter command = new MySqlDataAdapter(SQLString, connection);
                     command.Fill(ds, "ds");
                 }
-                catch (MySql.Data.MySqlClient.MySqlException ex)
+                catch (MySql.Data.MySqlClient.MySqlException)
                 {
                     return new DataTable();
                 }
@@ -462,7 +465,7 @@ namespace Ga_AGV.DAL
         /// <param name="pageIdex">当前索引页</param>
         /// <param name="pageSize">每页记录数</param>
         /// <returns></returns>
-        public static DataTable getPager(out int recordCount, string selectList, string tableName, string whereStr, string orderExpression, int pageIdex, int pageSize)
+        public static DataTable GetPager(out int recordCount, string selectList, string tableName, string whereStr, string orderExpression, int pageIdex, int pageSize)
         {
             int rows = 0;
             DataTable dt = new DataTable();

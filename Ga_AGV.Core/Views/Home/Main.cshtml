@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -51,7 +50,7 @@
                             </a>
                             <ul id="ui3" class="sidebar-dropdown list-unstyled collapse ">
                                 <li class="sidebar-item"><a class="sidebar-link" href="javascript:" url="">运行统计</a></li>
-                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count" >运行日志</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count">运行日志</a></li>
                                 <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("TaskLog","Statistics")" target="Main-Count">任务日志</a></li>
                             </ul>
                         </li>
@@ -102,7 +101,7 @@
         <!-- 头部菜单end -->
         <!-- 内容 -->
         <div class="main-counts" style="overflow:hidden;">
-            <iframe src="/Statistics/RunningLog" frameborder="0" name="Main-Count" scrolling="yes" width="100%" id="external-frame"></iframe>
+            <iframe src="/Statistics/RunningLog" frameborder="0" name="Main-Count" scrolling="yes" width="100" id="external-frame"></iframe>
         </div>
         <!-- 内容end -->
     </div>

@@ -51,7 +51,7 @@
                             </a>
                             <ul id="ui3" class="sidebar-dropdown list-unstyled collapse ">
                                 <li class="sidebar-item"><a class="sidebar-link" href="javascript:" url="">运行统计</a></li>
-                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count" >系统日志</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count" >运行日志</a></li>
                                 <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("TaskLog","Statistics")" target="Main-Count">任务日志</a></li>
                             </ul>
                         </li>
@@ -109,16 +109,12 @@
     <script>
         $(function () {
 
-
-
-
             $("#external-frame").height($(window).height() - 90);
 
             CirculationTimes();
 
             setInterval(function () {
                 CirculationTimes();
-                msg();
             }, 1000);
             setInterval(function () {
                 msg();

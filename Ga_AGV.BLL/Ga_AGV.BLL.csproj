@@ -43,5 +43,15 @@
     <Compile Include="Ga_agvlogBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ga_AGV.DAL\Ga_AGV.DAL.csproj">
+      <Project>{69d812eb-77b4-403d-86bf-5253ac3ee83c}</Project>
+      <Name>Ga_AGV.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ga_AGV.Model\Ga_AGV.Model.csproj">
+      <Project>{2abaea35-390f-453c-9350-71fdd2d5a4bb}</Project>
+      <Name>Ga_AGV.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

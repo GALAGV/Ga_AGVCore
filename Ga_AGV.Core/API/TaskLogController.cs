@@ -12,6 +12,7 @@ namespace Ga_AGV.Core.API
 {
     public class TaskLogController : ApiController
     {
+        Ga_tasklogBLL ga_Tasklog = new Ga_tasklogBLL(); 
         /// <summary>
         /// 查询任务日志
         /// </summary>
@@ -23,7 +24,7 @@ namespace Ga_AGV.Core.API
         {
             int pageCount = 0;
             JsonData<Ga_taskloginfo> list = new JsonData<Ga_taskloginfo>();
-            list.rows = Ga_agvlogBLL.list(ref pageCount, limit, offset);
+            list.rows = ga_Tasklog.TaskLoglist(ref pageCount, limit, offset);
             list.total = pageCount;
             return list;
         }

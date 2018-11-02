@@ -156,7 +156,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AGVAPIController.cs" />
+    <Compile Include="API\agvlogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -620,7 +620,9 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap3.html" />
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap4.html" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

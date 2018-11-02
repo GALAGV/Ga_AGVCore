@@ -15,7 +15,7 @@
             <div class="panel-body" style="padding:0px;">
                 <form id="formSearch" class="form-horizontal">
                     <div class="panel panel-default">
-                        <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><button type="button" id="btn_query" class="btn btn-primary">查询</button></span></div>
+                        <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
                         <div class="panel-body">
 
                             <div class="form-group">
@@ -112,8 +112,6 @@
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
-
-
         //2.初始化Button的点击事件
         var oButtonInit = new ButtonInit();
         oButtonInit.Init();
@@ -284,18 +282,17 @@
         return oTableInit;
     };
 
-
     var ButtonInit = function () {
         var oInit = new Object();
-        var postdata = {};
 
         oInit.Init = function () {
+
             //条件查询click事件注册
             $("#btn_query").click(function () {
                 $("#tb_report").bootstrapTable('refresh');
             });
-        };
 
-        return oInit;
-    };
+            return oInit;
+        };
+    }
 </script>

@@ -16,6 +16,8 @@ namespace Ga_AGV.Core.Controllers
         public ActionResult Login()
         {
             return View();
+
+
         }
 
         /// <summary>

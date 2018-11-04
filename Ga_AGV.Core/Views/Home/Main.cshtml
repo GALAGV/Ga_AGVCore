@@ -76,11 +76,11 @@
         <!-- 侧边菜单end -->
         <!-- 头部菜单 -->
         <div class="main-top-nav">
-            <div class="nav-men">
-                <ul class="nav navbar-nav">
-                    <li class="active nav-li"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
+           
+                <ul class="nav navbar-nav" id="nac-tab">
+                    <li class="active nav-li" id="mesg-img"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
                     @*<li class=" nav-li"><a href="#" id="nav-a">SVN</a></li>*@
-                    <li class="dropdown  nav-li">
+                    <li class="dropdown  nav-li" id="Management">
                         <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
                         <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
                             <li><a href="#">系统配置</a></li>
@@ -96,19 +96,19 @@
                     </li>
                 </ul>
                 <div id="software-Name">GALAXIS AGV智能调度系统</div>
-            </div>
+          
         </div>
         <!-- 头部菜单end -->
         <!-- 内容 -->
-        <div class="main-counts" style="overflow:hidden;">
-            <iframe src="/Statistics/RunningLog" frameborder="0" name="Main-Count" scrolling="yes" width="100%" id="external-frame"></iframe>
+        <div class="main-counts"  style="overflow:hidden;overflow-x:hidden">
+            <iframe src="/Statistics/RunningLog"  frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
         </div>
         <!-- 内容end -->
     </div>
     <script>
         $(function () {
 
-            $("#external-frame").height($(window).height() - 90);
+            //$("#external-frame").height($(window).height() - 90);
 
             CirculationTimes();
 
@@ -146,9 +146,9 @@
             }
         });
 
-        window.onresize = function () {
-            $("#external-frame").height($(window).height() - 90);
-        }
+        //window.onresize = function () {
+        //    $("#external-frame").height($(window).height() - 90);
+        //}
     </script>
 </body>
 </html>

@@ -10,11 +10,16 @@ namespace Ga_AGV.BLL
 {
     public class Ga_agvlogBLL
     {
-        Ga_agvlogDAL ga_AgvlogDAL = new Ga_agvlogDAL();
-        public List<Ga_agvloginfo> Ga_AgvloginfosBLL(ref int PageCount, int limit, int offset)
-        {
-            return ga_AgvlogDAL.Ga_AgvloginfosList(ref PageCount, limit, offset);
-        }
+        private Ga_agvlogDAL ga_AgvlogDAL = new Ga_agvlogDAL();
 
+        //public List<Ga_agvloginfo> Ga_AgvloginfosBLL(ref int PageCount, int limit, int offset)
+        //{
+        //    return ga_AgvlogDAL.Ga_AgvloginfosList(ref PageCount, limit, offset);
+        //}
+
+        public List<Ga_agvloginfo> Ga_AgvloginfosBLL(ref int PageCount, int limit, int offset, string query_log_time, string start_time, string end_time, string agv_num, string task_status, string agv_status)
+        {
+            return ga_AgvlogDAL.Ga_AgvloginfosList(ref PageCount, limit, offset, query_log_time, start_time, end_time, agv_num, task_status, agv_status);
+        }
     }
 }

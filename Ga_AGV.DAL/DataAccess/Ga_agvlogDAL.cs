@@ -82,19 +82,16 @@ namespace Ga_AGV.DAL.DataAccess
             //SELECT * FROM `ga_agvloginfo` LIMIT " + offset + "," + limit + "
 
             string sql = string.Format("SELECT * FROM `ga_agvlog`.");
-            string count = "SELECT Count(*) FROM `ga_agvlog`.";
 
             if (log_time == null)
             {
                 //string ss = DateTime.Now.Date.ToString("yyyyMMdd");
                 sql += string.Format("`ga_agvloginfo{0}` where 0 = 0 ", DateTime.Now.Date.ToString("yyyyMMdd"));
-                count += string.Format("`ga_agvloginfo{0}` ", DateTime.Now.Date.ToString("yyyyMMdd"));
             }
             if (log_time != null)
             {
                 //string ww = Regex.Replace(log_time, "-", "");
                 sql += string.Format("`ga_agvloginfo{0}` where 0 = 0 ", Regex.Replace(log_time, "-", ""));
-                count += string.Format("`ga_agvloginfo{0}` ", Regex.Replace(log_time, "-", ""));
             }
             if (start_time != null && end_time != null)
             {
@@ -150,7 +147,7 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
-
+            string count = sql.Replace("*", "Count(*)");
             MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
             while (mySql.Read())
             {

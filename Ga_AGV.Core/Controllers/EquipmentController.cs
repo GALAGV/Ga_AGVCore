@@ -15,9 +15,6 @@ namespace Ga_AGV.Core.Controllers
         public ActionResult AGVManagement()
         {
             return View();
-
-
-
         }
 
 

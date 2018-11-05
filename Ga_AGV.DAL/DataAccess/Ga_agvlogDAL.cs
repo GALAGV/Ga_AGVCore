@@ -10,9 +10,6 @@ namespace Ga_AGV.DAL.DataAccess
 {
     public class Ga_agvlogDAL
     {
-
-
-
         #region  数据处理
 
 
@@ -28,7 +25,7 @@ namespace Ga_AGV.DAL.DataAccess
         public List<Ga_agvloginfo> Ga_AgvloginfosList(ref int PageCount, int limit, int offset)
         {
             List<Ga_agvloginfo> ga_s = new List<Ga_agvloginfo>();
-            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `ga_agvloginfo` LIMIT "+ offset + ","+ limit + "");
+            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `ga_agvlog`.`ga_agvloginfo20181105` LIMIT " + offset + ","+ limit + "");
             while (mySqlData.Read())
             {
                 ga_s.Add(new Ga_agvloginfo()
@@ -56,7 +53,7 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
-            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `ga_agvloginfo`");
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `ga_agvlog`.`ga_agvloginfo20181105`");
             while (mySql.Read())
             {
                 PageCount = Convert.ToInt32(mySql[0].ToString().Trim());
@@ -70,7 +67,5 @@ namespace Ga_AGV.DAL.DataAccess
 
 
         #endregion
-
-
     }
 }

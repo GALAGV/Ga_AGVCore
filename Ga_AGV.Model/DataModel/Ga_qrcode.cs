@@ -19,7 +19,7 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// 二维码信息
         /// </summary>
-        public int qrInfo { get; set; }
+        public string qrInfo { get; set; }
 
         /// <summary>
         /// 二维码X值
@@ -34,11 +34,11 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// 二维码状态
         /// </summary>
-        public int qrStatus { get; set; }
+        public string qrStatus { get; set; }
 
         /// <summary>
         /// 二维码备注
         /// </summary>
-        public int qrRemark { get; set; }
+        public string qrRemark { get; set; }
     }
 }

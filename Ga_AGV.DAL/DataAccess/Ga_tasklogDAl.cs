@@ -18,7 +18,7 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_taskloginfo> list(ref int pageCount, int limit, int offset)
+        public List<Ga_taskloginfo> Ga_taskloglist(ref int pageCount, int limit, int offset)
         {
             List<Ga_taskloginfo> list = new List<Ga_taskloginfo>();
             var sql = "SELECT * FROM `ga_agvlog`.`ga_taskloginfo20181105` LIMIT " + offset + "," + limit + "";
@@ -27,10 +27,10 @@ namespace Ga_AGV.DAL.DataAccess
             {
                 list.Add(new Ga_taskloginfo()
                 {
-                    tasklogId = int.Parse(dd["tasklogId"].ToString().Trim()),
+                    tasklogId = Convert.ToInt32(dd["tasklogId"].ToString().Trim()),
                     taskLogTime = dd["taskLogTime"].ToString().Trim(),
                     taskName = dd["taskName"].ToString().Trim(),
-                    taskAgvNum = int.Parse(dd["taskAgvNum"].ToString().Trim()),
+                    taskAgvNum = Convert.ToInt32(dd["taskAgvNum"].ToString().Trim()),
                     taskAgvSerialNo = dd["taskAgvSerialNo"].ToString().Trim(),
                     taskStartQr = dd["taskStartQr"].ToString().Trim(),
                     taskStartX = dd["taskStartX"].ToString().Trim(),
@@ -38,7 +38,7 @@ namespace Ga_AGV.DAL.DataAccess
                     taskEndQr = dd["taskEndQr"].ToString().Trim(),
                     taskEndX = dd["taskEndX"].ToString().Trim(),
                     taskEndY = dd["taskEndY"].ToString().Trim(),
-                    taskComplete = int.Parse(dd["taskComplete"].ToString().Trim()),
+                    taskComplete = Convert.ToInt32(dd["taskComplete"].ToString().Trim()),
 
                     taskEndTime = dd["taskEndTime"].ToString().Trim(),
                 });

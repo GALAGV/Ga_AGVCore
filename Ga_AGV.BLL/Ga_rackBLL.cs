@@ -1,28 +1,26 @@
-﻿using Ga_AGV.DAL.DataAccess;
-using Ga_AGV.Model.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ga_AGV.DAL.DataAccess;
+using Ga_AGV.Model.DataModel;
 
 namespace Ga_AGV.BLL
 {
-    public class Ga_tasklogBLL
+    public class Ga_rackBLL
     {
-        Ga_tasklogDAl ga_TasklogDAl = new Ga_tasklogDAl();
+        Ga_rackDAL ga_RackDAL = new Ga_rackDAL();
         /// <summary>
-        /// 查询任务日志
+        /// 查询货架
         /// </summary>
         /// <param name="pageCount">数据总数</param>
         /// <param name="limit">查询数量</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public  List<Ga_taskloginfo> TaskLoglist(ref int pageCount, int limit, int offset)
+        public List<Ga_rack> Ga_rackList(ref int pageCount, int limit, int offset)
         {
-            return ga_TasklogDAl.Ga_taskloglist(ref pageCount, limit, offset);
+            return ga_RackDAL.Ga_rackShow(ref pageCount, limit, offset);
         }
-
-
     }
 }

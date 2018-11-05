@@ -10,9 +10,6 @@ namespace Ga_AGV.DAL.DataAccess
 {
     public class Ga_agvlogDAL
     {
-
-
-
         #region  数据处理
 
 

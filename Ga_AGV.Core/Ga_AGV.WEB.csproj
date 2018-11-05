@@ -157,8 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\agvlogController.cs" />
-    <Compile Include="API\GoodsShelfController.cs" />
     <Compile Include="API\QrcodeController.cs" />
+    <Compile Include="API\RackController.cs" />
     <Compile Include="API\TaskLogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -707,7 +707,6 @@
     <Content Include="Views\Statistics\TaskLog.cshtml" />
     <Content Include="Views\Statistics\Qrcode.cshtml" />
     <Content Include="Views\Statistics\Rack.cshtml" />
-    <Content Include="Views\Statistics\AGVState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

@@ -18,7 +18,7 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public static List<Ga_taskloginfo> list(ref int pageCount, int limit, int offset)
+        public List<Ga_taskloginfo> list(ref int pageCount, int limit, int offset)
         {
             List<Ga_taskloginfo> list = new List<Ga_taskloginfo>();
             var sql = "SELECT * FROM `ga_agvlog`.`ga_taskloginfo20181105` LIMIT " + offset + "," + limit + "";

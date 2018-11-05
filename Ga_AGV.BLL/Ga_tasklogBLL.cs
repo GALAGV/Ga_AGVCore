@@ -10,6 +10,7 @@ namespace Ga_AGV.BLL
 {
     public class Ga_tasklogBLL
     {
+        Ga_tasklogDAl ga_TasklogDAl = new Ga_tasklogDAl();
         /// <summary>
         /// 查询任务日志
         /// </summary>
@@ -19,7 +20,7 @@ namespace Ga_AGV.BLL
         /// <returns></returns>
         public  List<Ga_taskloginfo> TaskLoglist(ref int pageCount, int limit, int offset)
         {
-            return Ga_tasklogDAl.list(ref pageCount, limit, offset);
+            return ga_TasklogDAl.list(ref pageCount, limit, offset);
         }
 
 

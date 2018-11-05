@@ -157,7 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\agvlogController.cs" />
-    <Compile Include="API\agvloginController.cs" />
+    <Compile Include="API\GoodsShelfController.cs" />
+    <Compile Include="API\QrcodeController.cs" />
     <Compile Include="API\TaskLogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -640,7 +641,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Equipment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -650,6 +650,8 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Equipment\AGVManagement.cshtml" />
+    <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.min.css.map" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap.css.map" />
@@ -703,6 +705,9 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\sass\bootstrap-select.scss" />
     <Content Include="Scripts\bootstrap-select-1.13.2\sass\variables.scss" />
     <Content Include="Views\Statistics\TaskLog.cshtml" />
+    <Content Include="Views\Statistics\Qrcode.cshtml" />
+    <Content Include="Views\Statistics\Rack.cshtml" />
+    <Content Include="Views\Statistics\AGVState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

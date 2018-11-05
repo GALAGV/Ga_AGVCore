@@ -147,7 +147,10 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
+
             string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
             MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
             while (mySql.Read())
             {

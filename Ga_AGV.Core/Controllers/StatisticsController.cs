@@ -24,7 +24,21 @@ namespace Ga_AGV.Core.Controllers
             return View();
         }
 
-
-
+        public ActionResult Qrcode()
+        {
+            return View();
+        }
+        public ActionResult Rack()
+        {
+            return View();
+        }
+        /// <summary>
+        /// AGV状态
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AGVState()
+        {
+            return View();
+        }
     }
 }

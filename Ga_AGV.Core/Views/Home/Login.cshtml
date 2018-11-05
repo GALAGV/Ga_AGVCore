@@ -13,7 +13,6 @@
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Login.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -30,22 +29,22 @@
             </div>
             <div class="main-centre ">
                 <div class="main-centre-count" style="padding-top:60px;">
-                    <form action="~/Home/Main">
+                    <form  method="POST" role="form" id="form-test">
                         <div class="form-group main-group">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
+                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
                             </div>
                         </div>
                         <div class="form-group main-group">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
+                                <input type="password" id="Password" name="Password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
                             </div>
                         </div>
                         <div class="form-group main-form">
                             <div class="input-group">
-                                <button style="width:400px;background-color: #ffba19;color:white;font-weight:bold" class="btn btn-login" type="submit">登&nbsp;录</button>
+                                <button id="btn-test" style="width:400px;background-color: #ffba19;color:white;font-weight:bold" class="btn btn-login" type="button">登&nbsp;录</button>
                             </div>
                         </div>
                         <div class="main-bottom">
@@ -59,5 +58,63 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="meg"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    @*<button type="button" class="btn btn-primary">保存</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+
+            $('#btn-test').click(function () {
+                if ($('#UserName').val() == "" || $('#Password').val() == "") {
+                    $('#meg').html("账号密码不能为空！");
+                    $('#myModal').modal({
+                        keyboard: true
+                    });
+                    return;
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '/api/agvlogin/LoginUser',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ "userName": $('#UserName').val(), "userPassword": $('#Password').val() }),
+                    datatype: 'json',
+                    success: function (res) {
+                        if (res.Success) {
+                            $('#meg').html(res.Message);
+                            setTimeout(function () {
+                                window.location.href = "/Home/Main"; 
+                            },900);
+                        }
+                        else {
+                            $('#meg').html(res.Message);
+                        }
+                        $('#myModal').modal({
+                            keyboard: true
+                        });
+                    },
+                    error: function (e) {
+                        $('#meg').html(e.responseText);
+                        $('#myModal').modal({
+                            keyboard: true
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

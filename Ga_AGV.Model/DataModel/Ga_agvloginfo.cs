@@ -57,12 +57,12 @@ namespace Ga_AGV.Model.DataModel
         public double agvY { get; set; }
 
         /// <summary>
-        /// 电压
+        /// 电压        
         /// </summary>
         public double agvPowerStatus { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         public double agvSpeed { get; set; }
 
@@ -102,12 +102,12 @@ namespace Ga_AGV.Model.DataModel
         public int agvIsCharging { get; set; }
 
         /// <summary>
-        /// 任务状态 1,已完成 2，已取消 3执行中
+        /// 任务状态 1,已完成,2，已取消，3执行中,0默认
         /// </summary>
         public int agvTaskStatus { get; set; }
 
         /// <summary>
-        ///任务
+        ///任务 
         /// </summary>
         public string agvTask { get; set; }
     }

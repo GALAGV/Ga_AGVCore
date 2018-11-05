@@ -10,9 +10,9 @@ using System.Web.Http;
 
 namespace Ga_AGV.Core.API
 {
-    public class QrcodeController : ApiController
+    public class RackController : ApiController
     {
-        Ga_qrcodeBLL ga_qrcodeBLL = new Ga_qrcodeBLL();
+        Ga_rackBLL ga_RackBLL = new Ga_rackBLL();
         /// <summary>
         /// 查询任务日志
         /// </summary>
@@ -20,11 +20,11 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_qrcode> Qrcode(int limit, int offset)
+        public JsonData<Ga_rack> Rack(int limit, int offset)
         {
             int pageCount = 0;
-            JsonData<Ga_qrcode> list = new JsonData<Ga_qrcode>();
-            list.rows = ga_qrcodeBLL.ga_QrcodeBLL(ref pageCount, limit, offset);
+            JsonData<Ga_rack> list = new JsonData<Ga_rack>();
+            list.rows = ga_RackBLL.Ga_rackList(ref pageCount, limit, offset);
             list.total = pageCount;
             return list;
         }

@@ -16,8 +16,6 @@ namespace Ga_AGV.Core.Controllers
         public ActionResult Login()
         {
             return View();
-
-
         }
 
         /// <summary>
@@ -29,9 +27,7 @@ namespace Ga_AGV.Core.Controllers
             return View();
         }
 
-        public ActionResult Main1()
-        {
-            return View();
-        }
+
+
     }
 }

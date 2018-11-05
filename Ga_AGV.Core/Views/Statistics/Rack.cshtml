@@ -27,9 +27,8 @@
                             <div class="col-sm-3">
                                 <select class="selectpicker show-tick form-control" data-live-search="false">
                                     <option>全部</option>
-                                    <option>已完成</option>
-                                    <option>进行中</option>
-                                    <option>未完成</option>
+                                    <option>可用</option>
+                                    <option>不可用</option>
                                 </select>
                             </div>
                         </div>
@@ -75,7 +74,7 @@
         //初始化Table
         oTableInit.Init = function () {
             $('#tb_report').bootstrapTable({
-                url: '/Statistics/',         //请求后台的URL（*）
+                url: '/API/Rack/Rack',              //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -104,9 +103,9 @@
                     title: 'ID',
                     align: 'center'
                 }, {
-                    filed: 'rackSerialNum',
+                    field: 'rackSerialNum',
                     title: '货架编号',
-                    align: 'center'
+                    align: 'center',
                 }, {
                     field: 'rack_qrInfo',
                     title: '货架信息',

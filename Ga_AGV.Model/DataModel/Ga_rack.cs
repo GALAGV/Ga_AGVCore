@@ -19,12 +19,12 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// 货架编号
         /// </summary>
-        public int rackSerialNum { get; set; }
+        public string  rackSerialNum { get; set; }
 
         /// <summary>
         /// 货架信息
         /// </summary>
-        public int rack_qrInfo { get; set; }
+        public string  rack_qrInfo { get; set; }
 
         /// <summary>
         /// 1.空闲 2.任务锁定 3.移动中 4.弃用
@@ -34,7 +34,7 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// 备用
         /// </summary>
-        public int rackRemark { get; set; }
+        public string  rackRemark { get; set; }
 
         /// <summary>
         /// 如果在移动中对应的agv序号

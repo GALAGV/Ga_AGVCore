@@ -102,7 +102,7 @@ namespace Ga_AGV.Model.DataModel
         public int agvIsCharging { get; set; }
 
         /// <summary>
-        /// 任务状态 1,已完成,2，已取消，3执行中
+        /// 任务状态 1,已完成,2，已取消，3执行中,0默认
         /// </summary>
         public int agvTaskStatus { get; set; }
 

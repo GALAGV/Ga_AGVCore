@@ -21,7 +21,7 @@ namespace Ga_AGV.DAL.DataAccess
         public List<Ga_taskloginfo> Ga_taskloglist(ref int pageCount, int limit, int offset)
         {
             List<Ga_taskloginfo> list = new List<Ga_taskloginfo>();
-            var sql = "SELECT * FROM `ga_taskloginfo` LIMIT " + offset + "," + limit + "";
+            var sql = "SELECT * FROM `ga_agvlog`.`ga_taskloginfo20181105` LIMIT " + offset + "," + limit + "";
             MySqlDataReader dd = MySqlHelper.ExecuteReader(sql);
             while (dd.Read())
             {
@@ -44,7 +44,7 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
-            var s = "SELECT COUNT(*) FROM `ga_taskloginfo`";
+            var s = "SELECT COUNT(*) FROM `ga_agvlog`.`ga_taskloginfo20181105`";
             DataTable f = MySqlHelper.ExecuteDataTable(s);
             foreach (DataRow item in f.Rows)
             {

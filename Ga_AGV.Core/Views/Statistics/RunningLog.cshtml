@@ -281,18 +281,4 @@
         };
         return oTableInit;
     };
-
-    var ButtonInit = function () {
-        var oInit = new Object();
-
-        oInit.Init = function () {
-
-            //条件查询click事件注册
-            $("#btn_query").click(function () {
-                $("#tb_report").bootstrapTable('refresh');
-            });
-
-            return oInit;
-        };
-    }
 </script>

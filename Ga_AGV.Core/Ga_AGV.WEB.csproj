@@ -159,6 +159,7 @@
     <Compile Include="API\agvlistController.cs" />
     <Compile Include="API\agvlogController.cs" />
     <Compile Include="API\agvloginController.cs" />
+    <Compile Include="API\RackController.cs" />
     <Compile Include="API\TaskLogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -741,6 +742,7 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\sass\variables.scss" />
     <Content Include="Views\Statistics\TaskLog.cshtml" />
     <Content Include="Views\Equipment\AGVManagement.cshtml" />
+    <Content Include="Views\Statistics\Rack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

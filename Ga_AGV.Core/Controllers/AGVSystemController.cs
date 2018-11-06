@@ -6,17 +6,12 @@ using System.Web.Mvc;
 
 namespace Ga_AGV.Core.Controllers
 {
-    public class EquipmentController : Controller
+    public class AGVSystemController : Controller
     {
-        // GET: Equipment
-
-
-
-        public ActionResult AGVManagement()
+        // GET: AGVSystem
+        public ActionResult QRcode()
         {
             return View();
         }
-
-
     }
 }

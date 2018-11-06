@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"name="viewport">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
@@ -35,7 +35,18 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="#ui2" data-toggle="collapse" class="sidebar-link collapsed">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg> <span class="align-middle">设备操作</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle">
+                                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                                    <line x1="20" y1="21" x2="20" y2="16">
+                                    </line>
+                                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                                </svg> <span class="align-middle">设备操作</span>
                             </a>
                             <ul id="ui2" class="sidebar-dropdown list-unstyled collapse ">
                                 <li class="sidebar-item"><a class="sidebar-link" href="javascript:" url="@Url.Action("AGVManagement","Equipment")">AGV管理</a></li>
@@ -55,12 +66,16 @@
                         <li class="sidebar-item">
                             <a href="#ui4" data-toggle="collapse" class="sidebar-link collapsed">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor align-middle"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor align-middle">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
                                 <span class="align-middle">AGV系统</span>
                             </a>
                             <ul id="ui4" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">运行监控</a></li>
-                                <li class="sidebar-item"><a class="sidebar-link" href="javascript:">二维码管理</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count">运行监控</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("AGVSystem","QRcode")" target="Main-Count">二维码管理</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,30 +89,30 @@
         <!-- 侧边菜单end -->
         <!-- 头部菜单 -->
         <div class="main-top-nav">
-           
-                <ul class="nav navbar-nav" id="nac-tab">
-                    <li class="active nav-li" id="mesg-img"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
-                    <li class="dropdown  nav-li" id="Management">
-                        <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
-                        <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
-                            <li><a href="#">系统配置</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">修改密码</a></li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="/Home/Login">
-                                    退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <div id="software-Name">GALAXIS AGV智能调度系统</div>
+
+            <ul class="nav navbar-nav" id="nac-tab">
+                <li class="active nav-li" id="mesg-img"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
+                <li class="dropdown  nav-li" id="Management">
+                    <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
+                        <li><a href="#">系统配置</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/Home/Login">
+                                退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="software-Name">GALAXIS AGV智能调度系统</div>
         </div>
         <!-- 头部菜单end -->
         <!-- 内容 -->
-        <div class="main-counts"  style="overflow:hidden;overflow-x:hidden">
-            <iframe src="/Statistics/RunningLog"  frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
+        <div class="main-counts" style="overflow:hidden;overflow-x:hidden">
+            <iframe src="/Statistics/RunningLog" frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
         </div>
         <!-- 内容end -->
     </div>
@@ -141,10 +156,6 @@
                 $('.msg').toggleClass('animated fadeIn');
             }
         });
-
-        //window.onresize = function () {
-        //    $("#external-frame").height($(window).height() - 90);
-        //}
     </script>
 </body>
 </html>

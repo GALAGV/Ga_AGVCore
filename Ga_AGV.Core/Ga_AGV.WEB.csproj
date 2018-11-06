@@ -163,7 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\AGVSystemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -703,6 +703,9 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\sass\bootstrap-select.scss" />
     <Content Include="Scripts\bootstrap-select-1.13.2\sass\variables.scss" />
     <Content Include="Views\Statistics\TaskLog.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Views\AGVSystem\QRcode.cshtml" />
+    <Content Include="Views\Statistics\AGVState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

@@ -165,6 +165,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AGVSystemController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -742,6 +744,7 @@
     <Content Include="Views\Statistics\TaskLog.cshtml" />
     <Content Include="Views\Equipment\AGVManagement.cshtml" />
     <Content Include="Views\Statistics\Rack.cshtml" />
+    <Content Include="Views\AGVSystem\QR_Code.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

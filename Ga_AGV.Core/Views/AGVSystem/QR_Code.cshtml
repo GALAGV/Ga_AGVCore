@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "AGVManagement";
+    ViewBag.Title = "QR_Code";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     ViewBag.PageTitle = "AGV系统";
     ViewBag.PageColumn = "二维码管理";
@@ -8,26 +8,31 @@
     <div class="x_title">
         <div class="clearfix">
             <div class="panel-body" style="padding:0px;">
-                <form id="formSearch" class="form-horizontal">
-                    <div class="panel panel-default">
-                        <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="txt_search_rolename">AGV编号</label>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">查询条件</div>
+                    <div class="panel-body">
+                        <form id="formSearch" class="form-horizontal">
+                            <div class="form-group" style="margin-top:15px">
+                                <label class="control-label col-sm-1" for="txt_search_departmentname">二维码编号</label>
                                 <div class="col-sm-3">
-                                    <input id="query_agv_num" type="text" class="form-control">
+                                    <input type="text" class="form-control" id="txt_search_departmentname">
                                 </div>
-                                <label class="control-label col-sm-1" for="txt_search_desc">AGV状态</label>
+                                <label class="control-label col-sm-1" for="txt_search_statu">二维码状态</label>
                                 <div class="col-sm-3">
                                     <select id="query_agv_status" class="selectpicker show-tick form-control" data-live-search="false">
-                                        <option>在线</option>
-                                        <option>离线</option>
+                                        <option>使用</option>
+                                        <option>停用</option>
                                     </select>
                                 </div>
+                                <div class="col-sm-4" style="text-align:left;">
+                                    <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+                                    <button type="button" style="margin-left:50px" id="btn_add" class="btn btn-primary">添加</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表</div>

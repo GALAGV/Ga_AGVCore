@@ -12,8 +12,10 @@
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="~/Scripts/toastr-master/toastr.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr-master/toastr.min.js"></script>
 </head>
 <body>
     <div>
@@ -58,32 +60,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">提示</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="meg"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    @*<button type="button" class="btn btn-primary">保存</button>*@
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         $(function () {
 
             $('#btn-test').click(function () {
                 if ($('#UserName').val() == "" || $('#Password').val() == "") {
-                    $('#meg').html("账号密码不能为空！");
-                    $('#myModal').modal({
-                        keyboard: true
-                    });
+                    toastr.error('账号密码不能为空！');
                     return;
                 }
                 $.ajax({
@@ -94,23 +76,17 @@
                     datatype: 'json',
                     success: function (res) {
                         if (res.Success) {
-                            $('#meg').html(res.Message);
+                            toastr.info(res.Message);
                             setTimeout(function () {
                                 window.location.href = "/Home/Main";
                             }, 900);
                         }
                         else {
-                            $('#meg').html(res.Message);
+                            toastr.error(res.Message);
                         }
-                        $('#myModal').modal({
-                            keyboard: true
-                        });
                     },
                     error: function (e) {
-                        $('#meg').html(e.responseText);
-                        $('#myModal').modal({
-                            keyboard: true
-                        });
+                        toastr.error(e.responseText);
                     }
                 });
             });

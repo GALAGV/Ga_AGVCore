@@ -10,10 +10,10 @@ namespace Ga_AGV.BLL
 {
     public class Ga_rackBLL
     {
-        private Ga_rackDAL ga_RackDAL = new Ga_rackDAL();
+        Ga_rackDAL ga_RackDAL = new Ga_rackDAL();
 
         /// <summary>
-        /// 查询QR_Code数据
+        /// 查询货架
         /// </summary>
         /// <param name="pageCount">数据总数</param>
         /// <param name="limit">查询数量</param>

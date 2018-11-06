@@ -12,24 +12,22 @@ namespace Ga_AGV.Core.API
 {
     public class RackController : ApiController
     {
-        private Ga_rackBLL ga_RackBLL = new Ga_rackBLL();
+        Ga_rackBLL ga_RackBLL = new Ga_rackBLL();
 
         /// <summary>
-        /// 查询任务日志
+        /// 查询货架
         /// </summary>
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        //[HttpGet]
-        //public JsonData<Ga_qrcode> Rack(int limit, int offset)
-        //{
-        //    int pageCount = 0;
-        //    JsonData<Ga_rack> list = new JsonData<Ga_rack>
-        //    {
-        //        rows = ga_RackBLL.Ga_rackList(ref pageCount, limit, offset),
-        //        total = pageCount
-        //    };
-        //    return list;
-        //}
+        [HttpGet]
+        public JsonData<Ga_rack> Rack(int limit, int offset)
+        {
+            int pageCount = 0;
+            JsonData<Ga_rack> list = new JsonData<Ga_rack>();
+            list.rows = ga_RackBLL.Ga_rackList(ref pageCount, limit, offset);
+            list.total = pageCount;
+            return list;
+        }
     }
 }

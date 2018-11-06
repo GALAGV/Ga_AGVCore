@@ -32,5 +32,22 @@ namespace Ga_AGV.Core.API
             data.total = pageCount;
             return data;
         }
+
+        /// <summary>
+        /// 添加AGV
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult Addagv([FromBody] Ga_agv agvdata)
+        {
+            if (Ga_Agv.agvadd(agvdata))
+            {
+                return new JsonResult() { Message = "添加成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "添加失败", Success = false };
+            }
+        }
     }
 }

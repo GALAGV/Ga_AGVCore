@@ -21,7 +21,7 @@ namespace Ga_AGV.DAL.DataAccess
         public List<Ga_rack> Ga_rackShow(ref int pageCount, int limit, int offset)
         {
             List<Ga_rack> list = new List<Ga_rack>();
-            var sql = "SELECT * FROM `Ga_rack` LIMIT " + offset + "," + limit + "";
+            var sql = "SELECT * FROM  `ga_agv`.`ga_rack` LIMIT " + offset + "," + limit + "";
             MySqlDataReader dd = MySqlHelper.ExecuteReader(sql);
             while (dd.Read())
             {
@@ -36,7 +36,7 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
-            var s = "SELECT COUNT(*) FROM `Ga_rack`";
+            var s = "SELECT COUNT(*) FROM `ga_rack`";
             DataTable f = MySqlHelper.ExecuteDataTable(s);
             foreach (DataRow item in f.Rows)
             {

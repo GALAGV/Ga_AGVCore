@@ -24,35 +24,46 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="Log_Time">日志时间</param>
         /// <param name="taskComplete">任务状态</param>
         /// <returns></returns>
-        public List<Ga_taskloginfo> Ga_taskloglist(ref int pageCount, int limit, int offset,string AGVNum,string Time,string EndTime,string Log_Time,string taskComplete)
+        public List<Ga_taskloginfo> Ga_taskloglist(ref int pageCount, int limit, int offset, string AGVNum, string Time, string EndTime, string Log_Time, string taskComplete)
         {
             List<Ga_taskloginfo> list = new List<Ga_taskloginfo>();
+            DataTable ds;
             var sql = "SELECT * FROM `ga_agvlog`.";
             if (Log_Time == null)
             {
-                sql += "`ga_taskloginfo" + DateTime.Now.Date.ToString("yyyyMMdd") + "` where 1=1";
+                ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'ga_taskloginfo" + DateTime.Now.ToString("yyyyMMdd") + "'");
+                if (ds.Rows.Count == 0)
+                {
+                    return new List<Ga_taskloginfo>();
+                }
+                sql += "`ga_taskloginfo" + DateTime.Now.Date.ToString("yyyyMMdd") + "` where 1 = 1";
             }
             if (Log_Time != null)
             {
+                ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'ga_agvloginfo" + Regex.Replace(Log_Time, "-", "") + "'");
+                if (ds.Rows.Count == 0)
+                {
+                    return new List<Ga_taskloginfo>();
+                }
                 sql += "`ga_taskloginfo" + Regex.Replace(Log_Time, "-", "") + "`where 1=1";
             }
             if (AGVNum != null && AGVNum != "")
             {
                 sql += " and taskAgvNum=" + AGVNum + "";
             }
-            if (Time!=null&&Time!="" && EndTime != null && EndTime != "")
+            if (Time != null && Time != "" && EndTime != null && EndTime != "")
             {
-                    sql += " and str_to_date(taskLogTime,'%H:%i:%s') between '" + Time + "' and '" + EndTime + "'";
+                sql += " and str_to_date(taskLogTime,'%H:%i:%s') between '" + Time + "' and '" + EndTime + "'";
             }
             if (taskComplete == "全部")
             {
-                sql+= " and taskComplete=" + 0;
+                sql += " and taskComplete=" + 0;
             }
             if (taskComplete != "全部")
             {
-                if (taskComplete=="已完成")
+                if (taskComplete == "已完成")
                 {
-                    sql+= " and taskComplete=" + 1;
+                    sql += " and taskComplete=" + 1;
                 }
                 else if (taskComplete == "未完成")
                 {
@@ -70,20 +81,20 @@ namespace Ga_AGV.DAL.DataAccess
             {
                 list.Add(new Ga_taskloginfo()
                 {
-                    tasklogId = Convert.ToInt32(dd["tasklogId"].ToString().Trim()),
-                    taskLogTime = dd["taskLogTime"].ToString().Trim(),
-                    taskName = dd["taskName"].ToString().Trim(),
-                    taskAgvNum = Convert.ToInt32(dd["taskAgvNum"].ToString().Trim()),
-                    taskAgvSerialNo = dd["taskAgvSerialNo"].ToString().Trim(),
-                    taskStartQr = dd["taskStartQr"].ToString().Trim(),
-                    taskStartX = dd["taskStartX"].ToString().Trim(),
-                    taskStartY = dd["taskStartY"].ToString().Trim(),
-                    taskEndQr = dd["taskEndQr"].ToString().Trim(),
-                    taskEndX = dd["taskEndX"].ToString().Trim(),
-                    taskEndY = dd["taskEndY"].ToString().Trim(),
-                    taskComplete = Convert.ToInt32(dd["taskComplete"].ToString().Trim()),
+                    TasklogId = Convert.ToInt32(dd["tasklogId"].ToString().Trim()),
+                    TaskLogTime = dd["taskLogTime"].ToString().Trim(),
+                    TaskName = dd["taskName"].ToString().Trim(),
+                    TaskAgvNum = Convert.ToInt32(dd["taskAgvNum"].ToString().Trim()),
+                    TaskAgvSerialNo = dd["taskAgvSerialNo"].ToString().Trim(),
+                    TaskStartQr = dd["taskStartQr"].ToString().Trim(),
+                    TaskStartX = dd["taskStartX"].ToString().Trim(),
+                    TaskStartY = dd["taskStartY"].ToString().Trim(),
+                    TaskEndQr = dd["taskEndQr"].ToString().Trim(),
+                    TaskEndX = dd["taskEndX"].ToString().Trim(),
+                    TaskEndY = dd["taskEndY"].ToString().Trim(),
+                    TaskComplete = Convert.ToInt32(dd["taskComplete"].ToString().Trim()),
 
-                    taskEndTime = dd["taskEndTime"].ToString().Trim(),
+                    TaskEndTime = dd["taskEndTime"].ToString().Trim(),
                 });
             }
             dd.Close();
@@ -97,4 +108,3 @@ namespace Ga_AGV.DAL.DataAccess
         }
     }
 }
-

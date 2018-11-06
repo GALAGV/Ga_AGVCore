@@ -32,23 +32,25 @@ namespace Ga_AGV.DAL.DataAccess
         public List<Ga_agvloginfo> Ga_AgvloginfosList(ref int PageCount, int limit, int offset, string log_time, string start_time, string end_time, string agv_num, string task_status, string agv_status)
         {
             List<Ga_agvloginfo> ga_s = new List<Ga_agvloginfo>();
-            //SELECT * FROM `ga_agvloginfo` LIMIT " + offset + "," + limit + "
-
+            DataTable ds;
             string sql = string.Format("SELECT * FROM `ga_agvlog`.");
 
             if (log_time == null)
             {
-                //string ss = DateTime.Now.Date.ToString("yyyyMMdd");
-                DataTable ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name ='agvloginfo" + DateTime.Now.ToString("yyyyMMdd") + "';");
-                if (ds != null)
+                ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'ga_agvloginfo" + DateTime.Now.ToString("yyyyMMdd") + "'");
+                if (ds.Rows.Count == 0)
                 {
-                    sql += string.Format("`ga_agvloginfo{0}` where 0 = 0 ", DateTime.Now.Date.ToString("yyyyMMdd"));
+                    return new List<Ga_agvloginfo>();
                 }
-                return new List<Ga_agvloginfo>();
+                sql += string.Format("`ga_agvloginfo{0}` where 0 = 0 ", DateTime.Now.Date.ToString("yyyyMMdd"));
             }
             if (log_time != null)
             {
-                //string ww = Regex.Replace(log_time, "-", "");
+                ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'ga_agvloginfo" + Regex.Replace(log_time, "-", "") + "'");
+                if (ds.Rows.Count == 0)
+                {
+                    return new List<Ga_agvloginfo>();
+                }
                 sql += string.Format("`ga_agvloginfo{0}` where 0 = 0 ", Regex.Replace(log_time, "-", ""));
             }
             if (start_time != null && end_time != null)

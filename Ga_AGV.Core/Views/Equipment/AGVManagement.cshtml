@@ -14,13 +14,13 @@
                         <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="control-label col-sm-1" for="txt_search_rolename">AGV编号</label>
+                                <label class="control-label col-sm-1" for="txt_search_rolename" id="AGVNumber">AGV编号</label>
                                 <div class="col-sm-3">
                                     <input id="query_agv_num" type="text" class="form-control">
                                 </div>
                                 <label class="control-label col-sm-1" for="txt_search_desc">AGV状态</label>
                                 <div class="col-sm-3">
-                                    <select id="query_agv_status" class="selectpicker show-tick form-control" data-live-search="false">
+                                    <select id="agv_static" class="selectpicker show-tick form-control" data-live-search="false">
                                         <option>在线</option>
                                         <option>离线</option>
                                     </select>
@@ -51,8 +51,55 @@
         </div>
     </div>
 </div>
+<form>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="txt_rolename">AGV编号</label>
+                        <input type="text" name="agvNum" class="form-control" id="agvNum" placeholder="AGV编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_rolename">序列号</label>
+                        <input type="text" name="agvSerialNum" class="form-control" id="agvSerialNum" placeholder="AGV序列号">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_defaulturl">IP地址</label>
+                        <input type="text" name="agvIp" class="form-control" id="agvIp" placeholder="IP地址">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_defaulturl_Web">端口号</label>
+                        <input type="text" name="agvPort" class="form-control" id="agvPort" placeholder="端口号">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <script>
     $(function () {
+
+        toastr.options = {
+            showDuration: "300",                                      // 显示动画的时间
+            hideDuration: "1300",                                     //  消失的动画时间
+            timeOut: "1000",                                             //  自动关闭超时时间 
+            extendedTimeOut: "1000",                                  //  加长展示时间
+            showEasing: "swing",                                     //  显示时的动画缓冲方式
+            hideEasing: "linear",                                       //   消失时的动画缓冲方式
+            showMethod: "fadeIn",                                   //   显示时的动画方式
+            hideMethod: "fadeOut"                                   //   消失时的动画方式
+        };
 
         //1.初始化Table
         var oTable = new TableInit();
@@ -63,6 +110,58 @@
             oTable.Init();
             $("#tb_report").bootstrapTable('refresh');
         });
+
+
+        //新增数据click事件注册
+        $("#btn_add").click(function () {
+            $("#myModalLabel").text("新增");
+            $("#myModal").find(".form-control").val("");
+            $('#myModal').modal();
+        });
+
+        //添加提交
+        $('#btn_submit').click(function () {
+            if (!Verify())
+                return;
+            $.ajax({
+                type: 'post',
+                url: '/api/agvlist/Addagv',
+                contentType: 'application/json',
+                data: JSON.stringify({ "agvNum": $('#agvNum').val(), "agvIp": $('#agvIp').val(), "agvPort": $('#agvPort').val(), "agvSerialNum": $('#agvSerialNum').val() }),
+                datatype: 'json',
+                success: function (res) {
+                    if (res.Success) {
+                        $('#myModal').modal('toggle');
+                        toastr.success(res.Message)
+                    }
+                    else {
+                        toastr.error(res.Message);
+                    }
+                },
+                error: function (e) {
+                    toastr.error(e.responseText);
+                }
+            });
+        });
+
+        //表单验证
+        function Verify() {
+            if ($('#agvNum').val() == "" || $('#agvIp').val() == "" || $('#agvPort').val() == "" || $('#agvSerialNum').val() == "") {
+                toastr.error('必填项不能为空！！！');
+                return false;
+            }
+            var rexip = /^\d+\.\d+\.\d+\.\d+$/;//验证IP
+            var rexNum = /^[0-9]*$/; //验证数字
+            if (!rexip.test($('#agvIp').val())) {
+                toastr.error('IP地址格式不正确');
+                return false;
+            }
+            if (!rexNum.test($('#agvNum').val()) || !rexNum.test($('#agvPort').val())) {
+                toastr.error('AGV编号或端口号格式输入错误');
+                return false;
+            }
+            return true;
+        }
     });
 
     var TableInit = function () {
@@ -95,34 +194,38 @@
                 cardView: false,                    //是否显示详细视图
                 detailView: false,
 
-                columns: [{
-                    field: 'agvNum',
-                    title: 'AGV编号',
-                    align: 'center'
-                }, {
-                    field: 'agvIp',
-                    title: 'IP',
-                    align: 'center'
-                }, {
-                    field: 'agvPort',
-                    title: '端口号',
-                    align: 'center'
-                }, {
-                    field: 'agvOnLineTime',
-                    title: '最近上线时间',
-                    align: 'center'
-                }, {
-                    field: 'agvOffLineTime',
-                    title: '最近离线时间',
-                    align: 'center'
-                },
-                {
-                    field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId + '"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
-                            '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId + '"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
-                        return strHtml;
-                    }, edit: false
-                }
+                columns: [
+                    {
+                        checkbox: true
+                    },
+                    {
+                        field: 'agvNum',
+                        title: 'AGV编号',
+                        align: 'center'
+                    }, {
+                        field: 'agvIp',
+                        title: 'IP',
+                        align: 'center'
+                    }, {
+                        field: 'agvPort',
+                        title: '端口号',
+                        align: 'center'
+                    }, {
+                        field: 'agvOnLineTime',
+                        title: '最近上线时间',
+                        align: 'center'
+                    }, {
+                        field: 'agvOffLineTime',
+                        title: '最近离线时间',
+                        align: 'center'
+                    },
+                    {
+                        field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
+                            var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId + '"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
+                                '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId + '"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
+                            return strHtml;
+                        }, edit: false
+                    }
                 ]
             });
         };

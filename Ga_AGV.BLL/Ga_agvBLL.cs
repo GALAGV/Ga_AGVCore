@@ -24,6 +24,14 @@ namespace Ga_AGV.BLL
             return GeagvtDAL.GetagvList(ref pageCount, limit, offset);
         }
 
+        /// <summary>
+        /// 添加AGV
+        /// </summary>
+        /// <returns></returns>
+        public bool agvadd(Ga_agv agv)
+        {
+           return GeagvtDAL.Addagv(agv);
+        }
 
 
 

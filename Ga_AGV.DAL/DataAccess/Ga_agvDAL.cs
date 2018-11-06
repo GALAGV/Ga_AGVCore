@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Commonality.instrument;
 
 namespace Ga_AGV.DAL.DataAccess
 {
@@ -54,6 +55,29 @@ namespace Ga_AGV.DAL.DataAccess
                 pageCount = int.Parse(item[0].ToString().Trim());
             }
             return list;
+        }
+
+        /// <summary>
+        /// 添加AGV
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool Addagv(Ga_agv agv)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("INSERT INTO `ga_agv`.`ga_agv`(`agvNum`, `agvSerialNum`, `agvName`, `agvIp`, `agvPort`, `agvCreateTime`, `agvOffLineTime`, `agvOnLineTime`, `agvFirmware`) VALUES ( @agvNum,@agvSerialNum, @agvName, @agvIp, @agvPort, @agvCreateTime, @agvOffLineTime, @agvOnLineTime,@agvFirmware)");
+            MySqlParameter[] par ={
+                        new MySqlParameter("@agvNum",MySqlDbType.Int32,10000){  Value=agv.agvNum },
+                        new MySqlParameter("@agvSerialNum",MySqlDbType.VarChar,10000){  Value=agv.agvSerialNum },
+                        new MySqlParameter("@agvName",MySqlDbType.VarChar,10000){  Value=agv.agvName },
+                        new MySqlParameter("@agvIp",MySqlDbType.VarChar,10000){  Value=agv.agvIp },
+                        new MySqlParameter("@agvPort",MySqlDbType.Int32,10000){  Value=agv.agvPort },
+                        new MySqlParameter("@agvCreateTime",MySqlDbType.Int32,10000){  Value=UTC.ConvertDateTimeLong(Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"))) },
+                        new MySqlParameter("@agvOffLineTime",MySqlDbType.VarChar,10000){  Value=agv.agvOffLineTime },
+                        new MySqlParameter("@agvOnLineTime",MySqlDbType.VarChar,10000){  Value=agv.agvOnLineTime },
+                        new MySqlParameter("@agvFirmware",MySqlDbType.VarChar,10000){  Value=agv.agvFirmware },
+            };
+            return MySqlHelper.ExecuteNonQuery(sql.ToString(), par) > 0 ? true : false;
         }
     }
 }

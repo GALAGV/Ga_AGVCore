@@ -13,8 +13,9 @@ namespace Ga_AGV.Core.API
     public class RackController : ApiController
     {
         Ga_rackBLL ga_RackBLL = new Ga_rackBLL();
+
         /// <summary>
-        /// 查询任务日志
+        /// 查询货架
         /// </summary>
         /// <param name="limit"></param>
         /// <param name="offset"></param>

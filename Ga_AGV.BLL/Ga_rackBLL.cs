@@ -11,6 +11,7 @@ namespace Ga_AGV.BLL
     public class Ga_rackBLL
     {
         Ga_rackDAL ga_RackDAL = new Ga_rackDAL();
+
         /// <summary>
         /// 查询货架
         /// </summary>

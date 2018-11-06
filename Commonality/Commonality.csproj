@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69D812EB-77B4-403D-86BF-5253AC3EE83C}</ProjectGuid>
+    <ProjectGuid>{561E98D5-21AF-4492-B98A-812BE43683EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ga_AGV.DAL</RootNamespace>
-    <AssemblyName>Ga_AGV.DAL</AssemblyName>
+    <RootNamespace>Commonality</RootNamespace>
+    <AssemblyName>Commonality</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,23 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\Ga_agvDAL.cs" />
-    <Compile Include="DataAccess\Ga_agvlogDAL.cs" />
-    <Compile Include="DataAccess\Ga_agvloginDAL.cs" />
-    <Compile Include="DataAccess\Ga_rackDAL.cs" />
-    <Compile Include="DataAccess\Ga_tasklogDAl.cs" />
-    <Compile Include="DataHelper\MySqlHelper.cs" />
+    <Compile Include="instrument\UTC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Commonality\Commonality.csproj">
-      <Project>{561e98d5-21af-4492-b98a-812be43683ee}</Project>
-      <Name>Commonality</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ga_AGV.Model\Ga_AGV.Model.csproj">
-      <Project>{2abaea35-390f-453c-9350-71fdd2d5a4bb}</Project>
-      <Name>Ga_AGV.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

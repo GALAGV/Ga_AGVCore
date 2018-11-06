@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="txt_search_desc">日志时间：</label>
                             <div class="col-md-3">
-                                <div class="input-group date form_datetime col-sm-12" data-link-field="dt_set_order_time_input">
+                                <div class="input-group date log_datetime col-sm-12" data-link-field="dt_set_order_time_input">
                                     <input class="form-control" id="tasklog_time" disabled type="text" value="">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -47,7 +47,7 @@
                             </div>
                             <label class="control-label col-sm-1" for="txt_search_desc">任务状态</label>
                             <div class="col-sm-3">
-                                <select class="selectpicker show-tick form-control" data-live-search="false">
+                                <select id="taskComplete" class="selectpicker show-tick form-control" data-live-search="false">
                                     <option>全部</option>
                                     <option>已完成</option>
                                     <option>进行中</option>
@@ -71,6 +71,13 @@
     </div>
 </div>
 <script>
+    $('.log_datetime').datetimepicker({
+        minView: "month", //选择日期后，不会再跳转去选择时分秒
+        language: 'zh-CN',
+        format: 'yyyy-mm-dd',
+        todayBtn: 1,
+        autoclose: 1,
+    });
     $(".form_datetime").
         datetimepicker({
             weekStart: 1,
@@ -80,7 +87,7 @@
             startView: 2,
             forceParse: 0,
             language: 'zh-CN',
-            format: 'yyyy-mm-dd hh:ii:ss',
+            format: 'hh:ii:ss',
             pickerPosition: 'bottom-left',
             showMeridian: 1
         });
@@ -184,10 +191,11 @@
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 limit: params.limit,   //页面大小
                 offset: params.offset,  //页码
-                TaskLogTime: $('#tasklog_time').val(),
-                start_time: $('#start_time').val(),
-                end_time: $('#end_time').val(),
-                AGV_Number: $('#AGV_Number').val(),
+                Time: $('#start_time').val(),
+                EndTime: $('#end_time').val(),
+                AGVNum: $('#AGV_Number').val(),
+                taskComplete: $("#taskComplete").val(),
+                Log_Time: $("#tasklog_time").val(),
             };
             return temp;
         };

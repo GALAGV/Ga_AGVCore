@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Ga_agvDAL.cs" />
     <Compile Include="DataAccess\Ga_agvlogDAL.cs" />
     <Compile Include="DataAccess\Ga_agvloginDAL.cs" />
     <Compile Include="DataAccess\Ga_tasklogDAl.cs" />

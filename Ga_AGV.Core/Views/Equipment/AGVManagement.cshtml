@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "AGVManagement";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.PageTitle = "设备操作";
+    ViewBag.PageColumn = "AGV管理";
 }
 <div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
     <div class="x_title">
@@ -109,16 +111,15 @@
                     field: 'agvOnLineTime',
                     title: '最近上线时间',
                     align: 'center'
-                }
-                    , {
+                }, {
                     field: 'agvOffLineTime',
                     title: '最近离线时间',
                     align: 'center'
                 },
                 {
-                    field: "agvId", title: "操作", width:200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId +'"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
-                            '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId +'"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
+                    field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
+                        var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId + '"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
+                            '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId + '"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
                         return strHtml;
                     }, edit: false
                 }

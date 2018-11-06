@@ -29,7 +29,7 @@
             </div>
             <div class="main-centre ">
                 <div class="main-centre-count" style="padding-top:60px;">
-                    <form  method="POST" role="form" id="form-test">
+                    <form method="POST" role="form" id="form-test">
                         <div class="form-group main-group">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
@@ -96,8 +96,8 @@
                         if (res.Success) {
                             $('#meg').html(res.Message);
                             setTimeout(function () {
-                                window.location.href = "/Home/Main"; 
-                            },900);
+                                window.location.href = "/Home/Main";
+                            }, 900);
                         }
                         else {
                             $('#meg').html(res.Message);
@@ -115,6 +115,13 @@
                 });
             });
         });
+
+        document.body.addEventListener('keyup', function (e) {
+            if (e.keyCode == '13') {
+                $('#btn-test').trigger("click");
+            }
+        });
+
     </script>
 </body>
 </html>

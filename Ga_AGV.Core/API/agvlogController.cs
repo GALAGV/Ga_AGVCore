@@ -23,12 +23,6 @@ namespace Ga_AGV.Core.API
         [HttpGet]
         public JsonData<Ga_agvloginfo> Log(int limit, int offset, string query_log_time, string query_start_time, string query_end_time, string query_agv_num, string query_task_status, string query_agv_status)
         {
-            //query_log_time: $("#query_log_time").val(),
-            //    query_start_time: $("#query_start_time").val(),
-            //    query_end_time: $("#query_end_time").val(),
-            //    txt_search_rolename: $("#query_agv_num").val(),
-            //    query_task_status: $("#query_task_status").val(),
-            //    query_agv_status: $("#query_agv_status").val(),
             int PageCount = 0;
             JsonData<Ga_agvloginfo> data = new JsonData<Ga_agvloginfo>
             {

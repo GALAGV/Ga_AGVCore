@@ -28,5 +28,8 @@ namespace Ga_AGV.Core
             base.Init();
         }
         #endregion
+
+
+
     }
 }

@@ -37,13 +37,5 @@ namespace Ga_AGV.DAL.DataAccess
                 return null;
             }
         }
-
-
-
-
-
-
-
-
     }
 }

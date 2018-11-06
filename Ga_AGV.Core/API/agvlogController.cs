@@ -10,6 +10,9 @@ using System.Web.Http;
 
 namespace Ga_AGV.Core.API
 {
+    /// <summary>
+    /// 运行日志API
+    /// </summary>
     public class agvlogController : ApiController
     {
         private Ga_agvlogBLL ga_AgvlogBLL = new Ga_agvlogBLL();

@@ -10,8 +10,10 @@ namespace Ga_AGV.Core.Controllers
     {
         // GET: Equipment
 
-
-
+        /// <summary>
+        /// /AGV管理
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AGVManagement()
         {
             return View();

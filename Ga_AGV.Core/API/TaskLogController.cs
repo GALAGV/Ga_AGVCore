@@ -10,9 +10,12 @@ using Ga_AGV.BLL;
 
 namespace Ga_AGV.Core.API
 {
+    /// <summary>
+    /// 任务日志API
+    /// </summary>
     public class TaskLogController : ApiController
     {
-        Ga_tasklogBLL ga_Tasklog = new Ga_tasklogBLL(); 
+        Ga_tasklogBLL ga_Tasklog = new Ga_tasklogBLL();
         /// <summary>
         /// 查询任务日志
         /// </summary>

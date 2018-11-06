@@ -67,7 +67,7 @@ namespace Ga_AGV.Model.DataModel
         public string taskEndY { get; set; }
 
         /// <summary>
-        /// 任务是否完成，0，未完成1，已完成2，进行中
+        /// 任务状态 1已完成,2已取消，3执行中,0默认
         /// </summary>
         public int taskComplete { get; set; }
 

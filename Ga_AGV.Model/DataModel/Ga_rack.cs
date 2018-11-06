@@ -30,7 +30,6 @@ namespace Ga_AGV.Model.DataModel
         /// 1.空闲 2.任务锁定 3.移动中 4.弃用
         /// </summary>
         public int rackStatus { get; set; }
-
         /// <summary>
         /// 备用
         /// </summary>

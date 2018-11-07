@@ -24,10 +24,14 @@ namespace Ga_AGV.Core.Controllers
         /// <returns></returns>
         public ActionResult Main()
         {
-            return View();
+            //if (Session["User"] == null)
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            //else
+            //{
+                return View();
+            //}
         }
-
-
-
     }
 }

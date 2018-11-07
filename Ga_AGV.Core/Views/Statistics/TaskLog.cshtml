@@ -175,7 +175,17 @@
                 }, {
                     field: 'TaskComplete',
                     title: '任务状态',
-                    align: 'center'
+                        align: 'center', formatter: function (value, row, index) {
+                            if (value == '0') {
+                                return "全部";
+                            } else if (value == '1') {
+                                return "已完成";
+                            } else if (value == '2') {
+                                return "未完成";
+                            } else if (value == '3') {
+                                return "进行中";
+                            }
+                        }
                 }, {
                     field: 'TaskEndTime',
                     title: '任务结束时间',

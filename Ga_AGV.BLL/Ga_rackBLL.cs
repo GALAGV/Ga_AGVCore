@@ -19,9 +19,9 @@ namespace Ga_AGV.BLL
         /// <param name="limit">查询数量</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_rack> Ga_rackList(ref int pageCount, int limit, int offset)
+        public List<Ga_rack> Ga_rackList(ref int pageCount, int limit, int offset, string rackSerialNum, string rackStatus)
         {
-            return ga_RackDAL.Ga_rackShow(ref pageCount, limit, offset);
+            return ga_RackDAL.Ga_rackShow(ref pageCount, limit, offset, rackSerialNum,rackStatus);
         }
     }
 }

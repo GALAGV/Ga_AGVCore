@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace Ga_AGV.Core.API
@@ -34,12 +35,51 @@ namespace Ga_AGV.Core.API
         }
 
         /// <summary>
-        /// 更改二维码信息
+        /// 添加
         /// </summary>
         /// <returns></returns>
-        public bool UpdateQRCode()
+        public JsonResult AddQRCode([FromBody] Ga_qrcode qrcode)
         {
-            return true;
+            if (BLL.Ga_AddQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "添加成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "添加失败", Success = false };
+            }
+        }
+
+        /// <summary>
+        /// 更改
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult UpQRCode([FromBody] Ga_qrcode qrcode)
+        {
+            if (BLL.Ga_UpQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "修改成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "修改失败", Success = false };
+            }
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult DelQRCode([FromBody] Ga_qrcode qrcode)
+        {
+            if (BLL.Ga_DelQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "删除成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "删除失败", Success = false };
+            }
         }
     }
 }

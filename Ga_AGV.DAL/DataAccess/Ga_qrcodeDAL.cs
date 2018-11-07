@@ -12,7 +12,7 @@ namespace Ga_AGV.DAL.DataAccess
     {
         #region 数据处理
 
-        #region 查询二维码管理
+        #region 增删查改 二维码管理
 
         /// <summary>
         /// 查询二维码管理
@@ -48,7 +48,46 @@ namespace Ga_AGV.DAL.DataAccess
             return ga_s;
         }
 
-        #endregion 查询二维码管理
+        public bool Ga_AddQRcode(Ga_qrcode qr)
+        {
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("INSERT INTO `ga_agv`.`ga_qrcode`(`qrInfo`, `qrX`, `qrY`, `qrStatus`, `qrRemark`) VALUES (@qrInfo, @qrX, @qrY, @qrStatus, @qrRemark)");
+            MySqlParameter[] cmdParms ={
+                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar,10000){ Value=qr.qrInfo },
+                        new MySqlParameter("@qrX",MySqlDbType.Int32,10000){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int32,10000){ Value=qr.qrY },
+                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar,10000){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar,10000){ Value=qr.qrRemark },
+            };
+            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+        }
+
+        public bool Ga_UpQRcode(Ga_qrcode qr)
+        {
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("UPDATE `ga_agv`.`ga_qrcode` SET `qrInfo` = @qrInfo, `qrX` = @qrX, `qrY` = @qrY, `qrStatus` = @qrStatus, `qrRemark` = @qrRemark WHERE `qrId` = @qrId");
+            MySqlParameter[] cmdParms ={
+                        new MySqlParameter("@qrId",MySqlDbType.Int64){ Value=qr.qrId },
+                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
+                        new MySqlParameter("@qrX",MySqlDbType.Int64){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int64){ Value=qr.qrY },
+                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
+            };
+            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+        }
+
+        public bool Ga_DelQRcode(Ga_qrcode qr)
+        {
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("DELETE FROM `ga_agv`.`ga_qrcode` WHERE `qrId` = @qrId");
+            MySqlParameter[] cmdParms ={
+                        new MySqlParameter("@qrId",MySqlDbType.Int32,10000){ Value=qr.qrId },
+            };
+            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+        }
+
+        #endregion 增删查改 二维码管理
 
         #endregion 数据处理
     }

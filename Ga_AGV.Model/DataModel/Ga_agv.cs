@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Ga_AGV.Model.DataModel
 {
-
     /// <summary>
     /// AGV实体类
     /// </summary>
@@ -70,7 +69,7 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// agv当前agv角度方向
         /// </summary>
-        public double agvAngel { get; set; }              
+        public double agvAngel { get; set; }
 
         /// <summary>
         /// agv当前扫描区域
@@ -130,7 +129,6 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// agv固件版本号
         /// </summary>
-        public string agvFirmware { get; set; }       
-        
+        public string agvFirmware { get; set; }
     }
 }

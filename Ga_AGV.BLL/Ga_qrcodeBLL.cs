@@ -12,9 +12,31 @@ namespace Ga_AGV.BLL
     {
         private Ga_qrcodeDAL ga_qrcodeDAL = new Ga_qrcodeDAL();
 
+        /// <summary>
+        /// show
+        /// </summary>
+        /// <param name="PageCount"></param>
+        /// <param name="limit"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
         public List<Ga_qrcode> Ga_QrcodeBLL(ref int PageCount, int limit, int offset)
         {
             return ga_qrcodeDAL.Ga_qrcodesList(ref PageCount, limit, offset);
+        }
+
+        public bool Ga_AddQRcodeBLL(Ga_qrcode qr)
+        {
+            return ga_qrcodeDAL.Ga_AddQRcode(qr);
+        }
+
+        public bool Ga_UpQRcodeBLL(Ga_qrcode qr)
+        {
+            return ga_qrcodeDAL.Ga_UpQRcode(qr);
+        }
+
+        public bool Ga_DelQRcodeBLL(Ga_qrcode qr)
+        {
+            return ga_qrcodeDAL.Ga_DelQRcode(qr);
         }
     }
 }

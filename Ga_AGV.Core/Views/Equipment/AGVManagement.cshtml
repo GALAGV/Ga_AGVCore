@@ -1,8 +1,10 @@
 ﻿@{
-    ViewBag.Title = "AGVManagement";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
-    ViewBag.PageTitle = "AGV系统";
-    ViewBag.PageColumn = "二维码管理";
+                /**/
+
+                ViewBag.Title = "AGVManagement";
+                Layout = "~/Views/Shared/_LayoutPage.cshtml";
+                ViewBag.PageTitle = "AGV系统";
+                ViewBag.PageColumn = "二维码管理";
 }
 <div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
     <div class="x_title">
@@ -109,7 +111,6 @@
             oTable.Init();
             $("#tb_report").bootstrapTable('refresh');
         });
-
 
         //新增数据click事件注册
         $("#btn_add").click(function () {

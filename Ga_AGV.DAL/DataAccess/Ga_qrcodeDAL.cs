@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace Ga_AGV.DAL.DataAccess
 {
-   public class Ga_qrcodeDAL
+    public class Ga_qrcodeDAL
     {
-        #region  数据处理
-
+        #region 数据处理
 
         #region 查询二维码管理
 
@@ -25,13 +24,13 @@ namespace Ga_AGV.DAL.DataAccess
         public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset)
         {
             List<Ga_qrcode> ga_s = new List<Ga_qrcode>();
-            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `Ga_qrcode` LIMIT " + offset + "," + limit + "");
+            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `ga_agv`.`ga_qrcode` LIMIT " + offset + "," + limit + "");
             while (mySqlData.Read())
             {
                 ga_s.Add(new Ga_qrcode()
                 {
                     qrId = Convert.ToInt32(mySqlData["qrId"].ToString().Trim()),
-                    qrInfo =mySqlData["qrInfo"].ToString().Trim(),
+                    qrInfo = mySqlData["qrInfo"].ToString().Trim(),
                     qrX = Convert.ToInt32(mySqlData["qrX"].ToString().Trim()),
                     qrY = Convert.ToInt32(mySqlData["qrY"].ToString().Trim()),
                     qrStatus = mySqlData["qrStatus"].ToString().Trim(),
@@ -39,7 +38,7 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
-            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `Ga_qrcode`");
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `ga_agv`.`Ga_qrcode`");
             while (mySql.Read())
             {
                 PageCount = Convert.ToInt32(mySql[0].ToString().Trim());
@@ -48,10 +47,9 @@ namespace Ga_AGV.DAL.DataAccess
             mySql.Close();
             return ga_s;
         }
-        #endregion
 
+        #endregion 查询二维码管理
 
-
-        #endregion
+        #endregion 数据处理
     }
 }

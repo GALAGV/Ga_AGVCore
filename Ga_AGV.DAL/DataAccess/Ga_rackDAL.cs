@@ -15,7 +15,7 @@ namespace Ga_AGV.DAL.DataAccess
         public object Log_Time { get; private set; }
 
         /// <summary>
-        /// 查询货架信息
+        /// 查询QR_Code数据信息
         /// </summary>
         /// <param name="pageCount">数据总数</param>
         /// <param name="limit">页面大小</param>
@@ -78,10 +78,10 @@ namespace Ga_AGV.DAL.DataAccess
                 list.Add(new Ga_rack()
                 {
                     rackId = Convert.ToInt32(dd["rackId"].ToString().Trim()),
-                    rackSerialNum =dd["rackSerialNum"].ToString().Trim(),
+                    rackSerialNum = dd["rackSerialNum"].ToString().Trim(),
                     rack_qrInfo = dd["rack_qrInfo"].ToString().Trim(),
                     rackStatus = Convert.ToInt32(dd["rackStatus"].ToString().Trim()),
-                    rackRemark =dd["rackRemark"].ToString().Trim(),
+                    rackRemark = dd["rackRemark"].ToString().Trim(),
                     rack_agvSerailNum = Convert.ToInt32(dd["rack_agvSerailNum"].ToString().Trim()),
                 });
             }

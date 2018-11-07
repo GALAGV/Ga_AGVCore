@@ -161,6 +161,7 @@
     <Compile Include="API\agvlistController.cs" />
     <Compile Include="API\agvlogController.cs" />
     <Compile Include="API\agvloginController.cs" />
+    <Compile Include="API\AGVSystemController.cs" />
     <Compile Include="API\RackController.cs" />
     <Compile Include="API\TaskLogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

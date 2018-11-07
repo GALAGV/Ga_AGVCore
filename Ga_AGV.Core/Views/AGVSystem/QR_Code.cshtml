@@ -1,70 +1,108 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "QR_Code";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     ViewBag.PageTitle = "AGV系统";
     ViewBag.PageColumn = "二维码管理";
 }
+
 <div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
     <div class="x_title">
         <div class="clearfix">
             <div class="panel-body" style="padding:0px;">
-                <div class="panel panel-default">
-                    <div class="panel-heading">查询条件</div>
-                    <div class="panel-body">
-                        <form id="formSearch" class="form-horizontal">
-                            <div class="form-group" style="margin-top:15px">
-                                <label class="control-label col-sm-1" for="txt_search_departmentname">二维码编号</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="txt_search_departmentname">
-                                </div>
-                                <label class="control-label col-sm-1" for="txt_search_statu">二维码状态</label>
-                                <div class="col-sm-3">
-                                    <select id="query_agv_status" class="selectpicker show-tick form-control" data-live-search="false">
-                                        <option>使用</option>
-                                        <option>停用</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4" style="text-align:left;">
-                                    <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
-                                    <button type="button" style="margin-left:50px" id="btn_add" class="btn btn-primary">添加</button>
-                                </div>
-                            </div>
-                        </form>
+                <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表</div>
+                <div class="panel-body" style="padding:10px;">
+                    <div id="toolbar" class="btn-group">
+                        <button id="btn_add" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
                     </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表</div>
-                    <div class="panel-body" style="padding:10px;">
-                        <div id="toolbar" class="btn-group">
-                            <button id="btn_add" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-                            </button>
-                            <button id="btn_edit" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-                            </button>
-                            <button id="btn_delete" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-                            </button>
-                        </div>
-                        <table id="tb_report"></table>
-                    </div>
+                    <table id="tb_report"></table>
                 </div>
             </div>
+            <form>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-full" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">新增</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="txt_rolename">二维码编号</label>
+                                    <input type="text" name="txt_rolename" class="form-control" id="txt_qrId" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_roledesc">信息</label>
+                                    <input type="text" name="txt_roledesc" class="form-control" id="txt_qrInfo" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_defaulturl">X轴</label>
+                                    <input type="text" name="txt_defaulturl" class="form-control" id="txt_qrX" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_defaulturl_Web">Y轴</label>
+                                    <input type="text" name="txt_defaulturl_Web" class="form-control" id="txt_qrY" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_defaulturl_Web">状态</label>
+                                    <input type="text" name="txt_defaulturl_Web" class="form-control" id="txt_qrStatus" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_defaulturl_Web">备注</label>
+                                    <input type="text" name="txt_defaulturl_Web" class="form-control" id="txt_qrRemark" placeholder="">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
 <script>
+    function operateFormatter(value, row, index) {
+        return [
+            '<button type="button" class="RoleOfdelete btn btn-primary btn-sm" style="margin-right:15px;">修改</button>',
+            '<button type="button" class="RoleOfedit btn btn-primary btn-sm" style="margin-right:15px;">删除</button>'
+        ].join('');
+    };
+
+    window.operateEvents = {
+        'click .RoleOfdelete': function (e, value, row, index) {
+            $("#myModalLabel").text("修改");
+            $('#myModal').modal();
+            $("#txt_qrId").val(row.qrId);
+            $("#txt_qrInfo").val(row.qrInfo);
+            $("#txt_qrX").val(row.qrX);
+            $("#txt_qrY").val(row.qrY);
+            $("#txt_qrStatus").val(row.qrStatus);
+            $("#txt_qrRemark").val(row.qrRemark);
+        },
+        'click .RoleOfedit': function (e, value, row, index) {
+            alert("删除");
+
+        }
+    };
+
     $(function () {
 
         //1.初始化Table
         var oTable = new TableInit();
         oTable.Init();
 
-        $("#btn_query").click(function () {
-            $("#tb_report").bootstrapTable('destroy'); //先要将table销毁，否则会保留上次加载的内容
-            oTable.Init();
-            $("#tb_report").bootstrapTable('refresh');
+        $("#btn_add").click(function () {
+            $("#myModalLabel").text("新增");
+            $("#myModal").find(".form-control").val("");  //清空
+            $('#myModal').modal();
         });
     });
 
@@ -73,7 +111,7 @@
         //初始化Table
         oTableInit.Init = function () {
             $('#tb_report').bootstrapTable({
-                url: '/api/agvlist/agv',             //请求后台的URL（*）
+                url: '/api/AGVSystem/QRCodeShow',            //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -86,47 +124,51 @@
                 pageNumber: 1,                      //初始化加载第一页，默认第一页
                 pageSize: 10,                       //每页的记录行数（*）
                 pageList: [10, 25, 50, 100, 500],   //可供选择的每页的行数（*）
-                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
                 showRefresh: true,                  //是否显示刷新按钮
                 minimumCountColumns: 2,             //最少允许的列数
                 clickToSelect: true,                //是否启用点击选中行
                 //height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "agvId",                     //每一行的唯一标识，一般为主键列
+                uniqueId: "agvId",                  //每一行的唯一标识，一般为主键列
                 showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,
 
                 columns: [{
-                    field: 'agvNum',
-                    title: 'AGV编号',
+                    field: 'qrId',
+                    title: '二维码编号',
                     align: 'center'
                 }, {
-                    field: 'agvIp',
-                    title: 'IP',
+                    field: 'qrInfo',
+                    title: '信息',
                     align: 'center'
                 }, {
-                    field: 'agvPort',
-                    title: '端口号',
+                    field: 'qrX',
+                    title: 'X轴',
                     align: 'center'
                 }, {
-                    field: 'agvOnLineTime',
-                    title: '最近上线时间',
+                    field: 'qrY',
+                    title: 'Y轴',
                     align: 'center'
                 }, {
-                    field: 'agvOffLineTime',
-                    title: '最近离线时间',
+                    field: 'qrStatus',
+                    title: '状态',
+                    align: 'center'
+                }, {
+                    field: 'qrRemark',
+                    title: '备注',
                     align: 'center'
                 },
                 {
-                    field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId + '"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
-                            '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId + '"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
-                        return strHtml;
-                    }, edit: false
-                }
-                ]
+                    field: "operate",
+                    title: "操作",
+                    width: 200,
+                    align: "center",
+                    events: operateEvents,
+                    formatter: operateFormatter
+                }]
             });
         };
 

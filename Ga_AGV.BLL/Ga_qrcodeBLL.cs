@@ -10,10 +10,11 @@ namespace Ga_AGV.BLL
 {
     public class Ga_qrcodeBLL
     {
-        Ga_qrcodeDAL ga_qrcodeDAL = new Ga_qrcodeDAL();
-        public List<Ga_qrcode> ga_QrcodeBLL(ref int PageCount, int limit, int offset)
+        private Ga_qrcodeDAL ga_qrcodeDAL = new Ga_qrcodeDAL();
+
+        public List<Ga_qrcode> Ga_QrcodeBLL(ref int PageCount, int limit, int offset)
         {
-            return ga_qrcodeDAL.Ga_qrcodesList(ref PageCount,limit,offset);
+            return ga_qrcodeDAL.Ga_qrcodesList(ref PageCount, limit, offset);
         }
     }
 }

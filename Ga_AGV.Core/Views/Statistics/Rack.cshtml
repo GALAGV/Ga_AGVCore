@@ -2,19 +2,16 @@
 @{
     ViewBag.Title = "Rack";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
-    ViewBag.PageTitle = "AGV系统";
-    ViewBag.PageColumn = "AGV状态";
+    ViewBag.PageTitle = "仓库管理";
+    ViewBag.PageColumn = "货架管理";
 }
 
 <div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
     <div class="clearfix">
         <div class="panel-body" style="padding:0px;">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-
-                    查询条件
-                    <a href="javascript:;" style="float:right;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询</a>
+                <div class="panel-heading" id="pal-text">
+                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>查询条件<a href="javascript:;" id="btn_query" style="float:right;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a>
                 </div>
                 <div class="panel-body">
                     <form id="formSearch" class="form-horizontal">
@@ -25,11 +22,11 @@
                             </div>
                             <label class="control-label col-sm-1" for="txt_search_desc">状态</label>
                             <div class="col-sm-3">
-                                <select class="selectpicker show-tick form-control" data-live-search="false">
-                                    <option>全部</option>
-                                    <option>已完成</option>
-                                    <option>进行中</option>
-                                    <option>未完成</option>
+                                <select class="selectpicker show-tick form-control" id="txt_search_statu" data-live-search="false">
+                                    <option>空闲</option>
+                                    <option>任务锁定</option>
+                                    <option>移动中</option>
+                                    <option>弃用</option>
                                 </select>
                             </div>
                         </div>
@@ -68,6 +65,10 @@
         var oTable = new TableInit();
         oTable.Init();
 
+        //条件查询click事件注册
+        $("#btn_query").click(function () {
+            $("#tb_report").bootstrapTable('refresh');
+        });
     });
 
     var TableInit = function () {
@@ -104,7 +105,7 @@
                     title: 'ID',
                     align: 'center'
                 }, {
-                    filed: 'rackSerialNum',
+                    field: 'rackSerialNum',
                     title: '货架编号',
                     align: 'center'
                 }, {
@@ -114,7 +115,17 @@
                 }, {
                     field: 'rackStatus',
                     title: '货架状态',
-                    align: 'center'
+                    align: 'center',formatter: function (value, row, index) {
+                        if (value == '1') {
+                            return "空闲";
+                        } else if (value == '2') {
+                            return "任务锁定";
+                        } else if (value == '3') {
+                            return "移动中";
+                        } else if (value == '4') {
+                            return "弃用";
+                        }
+                    }
                 }, {
                     field: 'rack_agvSerailNum',
                     title: '占用AGV',
@@ -135,8 +146,8 @@
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 limit: params.limit,   //页面大小
                 offset: params.offset,  //页码
-                //departmentname: $("#txt_search_departmentname").val(),
-                //statu: $("#txt_search_statu").val()
+                rackSerialNum: $("#txt_search_rolename").val(),
+                rackStatus: $("#txt_search_statu").val()
             };
             return temp;
         };

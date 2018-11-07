@@ -99,9 +99,16 @@
         oTable.Init();
 
         $("#btn_add").click(function () {
-            $("#myModalLabel").text("新增");
             $("#myModal").find(".form-control").val("");  //清空
             $('#myModal').modal();
+
+        });
+
+        $("#btn_query").click(function () {
+            $("#tb_report").bootstrapTable('destroy'); //先要将table销毁，否则会保留上次加载的内容
+            oTable.Init();
+            $("#tb_report").bootstrapTable('refresh');
+
         });
 
         $("#btn_submit").click(function () {
@@ -248,6 +255,8 @@
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 limit: params.limit,   //页面大小
                 offset: params.offset,  //页码
+                qrID: $("#query_qrId").val(),
+                qrStatus: $("#query_qrStatus").val(),
             };
             return temp;
         };

@@ -22,15 +22,26 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset)
+        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, string qrStatus)
         {
             int pageCount = 0;
+            try
+            {
+                if (qrID != null)
+                {
+                    int.Parse(qrID);
+                }
+            }
+            catch (Exception)
+            {
+                return new JsonData<Ga_qrcode>();
+                throw;
+            }
             JsonData<Ga_qrcode> data = new JsonData<Ga_qrcode>
             {
-                rows = BLL.Ga_QrcodeBLL(ref pageCount, limit, offset),
+                rows = BLL.Ga_QrcodeBLL(ref pageCount, limit, offset, qrID, qrStatus),
                 total = pageCount
             };
-
             return data;
         }
 

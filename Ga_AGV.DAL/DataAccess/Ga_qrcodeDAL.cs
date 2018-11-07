@@ -21,10 +21,23 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset)
+        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset, string qrId, string qrStatus)
         {
             List<Ga_qrcode> ga_s = new List<Ga_qrcode>();
-            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `ga_agv`.`ga_qrcode` LIMIT " + offset + "," + limit + "");
+            string sql = "SELECT * FROM `ga_agv`.`ga_qrcode` WHERE 0 = 0 ";
+
+            if (qrId != null)
+            {
+                sql += " AND qrId = " + qrId + " ";
+            }
+            if (qrStatus != "全部")
+            {
+                sql += " AND qrStatus = '" + qrStatus + "' ";
+            }
+            sql += " LIMIT " + offset + "," + limit + "";
+
+            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader(sql);
+
             while (mySqlData.Read())
             {
                 ga_s.Add(new Ga_qrcode()
@@ -38,7 +51,11 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
-            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `ga_agv`.`Ga_qrcode`");
+
+            string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
             while (mySql.Read())
             {
                 PageCount = Convert.ToInt32(mySql[0].ToString().Trim());

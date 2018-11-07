@@ -19,11 +19,16 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_agv> GetagvList(ref int pageCount, int limit, int offset)
+        public List<Ga_agv> GetagvList(ref int pageCount, int limit, int offset,int agvNum)
         {
             List<Ga_agv> list = new List<Ga_agv>();
             StringBuilder sql = new StringBuilder();
-            sql.Append("SELECT * FROM `ga_agv`.`ga_agv` LIMIT @offset,@limit ");
+            sql.Append("SELECT * FROM `ga_agv`.`ga_agv`  ");
+            if (agvNum != 0)
+            {
+                sql.Append("  WHERE agvNum="+ agvNum + "");
+            }
+            sql.Append(" LIMIT @offset,@limit ");
             MySqlParameter[] par ={
                         new MySqlParameter("@offset",MySqlDbType.Int32,10000),
                         new MySqlParameter("@limit",MySqlDbType.Int32,10000),
@@ -78,6 +83,49 @@ namespace Ga_AGV.DAL.DataAccess
                         new MySqlParameter("@agvFirmware",MySqlDbType.VarChar,10000){  Value=agv.agvFirmware },
             };
             return MySqlHelper.ExecuteNonQuery(sql.ToString(), par) > 0 ? true : false;
+        }
+
+
+        /// <summary>
+        /// 删除AGV
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool agvdelete(Ga_agv agv)
+        {
+            return MySqlHelper.ExecuteNonQuery("DELETE  FROM `ga_agv`.`ga_agv` WHERE agvId=@agvId", new MySqlParameter[] { (new MySqlParameter("@agvId", MySqlDbType.Int32, 1000) { Value = agv.agvId }) }) > 0 ? true : false;
+        }
+
+
+        /// <summary>
+        /// agv批量删除
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool agvdeletelist(List<Ga_agv> agv)
+        {
+            List<string> sql = new List<string>();
+            foreach (Ga_agv item in agv)
+            {
+                sql.Add("DELETE  FROM `ga_agv`.`ga_agv` WHERE agvId=" + item.agvId + ";");
+            }
+            return MySqlHelper.ExecuteSqlTran(sql);
+        }
+
+        /// <summary>
+        /// 编辑AGV
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool editagv(Ga_agv agv)
+        {
+            return MySqlHelper.ExecuteNonQuery("UPDATE `ga_agv`.`ga_agv` SET agvNum=@agvNum,agvSerialNum=@agvSerialNum,agvIp=@agvIp,agvPort=@agvPort WHERE agvId=@agvId", new MySqlParameter[] {
+                new MySqlParameter("@agvNum",MySqlDbType.Int32,1000){Value=agv.agvNum },
+                 new MySqlParameter("@agvSerialNum",MySqlDbType.VarChar,1000){Value=agv.agvSerialNum },
+                  new MySqlParameter("@agvIp",MySqlDbType.VarChar,1000){Value=agv.agvIp },
+                   new MySqlParameter("@agvPort",MySqlDbType.Int32,1000){Value=agv.agvPort },
+                    new MySqlParameter("@agvId",MySqlDbType.Int32,1000){Value=agv.agvId }
+            }) > 0 ? true : false;
         }
     }
 }

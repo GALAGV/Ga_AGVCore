@@ -1,10 +1,8 @@
 ﻿@{
-                /**/
-
-                ViewBag.Title = "AGVManagement";
-                Layout = "~/Views/Shared/_LayoutPage.cshtml";
-                ViewBag.PageTitle = "AGV系统";
-                ViewBag.PageColumn = "二维码管理";
+    ViewBag.Title = "AGVManagement";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.PageTitle = "AGV系统";
+    ViewBag.PageColumn = "AGV管理";
 }
 <div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
     <div class="x_title">
@@ -15,16 +13,9 @@
                         <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="control-label col-sm-1" for="txt_search_rolename" id="AGVNumber">AGV编号</label>
+                                <label class="control-label col-sm-1" for="txt_search_rolename" >AGV编号</label>
                                 <div class="col-sm-3">
-                                    <input id="query_agv_num" type="text" class="form-control">
-                                </div>
-                                <label class="control-label col-sm-1" for="txt_search_desc">AGV状态</label>
-                                <div class="col-sm-3">
-                                    <select id="agv_static" class="selectpicker show-tick form-control" data-live-search="false">
-                                        <option>在线</option>
-                                        <option>离线</option>
-                                    </select>
+                                    <input  type="text" id="AGVNumber"  class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -65,6 +56,7 @@
                     <div class="form-group">
                         <label for="txt_rolename">AGV编号</label>
                         <input type="text" name="agvNum" class="form-control" id="agvNum" placeholder="AGV编号">
+                        <input  id="agvId" class="form-control" type="hidden"/>
                     </div>
                     <div class="form-group">
                         <label for="txt_rolename">序列号</label>
@@ -106,33 +98,120 @@
         var oTable = new TableInit();
         oTable.Init();
 
+        //查询
         $("#btn_query").click(function () {
+            var rexNum = /^[0-9]*$/; //验证数字
+            if (!rexNum.test($('#AGVNumber').val())) {
+                toastr.error('AGV编号格式输入不正确');
+                return ;
+            }
             $("#tb_report").bootstrapTable('destroy'); //先要将table销毁，否则会保留上次加载的内容
             oTable.Init();
             $("#tb_report").bootstrapTable('refresh');
         });
 
-        //新增数据click事件注册
+
+        //新增
         $("#btn_add").click(function () {
             $("#myModalLabel").text("新增");
             $("#myModal").find(".form-control").val("");
             $('#myModal').modal();
         });
 
-        //添加提交
+        //批量删除
+        $('#btn_delete').click(function () {
+            var data = $("#tb_report").bootstrapTable('getSelections');
+            if (data.length > 0) {
+                bootbox.confirm({
+                    message: "确认删除吗？",
+                    buttons: {
+                        confirm: {
+                            label: '确认',
+                            className: 'btn-primary'
+                        },
+                        cancel: {
+                            label: '取消',
+                            className: 'btn-default'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                type: 'post',
+                                url: '/api/agvlist/deletelist',
+                                contentType: 'application/json',
+                                data: JSON.stringify(data),
+                                datatype: 'json',
+                                success: function (res) {
+                                    if (res.Success) {
+                                        toastr.success(res.Message);
+                                        $("#tb_report").bootstrapTable('refresh');//刷新表格
+                                    }
+                                    else {
+                                        toastr.error(res.Message);
+                                    }
+                                },
+                                error: function (e) {
+                                    toastr.error(e.responseText);
+                                }
+                            });
+                        }
+                    }
+                });
+
+            } else {
+                toastr.error("请选中一行后删除！");
+            }
+            
+        });
+
+
+        //编辑
+        $("#btn_edit").click(function () {
+
+            var a = $("#tb_report").bootstrapTable('getSelections');
+            if (a.length == 1) {
+                console.log(a[0]);
+                $("#myModalLabel").text("修改");
+                $("#myModal").find(".form-control").val("");
+                $('#agvNum').val(a[0].agvNum);
+                $('#agvSerialNum').val(a[0].agvSerialNum);
+                $('#agvIp').val(a[0].agvIp);
+                $('#agvPort').val(a[0].agvPort);
+                $('#agvId').val(a[0].agvId);
+                $('#myModal').modal('toggle');
+               
+            }
+            else {
+                toastr.error("请选中一行后修改！");
+            }
+        });
+
+        //添加/编辑提交
         $('#btn_submit').click(function () {
+            if ($("#myModalLabel").text() == "新增") {
+                Addedit('/api/agvlist/Addagv');
+            } else {
+                Addedit('/api/agvlist/editagv');
+            }
+        });
+
+        //编辑/添加
+        function Addedit(url) {
             if (!Verify())
                 return;
+
             $.ajax({
                 type: 'post',
-                url: '/api/agvlist/Addagv',
+                url: url,
                 contentType: 'application/json',
-                data: JSON.stringify({ "agvNum": $('#agvNum').val(), "agvIp": $('#agvIp').val(), "agvPort": $('#agvPort').val(), "agvSerialNum": $('#agvSerialNum').val() }),
+                data: JSON.stringify({ "agvId": $('#agvId').val(),"agvNum": $('#agvNum').val(), "agvIp": $('#agvIp').val(), "agvPort": $('#agvPort').val(), "agvSerialNum": $('#agvSerialNum').val() }),
                 datatype: 'json',
                 success: function (res) {
                     if (res.Success) {
-                        $('#myModal').modal('toggle');
+                        $('#myModal').modal('toggle'); //关闭Modal窗口
                         toastr.success(res.Message)
+                        $("#tb_report").bootstrapTable('refresh');//刷新表格
                     }
                     else {
                         toastr.error(res.Message);
@@ -142,7 +221,7 @@
                     toastr.error(e.responseText);
                 }
             });
-        });
+        }
 
         //表单验证
         function Verify() {
@@ -221,8 +300,8 @@
                     },
                     {
                         field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                            var strHtml = '<a class="btn btn-xs btn-primary btn-update" data-id="' + row.agvId + '"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
-                                '<a class="btn btn-xs btn-danger btn-remove"  data-id="' + row.agvId + '"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
+                            var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="" data-id="' + row.agvId + '"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
+                                '<a class="btn btn-xs btn-danger btn-remove" onclick="agvdelete(' + row.agvId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
                             return strHtml;
                         }, edit: false
                     }
@@ -235,9 +314,52 @@
             var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                 limit: params.limit,   //页面大小
                 offset: params.offset,  //页码
+                agvNum: $('#AGVNumber').val()
             };
             return temp;
         };
         return oTableInit;
     };
+
+
+
+    //删除AGV
+    function agvdelete(id) {
+        bootbox.confirm({
+            message: "确认删除吗？",
+            buttons: {
+                confirm: {
+                    label: '确认',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'post',
+                        url: '/api/agvlist/deleteagv',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ "agvId": id }),
+                        datatype: 'json',
+                        success: function (res) {
+                            if (res.Success) {
+                                toastr.success(res.Message);
+                                $("#tb_report").bootstrapTable('refresh');//刷新表格
+                            }
+                            else {
+                                toastr.error(res.Message);
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error(e.responseText);
+                        }
+                    });
+                }
+            }
+        });
+    }
 </script>

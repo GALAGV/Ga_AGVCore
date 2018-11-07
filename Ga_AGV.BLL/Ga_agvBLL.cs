@@ -19,9 +19,9 @@ namespace Ga_AGV.BLL
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public List<Ga_agv> GetagvData(ref int pageCount, int limit, int offset)
+        public List<Ga_agv> GetagvData(ref int pageCount, int limit, int offset,int agvNum)
         {
-            return GeagvtDAL.GetagvList(ref pageCount, limit, offset);
+            return GeagvtDAL.GetagvList(ref pageCount, limit, offset, agvNum);
         }
 
         /// <summary>
@@ -33,8 +33,35 @@ namespace Ga_AGV.BLL
            return GeagvtDAL.Addagv(agv);
         }
 
+        /// <summary>
+        /// 删除agv
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool delete(Ga_agv agv)
+        {
+            return GeagvtDAL.agvdelete(agv);
+        }
 
 
+        /// <summary>
+        /// agv批量删除
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool deletelist(List<Ga_agv> agv)
+        {
+            return GeagvtDAL.agvdeletelist(agv);
+        }
 
+        /// <summary>
+        /// 编辑AGV
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool edit(Ga_agv agv)
+        {
+            return GeagvtDAL.editagv(agv);
+        }
     }
 }

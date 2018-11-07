@@ -21,11 +21,11 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_rack> Rack(int limit, int offset)
+        public JsonData<Ga_rack> Rack(int limit, int offset, string rackSerialNum, string rackStatus)
         {
             int pageCount = 0;
             JsonData<Ga_rack> list = new JsonData<Ga_rack>();
-            list.rows = ga_RackBLL.Ga_rackList(ref pageCount, limit, offset);
+            list.rows = ga_RackBLL.Ga_rackList(ref pageCount, limit, offset,rackSerialNum,rackStatus);
             list.total = pageCount;
             return list;
         }

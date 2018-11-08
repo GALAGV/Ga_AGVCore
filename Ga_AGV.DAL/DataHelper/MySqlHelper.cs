@@ -451,7 +451,6 @@ namespace Ga_AGV.DAL
                 return ds.Tables[0];
             }
         }
-
         #endregion ExecuteDataTable
 
         /// <summary>

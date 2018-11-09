@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace Ga_AGV.Core.API
@@ -21,25 +22,75 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset)
+        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, string qrStatus)
         {
             int pageCount = 0;
+            try
+            {
+                if (qrID != null)
+                {
+                    int.Parse(qrID);
+                }
+            }
+            catch (Exception)
+            {
+                return new JsonData<Ga_qrcode>();
+                throw;
+            }
             JsonData<Ga_qrcode> data = new JsonData<Ga_qrcode>
             {
-                rows = BLL.Ga_QrcodeBLL(ref pageCount, limit, offset),
+                rows = BLL.Ga_QrcodeBLL(ref pageCount, limit, offset, qrID, qrStatus),
                 total = pageCount
             };
-
             return data;
         }
 
         /// <summary>
-        /// 更改二维码信息
+        /// 添加
         /// </summary>
         /// <returns></returns>
-        public bool UpdateQRCode()
+        public JsonResult AddQRCode([FromBody] Ga_qrcode qrcode)
         {
-            return true;
+            if (BLL.Ga_AddQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "添加成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "添加失败", Success = false };
+            }
+        }
+
+        /// <summary>
+        /// 更改
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult UpQRCode([FromBody] Ga_qrcode qrcode)
+        {
+            if (BLL.Ga_UpQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "修改成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "修改失败", Success = false };
+            }
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult DelQRCode([FromBody] List<Ga_qrcode> qrcode)
+        {
+            if (BLL.Ga_DelQRcodeBLL(qrcode))
+            {
+                return new JsonResult() { Message = "删除成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "删除失败", Success = false };
+            }
         }
     }
 }

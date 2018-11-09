@@ -9,7 +9,7 @@ namespace Ga_AGV.Model.Commonality
     /// <summary>
     /// bootstrap数据对象
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">数据对象</typeparam>
     public class JsonData<T> where T : class
     {
         public int total { get; set; } //数据总数

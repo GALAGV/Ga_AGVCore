@@ -12,7 +12,7 @@ namespace Ga_AGV.DAL.DataAccess
     {
         #region 数据处理
 
-        #region 查询二维码管理
+        #region 增删查改 二维码管理
 
         /// <summary>
         /// 查询二维码管理
@@ -21,10 +21,23 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset)
+        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset, string qrId, string qrStatus)
         {
             List<Ga_qrcode> ga_s = new List<Ga_qrcode>();
-            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader("SELECT * FROM `ga_agv`.`ga_qrcode` LIMIT " + offset + "," + limit + "");
+            string sql = "SELECT * FROM `ga_agv`.`ga_qrcode` WHERE 0 = 0 ";
+
+            if (qrId != null)
+            {
+                sql += " AND qrId = " + qrId + " ";
+            }
+            if (qrStatus != "全部")
+            {
+                sql += " AND qrStatus = '" + qrStatus + "' ";
+            }
+            sql += " LIMIT " + offset + "," + limit + "";
+
+            MySqlDataReader mySqlData = MySqlHelper.ExecuteReader(sql);
+
             while (mySqlData.Read())
             {
                 ga_s.Add(new Ga_qrcode()
@@ -38,7 +51,11 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             mySqlData.Close();
-            MySqlDataReader mySql = MySqlHelper.ExecuteReader("SELECT Count(*) FROM `ga_agv`.`Ga_qrcode`");
+
+            string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
             while (mySql.Read())
             {
                 PageCount = Convert.ToInt32(mySql[0].ToString().Trim());
@@ -48,7 +65,46 @@ namespace Ga_AGV.DAL.DataAccess
             return ga_s;
         }
 
-        #endregion 查询二维码管理
+        public bool Ga_AddQRcode(Ga_qrcode qr)
+        {
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("INSERT INTO `ga_agv`.`ga_qrcode`(`qrInfo`, `qrX`, `qrY`, `qrStatus`, `qrRemark`) VALUES (@qrInfo, @qrX, @qrY, @qrStatus, @qrRemark)");
+            MySqlParameter[] cmdParms ={
+                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
+                        new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
+                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
+            };
+            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+        }
+
+        public bool Ga_UpQRcode(Ga_qrcode qr)
+        {
+            StringBuilder SQLString = new StringBuilder();
+            SQLString.Append("UPDATE `ga_agv`.`ga_qrcode` SET `qrInfo` = @qrInfo, `qrX` = @qrX, `qrY` = @qrY, `qrStatus` = @qrStatus, `qrRemark` = @qrRemark WHERE `qrId` = @qrId");
+            MySqlParameter[] cmdParms ={
+                        new MySqlParameter("@qrId",MySqlDbType.Int32){ Value=qr.qrId },
+                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
+                        new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
+                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
+            };
+            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+        }
+
+        public bool Ga_DelQRcode(List<Ga_qrcode> qr)
+        {
+            List<string> sql = new List<string>();
+            foreach (Ga_qrcode item in qr)
+            {
+                sql.Add("DELETE FROM `ga_agv`.`ga_qrcode` WHERE `qrId` = " + item.qrId + "");
+            }
+            return MySqlHelper.ExecuteSqlTran(sql);
+        }
+
+        #endregion 增删查改 二维码管理
 
         #endregion 数据处理
     }

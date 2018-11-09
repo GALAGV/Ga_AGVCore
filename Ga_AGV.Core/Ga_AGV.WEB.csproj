@@ -324,6 +324,7 @@
     <Content Include="image\logo.png" />
     <Content Include="image\msg.png" />
     <Content Include="image\user.png" />
+    <Content Include="Scripts\AGVSystem\QR_Code.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.min.css" />
@@ -632,6 +633,7 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\js\i18n\defaults-zh_TW.js" />
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap3.html" />
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap4.html" />
+    <Content Include="Scripts\Equipment\AGVManagement.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

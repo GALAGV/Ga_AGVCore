@@ -22,6 +22,7 @@ namespace Ga_AGV.Core.Controllers
         /// 主页
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public ActionResult Main()
         {
             //if (Session["User"] == null)

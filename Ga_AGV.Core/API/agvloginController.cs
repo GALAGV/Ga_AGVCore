@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace Ga_AGV.Core.API
 {
@@ -32,6 +33,7 @@ namespace Ga_AGV.Core.API
             if (user != null)
             {
                 Context.Session["User"] = user;
+                FormsAuthentication.SetAuthCookie(user.userId.ToString(),false);
                 return new JsonResult() { Success = true, Message = "登录成功" };
             }
             else

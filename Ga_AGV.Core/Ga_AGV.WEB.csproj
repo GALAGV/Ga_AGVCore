@@ -632,6 +632,7 @@
     <Content Include="Scripts\bootstrap-select-1.13.2\js\i18n\defaults-zh_TW.js" />
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap3.html" />
     <Content Include="Scripts\bootstrap-select-1.13.2\tests\bootstrap4.html" />
+    <Content Include="Scripts\Equipment\AGVManagement.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

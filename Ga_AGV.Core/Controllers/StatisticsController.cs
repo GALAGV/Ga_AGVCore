@@ -9,17 +9,18 @@ namespace Ga_AGV.Core.Controllers
     public class StatisticsController : Controller
     {
         // GET: Statistics
-
+        [Authorize]
         public ActionResult RunningLog()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult TaskLog()
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult Rack()
         {
             return View();
@@ -29,6 +30,7 @@ namespace Ga_AGV.Core.Controllers
         /// AGV状态
         /// </summary>
         /// <returns></returns>
+         [Authorize]
         public ActionResult AGVState()
         {
             return View();

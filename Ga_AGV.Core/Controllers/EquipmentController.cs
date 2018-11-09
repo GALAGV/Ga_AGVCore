@@ -9,6 +9,7 @@ namespace Ga_AGV.Core.Controllers
     public class EquipmentController : Controller
     {
         // GET: Equipment
+        [Authorize]
         public ActionResult AGVManagement()
         {
             return View();

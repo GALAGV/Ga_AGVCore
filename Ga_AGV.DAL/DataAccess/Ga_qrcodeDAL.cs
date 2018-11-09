@@ -67,10 +67,10 @@ namespace Ga_AGV.DAL.DataAccess
             StringBuilder SQLString = new StringBuilder();
             SQLString.Append("UPDATE `ga_agv`.`ga_qrcode` SET `qrInfo` = @qrInfo, `qrX` = @qrX, `qrY` = @qrY, `qrStatus` = @qrStatus, `qrRemark` = @qrRemark WHERE `qrId` = @qrId");
             MySqlParameter[] cmdParms ={
-                        new MySqlParameter("@qrId",MySqlDbType.Int64){ Value=qr.qrId },
+                        new MySqlParameter("@qrId",MySqlDbType.Int32){ Value=qr.qrId },
                         new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
-                        new MySqlParameter("@qrX",MySqlDbType.Int64){ Value=qr.qrX },
-                        new MySqlParameter("@qrY",MySqlDbType.Int64){ Value=qr.qrY },
+                        new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
                         new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
                         new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
             };

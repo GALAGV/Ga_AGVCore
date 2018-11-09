@@ -9,6 +9,7 @@ namespace Ga_AGV.Core.Controllers
     public class AGVSystemController : Controller
     {
         // GET: AGVSystem
+        [Authorize]
         public ActionResult QR_Code()
         {
             return View();

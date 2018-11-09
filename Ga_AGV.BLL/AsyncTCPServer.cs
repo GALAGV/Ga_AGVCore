@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Ga_AGV.BLL
 {
-    class AsyncTCPServer: IDisposable
+    internal class AsyncTCPServer : IDisposable
     {
         #region Fields
+
         /// <summary>
         /// 服务器程序允许的最大客户端连接数
         /// </summary>
@@ -38,7 +39,7 @@ namespace Ga_AGV.BLL
         /// </summary>
         internal bool _clientChange;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -46,21 +47,23 @@ namespace Ga_AGV.BLL
         /// 服务器是否正在运行
         /// </summary>
         public bool IsRunning { get; private set; }
+
         /// <summary>
         /// 监听的IP地址
         /// </summary>
         public IPAddress Address { get; private set; }
+
         /// <summary>
         /// 监听的端口
         /// </summary>
         public int Port { get; private set; }
+
         /// <summary>
         /// 通信使用的编码
         /// </summary>
         public Encoding Encoding { get; set; }
 
-
-        #endregion
+        #endregion Properties
 
         #region 构造函数
 
@@ -69,7 +72,7 @@ namespace Ga_AGV.BLL
         /// </summary>
         /// <param name="listenPort">监听的端口</param>
         public AsyncTCPServer(int listenPort)
-            : this(IPAddress.Any, listenPort,10)
+            : this(IPAddress.Any, listenPort, 10)
         {
         }
 
@@ -78,7 +81,7 @@ namespace Ga_AGV.BLL
         /// </summary>
         /// <param name="localEP">监听的终结点</param>
         public AsyncTCPServer(IPEndPoint localEP)
-            : this(localEP.Address, localEP.Port,10)
+            : this(localEP.Address, localEP.Port, 10)
         {
         }
 
@@ -99,7 +102,7 @@ namespace Ga_AGV.BLL
             _listener.AllowNatTraversal(true);
         }
 
-        #endregion
+        #endregion 构造函数
 
         #region Method
 
@@ -116,7 +119,6 @@ namespace Ga_AGV.BLL
                   new AsyncCallback(HandleTcpClientAccepted), _listener);
             }
         }
-
 
         /// <summary>
         /// 启动服务器
@@ -223,19 +225,17 @@ namespace Ga_AGV.BLL
                     {
                         return;
                     }
-
                 }
                 catch (SocketException ex)
                 {
                     //异常处理
                     Console.WriteLine(ex.ToString());
                     RaiseNetError(state);
-        
                 }
 
                 //接收之前清空byte[] 数据
                 Array.Clear(state.RecvDataBuffer, 0, state.RecvDataBuffer.Length);
-                //继续接收来自来客户端的数据                    
+                //继续接收来自来客户端的数据
                 try
                 {
                     client.BeginReceive(state.RecvDataBuffer, 0, state.RecvDataBuffer.Length, SocketFlags.None, new AsyncCallback(HandleDataReceived), state);
@@ -246,7 +246,6 @@ namespace Ga_AGV.BLL
                     RaiseNetError(state);
                     Console.WriteLine(ex.ToString());
                     return;
-
                 }
             }
         }
@@ -270,7 +269,6 @@ namespace Ga_AGV.BLL
              new AsyncCallback(SendDataEnd), state.ClientSocket);
         }
 
-
         /// <summary>
         /// 发送数据完成处理函数
         /// </summary>
@@ -280,7 +278,8 @@ namespace Ga_AGV.BLL
             ((Socket)ar.AsyncState).EndSend(ar);
             RaiseCompletedSend(null);
         }
-        #endregion
+
+        #endregion Method
 
         #region 事件
 
@@ -288,11 +287,11 @@ namespace Ga_AGV.BLL
         /// 与客户端的连接已建立事件
         /// </summary>
         public event EventHandler<AsyncEventArgs> ClientConnected;
+
         /// <summary>
         /// 与客户端的连接已断开事件
         /// </summary>
         public event EventHandler<AsyncEventArgs> ClientDisconnected;
-
 
         /// <summary>
         /// 触发客户端连接事件
@@ -305,6 +304,7 @@ namespace Ga_AGV.BLL
                 ClientConnected(this, new AsyncEventArgs(state));
             }
         }
+
         /// <summary>
         /// 触发客户端连接断开事件
         /// </summary>
@@ -368,6 +368,7 @@ namespace Ga_AGV.BLL
         /// 网络错误事件
         /// </summary>
         public event EventHandler<AsyncEventArgs> NetError;
+
         /// <summary>
         /// 触发网络错误事件
         /// </summary>
@@ -384,6 +385,7 @@ namespace Ga_AGV.BLL
         /// 异常事件
         /// </summary>
         public event EventHandler<AsyncEventArgs> OtherException;
+
         /// <summary>
         /// 触发异常事件
         /// </summary>
@@ -395,14 +397,16 @@ namespace Ga_AGV.BLL
                 OtherException(this, new AsyncEventArgs(descrip, state));
             }
         }
+
         private void RaiseOtherException(TCPClientState state)
         {
             RaiseOtherException(state, "");
         }
 
-        #endregion
+        #endregion 事件
 
         #region Close
+
         /// <summary>
         /// 关闭一个与客户端之间的会话
         /// </summary>
@@ -418,6 +422,7 @@ namespace Ga_AGV.BLL
                 RaiseClientDisconnected(state);
             }
         }
+
         /// <summary>
         /// 关闭所有的客户端会话,与所有的客户端连接会断开
         /// </summary>
@@ -436,11 +441,13 @@ namespace Ga_AGV.BLL
             _clientChange = true;
             _clients.Clear();
         }
-        #endregion
+
+        #endregion Close
 
         #region 释放
+
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, 
+        /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -452,8 +459,8 @@ namespace Ga_AGV.BLL
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release 
-        /// both managed and unmanaged resources; <c>false</c> 
+        /// <param name="disposing"><c>true</c> to release
+        /// both managed and unmanaged resources; <c>false</c>
         /// to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
@@ -470,20 +477,22 @@ namespace Ga_AGV.BLL
                         }
                     }
                     catch (SocketException)
-                    {                        
+                    {
                         RaiseOtherException(null);
                     }
                 }
                 disposed = true;
             }
         }
-        #endregion
+
+        #endregion 释放
+
     }
-        
 
     public class TCPClientState
     {
         #region 字段
+
         /// <summary>
         /// 接收数据缓冲区
         /// </summary>
@@ -500,12 +509,12 @@ namespace Ga_AGV.BLL
         /// </summary>
         private Socket _clientSock;
 
-        #endregion
+        #endregion 字段
 
         #region 属性
 
         /// <summary>
-        /// 接收数据缓冲区 
+        /// 接收数据缓冲区
         /// </summary>
         public byte[] RecvDataBuffer
         {
@@ -545,8 +554,7 @@ namespace Ga_AGV.BLL
             }
         }
 
-
-        #endregion
+        #endregion 属性
 
         /// <summary>
         /// 构造函数
@@ -573,7 +581,6 @@ namespace Ga_AGV.BLL
         /// </summary>
         public void Close()
         {
-
             //关闭数据的接受和发送
             _clientSock.Shutdown(SocketShutdown.Both);
 
@@ -583,7 +590,7 @@ namespace Ga_AGV.BLL
     }
 
     /// <summary>
-    /// 异步TcpListener TCP服务器事件参数类 
+    /// 异步TcpListener TCP服务器事件参数类
     /// </summary>
     public class AsyncEventArgs : EventArgs
     {
@@ -607,11 +614,13 @@ namespace Ga_AGV.BLL
             this._msg = msg;
             IsHandled = false;
         }
+
         public AsyncEventArgs(TCPClientState state)
         {
             this._state = state;
             IsHandled = false;
         }
+
         public AsyncEventArgs(string msg, TCPClientState state)
         {
             this._msg = msg;
@@ -620,4 +629,3 @@ namespace Ga_AGV.BLL
         }
     }
 }
-

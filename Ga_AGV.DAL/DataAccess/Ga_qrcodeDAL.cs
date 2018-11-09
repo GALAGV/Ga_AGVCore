@@ -70,11 +70,11 @@ namespace Ga_AGV.DAL.DataAccess
             StringBuilder SQLString = new StringBuilder();
             SQLString.Append("INSERT INTO `ga_agv`.`ga_qrcode`(`qrInfo`, `qrX`, `qrY`, `qrStatus`, `qrRemark`) VALUES (@qrInfo, @qrX, @qrY, @qrStatus, @qrRemark)");
             MySqlParameter[] cmdParms ={
-                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar,10000){ Value=qr.qrInfo },
-                        new MySqlParameter("@qrX",MySqlDbType.Int32,10000){ Value=qr.qrX },
-                        new MySqlParameter("@qrY",MySqlDbType.Int32,10000){ Value=qr.qrY },
-                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar,10000){ Value=qr.qrStatus },
-                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar,10000){ Value=qr.qrRemark },
+                        new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
+                        new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
+                        new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
+                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
             };
             return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
         }
@@ -94,14 +94,14 @@ namespace Ga_AGV.DAL.DataAccess
             return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
         }
 
-        public bool Ga_DelQRcode(Ga_qrcode qr)
+        public bool Ga_DelQRcode(List<Ga_qrcode> qr)
         {
-            StringBuilder SQLString = new StringBuilder();
-            SQLString.Append("DELETE FROM `ga_agv`.`ga_qrcode` WHERE `qrId` = @qrId");
-            MySqlParameter[] cmdParms ={
-                        new MySqlParameter("@qrId",MySqlDbType.Int32,10000){ Value=qr.qrId },
-            };
-            return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
+            List<string> sql = new List<string>();
+            foreach (Ga_qrcode item in qr)
+            {
+                sql.Add("DELETE FROM `ga_agv`.`ga_qrcode` WHERE `qrId` = " + item.qrId + "");
+            }
+            return MySqlHelper.ExecuteSqlTran(sql);
         }
 
         #endregion 增删查改 二维码管理

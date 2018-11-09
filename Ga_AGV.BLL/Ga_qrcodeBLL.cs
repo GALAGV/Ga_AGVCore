@@ -34,7 +34,7 @@ namespace Ga_AGV.BLL
             return ga_qrcodeDAL.Ga_UpQRcode(qr);
         }
 
-        public bool Ga_DelQRcodeBLL(Ga_qrcode qr)
+        public bool Ga_DelQRcodeBLL(List<Ga_qrcode> qr)
         {
             return ga_qrcodeDAL.Ga_DelQRcode(qr);
         }

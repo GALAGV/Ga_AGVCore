@@ -98,11 +98,14 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
-            var s = "SELECT COUNT(*) FROM `ga_agvlog`.`ga_taskloginfo20181105`";
-            DataTable f = MySqlHelper.ExecuteDataTable(s);
-            foreach (DataRow item in f.Rows)
+            string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
+            while (mySql.Read())
             {
-                pageCount = int.Parse(item[0].ToString().Trim());
+                pageCount = Convert.ToInt32(mySql[0].ToString().Trim());
+                break;
             }
             return list;
         }

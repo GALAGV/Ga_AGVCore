@@ -1,4 +1,5 @@
-﻿using Ga_AGV.Model.DataModel;
+﻿using Commonality.instrument;
+using Ga_AGV.Model.DataModel;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -15,60 +16,37 @@ namespace Ga_AGV.DAL.DataAccess
         public object Log_Time { get; private set; }
 
         /// <summary>
-        /// 查询QR_Code数据信息
+        /// 查询货架数据信息
         /// </summary>
         /// <param name="pageCount">数据总数</param>
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_rack> Ga_rackShow(ref int pageCount, int limit, int offset,string rackSerialNum,string rackStatus)
+        public List<Ga_rack> Ga_rackShow(ref int pageCount, int limit, int offset, string rackSerialNum, string rackStatus)
         {
             List<Ga_rack> list = new List<Ga_rack>();
-            //DataTable ds;
-            var sql = "SELECT * FROM `ga_agv`.`ga_rack` where 1=1";
-            //if (Log_Time == null)
-            //{
-            //    ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'ga_taskloginfo" + DateTime.Now.ToString("yyyyMMdd") + "'");
-            //    if (ds.Rows.Count == 0)
-            //    {
-            //        return new List<Ga_rack>();
-            //    }
-            //    sql += "`ga_taskloginfo" + DateTime.Now.Date.ToString("yyyyMMdd") + "` where 1 = 1";
-            //}
-            //if (Log_Time != null)
-            //{
-            //    ds = MySqlHelper.ExecuteDataTable("SELECT table_name FROM information_schema.TABLES WHERE table_name = 'Ga_rack" + Regex.Replace(Log_Time, "-", "") + "'");
-            //    if (ds.Rows.Count == 0)
-            //    {
-            //        return new List<Ga_rack>();
-            //    }
-            //    sql += "`ga_taskloginfo" + Regex.Replace(Log_Time, "-", "") + "`where 1=1";
-            //}
+            var sql = "SELECT * FROM `ga_agv`.`ga_rack` where 0=0";
             if (rackSerialNum != null && rackSerialNum != "")
             {
                 sql += " and rackSerialNum=" + rackSerialNum + "";
             }
-            //if (Time != null && Time != "" && EndTime != null && EndTime != "")
-            //{
-            //    sql += " and str_to_date(taskLogTime,'%H:%i:%s') between '" + Time + "' and '" + EndTime + "'";
-            //}
-            if (rackStatus == "全部")
+            if (rackStatus == "空闲")
             {
-                sql += " and rackStatus=" + 0;
+                sql += " and rackStatus=" + 1;
             }
-            if (rackStatus != "全部")
+            if (rackStatus != "空闲")
             {
-                if (rackStatus == "已完成")
-                {
-                    sql += " and rackStatus=" + 1;
-                }
-                else if (rackStatus == "未完成")
+                if (rackStatus == "任务锁定")
                 {
                     sql += " and rackStatus=" + 2;
                 }
-                else if (rackStatus == "进行中")
+                else if (rackStatus == "移动中")
                 {
                     sql += " and rackStatus=" + 3;
+                }
+                else if (rackStatus == "弃用")
+                {
+                    sql += " and rackStatus=" + 4;
                 }
             }
             sql += " LIMIT " + offset + "," + limit + "";
@@ -86,13 +64,76 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
-            var s = "SELECT COUNT(*) FROM `ga_rack`";
-            DataTable f = MySqlHelper.ExecuteDataTable(s);
-            foreach (DataRow item in f.Rows)
+            string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
+            while (mySql.Read())
             {
-                pageCount = int.Parse(item[0].ToString().Trim());
+                pageCount = Convert.ToInt32(mySql[0].ToString().Trim());
+                break;
             }
             return list;
+        }
+        /// <summary>
+        /// 添加货架
+        /// </summary>
+        /// <param name="rack"></param>
+        /// <returns></returns>
+        public bool Addrack(Ga_rack rack)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("INSERT INTO `ga_agv`.`ga_rack`(`rackSerialNum`, `rack_qrInfo`, `rackStatus`, `rack_agvSerailNum`) VALUES ( @rackSerialNum,@rack_qrInfo, @rackStatus, @rack_agvSerailNum)");
+            MySqlParameter[] par ={
+                        new MySqlParameter("@rackSerialNum",MySqlDbType.VarChar,10000){  Value=rack.rackSerialNum },
+                        new MySqlParameter("@rack_qrInfo",MySqlDbType.VarChar,10000){  Value=rack.rack_qrInfo },
+                        new MySqlParameter("@rackStatus",MySqlDbType.Int32,10000){  Value=rack.rackStatus },
+                        new MySqlParameter("@rack_agvSerailNum",MySqlDbType.Int32,10000){  Value=rack.rack_agvSerailNum }
+            };
+            return MySqlHelper.ExecuteNonQuery(sql.ToString(), par) > 0 ? true : false;
+        }
+
+
+        /// <summary>
+        /// 删除货架
+        /// </summary>
+        /// <param name="rack"></param>
+        /// <returns></returns>
+        public bool rackdelete(Ga_rack rack)
+        {
+            return MySqlHelper.ExecuteNonQuery("DELETE  FROM `ga_agv`.`ga_rack` WHERE rackId=@rackId", new MySqlParameter[] { (new MySqlParameter("@rackId", MySqlDbType.Int32, 1000) { Value = rack.rackId }) }) > 0 ? true : false;
+        }
+
+
+        /// <summary>
+        /// 货架批量删除
+        /// </summary>
+        /// <param name="rack"></param>
+        /// <returns></returns>
+        public bool rackdeletelist(List<Ga_rack> rack)
+        {
+            List<string> sql = new List<string>();
+            foreach (Ga_rack item in rack)
+            {
+                sql.Add("DELETE  FROM `ga_agv`.`ga_rack` WHERE rackId=" + item.rackId + ";");
+            }
+            return MySqlHelper.ExecuteSqlTran(sql);
+        }
+
+        /// <summary>
+        /// 编辑货架
+        /// </summary>
+        /// <param name="rack"></param>
+        /// <returns></returns>
+        public bool editrack(Ga_rack rack)
+        {
+            return MySqlHelper.ExecuteNonQuery("UPDATE `ga_agv`.`ga_rack` SET rackSerialNum=@rackSerialNum,rack_qrInfo=@rack_qrInfo,rackStatus=@rackStatus,rack_agvSerailNum =@rack_agvSerailNum WHERE rackId=@rackId", new MySqlParameter[] {
+                new MySqlParameter("@rackSerialNum",MySqlDbType.VarChar,10000){  Value=rack.rackSerialNum },
+                        new MySqlParameter("@rack_qrInfo",MySqlDbType.VarChar,10000){  Value=rack.rack_qrInfo },
+                        new MySqlParameter("@rackStatus",MySqlDbType.Int32,10000){  Value=rack.rackStatus },
+                        new MySqlParameter("@rack_agvSerailNum",MySqlDbType.Int32,10000){  Value=rack.rack_agvSerailNum },
+                        new MySqlParameter("@rackId",MySqlDbType.Int32,1000){Value=rack.rackId }
+            }) > 0 ? true : false;
         }
     }
 }

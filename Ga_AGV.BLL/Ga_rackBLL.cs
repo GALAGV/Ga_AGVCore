@@ -23,5 +23,44 @@ namespace Ga_AGV.BLL
         {
             return ga_RackDAL.Ga_rackShow(ref pageCount, limit, offset, rackSerialNum,rackStatus);
         }
+        /// <summary>
+        /// 添加货架
+        /// </summary>
+        /// <returns></returns>
+        public bool rackadd(Ga_rack rack)
+        {
+            return ga_RackDAL.Addrack(rack);
+        }
+
+        /// <summary>
+        /// 删除货架
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool delete(Ga_rack rack)
+        {
+            return ga_RackDAL.rackdelete(rack);
+        }
+
+
+        /// <summary>
+        /// 货架批量删除
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool deletelist(List<Ga_rack> rack)
+        {
+            return ga_RackDAL.rackdeletelist(rack);
+        }
+
+        /// <summary>
+        /// 编辑货架
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool edit(Ga_rack rack)
+        {
+            return ga_RackDAL.editrack(rack);
+        }
     }
 }

@@ -35,6 +35,9 @@
         $('#myModal').modal();
     });
 
+
+
+
     //批量删除
     $('#btn_delete').click(function () {
         var data = $("#tb_report").bootstrapTable('getSelections');
@@ -85,7 +88,6 @@
 
     //编辑
     $("#btn_edit").click(function () {
-
         var a = $("#tb_report").bootstrapTable('getSelections');
         if (a.length == 1) {
             console.log(a[0]);
@@ -217,7 +219,7 @@ var TableInit = function () {
                 },
                 {
                     field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="" data-id="' + row.agvId + '"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
+                        var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="control(' + row.agvNum+')"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
                             '<a class="btn btn-xs btn-danger btn-remove" onclick="agvdelete(' + row.agvId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
                         return strHtml;
                     }, edit: false
@@ -238,6 +240,11 @@ var TableInit = function () {
     return oTableInit;
 };
 
+
+function control(agvNum) {
+    $("#AGVtitle").text("AGV控制");
+    $('#AGVControl').modal();
+}
 
 
 //删除AGV

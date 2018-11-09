@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     toastr.options = {
         showDuration: "300",                                      // 显示动画的时间
         hideDuration: "1300",                                     //  消失的动画时间
@@ -26,7 +25,6 @@
         oTable.Init();
         $("#tb_report").bootstrapTable('refresh');
     });
-
 
     //新增
     $("#btn_add").click(function () {
@@ -75,19 +73,15 @@
                     }
                 }
             });
-
         } else {
             toastr.error("请选中一行后删除！");
         }
-
     });
-
 
     //编辑
     $("#btn_edit").click(function () {
-
         var a = $("#tb_report").bootstrapTable('getSelections');
-        if (a.length == 1) {
+        if (a.length === 1) {
             console.log(a[0]);
             $("#myModalLabel").text("修改");
             $("#myModal").find(".form-control").val("");
@@ -97,7 +91,6 @@
             $('#agvPort').val(a[0].agvPort);
             $('#agvId').val(a[0].agvId);
             $('#myModal').modal('toggle');
-
         }
         else {
             toastr.error("请选中一行后修改！");
@@ -127,7 +120,7 @@
             success: function (res) {
                 if (res.Success) {
                     $('#myModal').modal('toggle'); //关闭Modal窗口
-                    toastr.success(res.Message)
+                    toastr.success(res.Message);
                     $("#tb_report").bootstrapTable('refresh');//刷新表格
                 }
                 else {
@@ -190,38 +183,37 @@ var TableInit = function () {
             cardView: false,                    //是否显示详细视图
             detailView: false,
 
-            columns: [
-                {
-                    checkbox: true
-                },
-                {
-                    field: 'agvNum',
-                    title: 'AGV编号',
-                    align: 'center'
-                }, {
-                    field: 'agvIp',
-                    title: 'IP',
-                    align: 'center'
-                }, {
-                    field: 'agvPort',
-                    title: '端口号',
-                    align: 'center'
-                }, {
-                    field: 'agvOnLineTime',
-                    title: '最近上线时间',
-                    align: 'center'
-                }, {
-                    field: 'agvOffLineTime',
-                    title: '最近离线时间',
-                    align: 'center'
-                },
-                {
-                    field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="" data-id="' + row.agvId + '"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
-                            '<a class="btn btn-xs btn-danger btn-remove" onclick="agvdelete(' + row.agvId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
-                        return strHtml;
-                    }, edit: false
-                }
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: 'agvNum',
+                title: 'AGV编号',
+                align: 'center'
+            }, {
+                field: 'agvIp',
+                title: 'IP',
+                align: 'center'
+            }, {
+                field: 'agvPort',
+                title: '端口号',
+                align: 'center'
+            }, {
+                field: 'agvOnLineTime',
+                title: '最近上线时间',
+                align: 'center'
+            }, {
+                field: 'agvOffLineTime',
+                title: '最近离线时间',
+                align: 'center'
+            },
+            {
+                field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
+                    var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="" data-id="' + row.agvId + '"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
+                        '<a class="btn btn-xs btn-danger btn-remove" onclick="agvdelete(' + row.agvId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
+                    return strHtml;
+                }, edit: false
+            }
             ]
         });
     };
@@ -237,8 +229,6 @@ var TableInit = function () {
     };
     return oTableInit;
 };
-
-
 
 //删除AGV
 function agvdelete(id) {

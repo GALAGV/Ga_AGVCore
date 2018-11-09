@@ -81,7 +81,7 @@ namespace Ga_AGV.Core.API
         /// 删除
         /// </summary>
         /// <returns></returns>
-        public JsonResult DelQRCode([FromBody] Ga_qrcode qrcode)
+        public JsonResult DelQRCode([FromBody] List<Ga_qrcode> qrcode)
         {
             if (BLL.Ga_DelQRcodeBLL(qrcode))
             {

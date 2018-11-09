@@ -100,7 +100,7 @@
                         <li><a href="#">修改密码</a></li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/Home/Login">
+                            <a href="/api/agvlogin/exit">
                                 退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
                             </a>
                         </li>
@@ -120,6 +120,7 @@
         $(function () {
 
             //$("#external-frame").height($(window).height() - 90);
+            $("[data-toggle='tooltip']").tooltip();
 
             CirculationTimes();
 

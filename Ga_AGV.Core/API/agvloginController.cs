@@ -33,13 +33,23 @@ namespace Ga_AGV.Core.API
             if (user != null)
             {
                 Context.Session["User"] = user;
-                FormsAuthentication.SetAuthCookie(user.userId.ToString(),false);
+                FormsAuthentication.SetAuthCookie(user.userId.ToString(), false); //授权
                 return new JsonResult() { Success = true, Message = "登录成功" };
             }
             else
             {
                 return new JsonResult() { Success = false, Message = "账号或密码不正确！" };
             }
+        }
+
+        /// <summary>
+        /// 退出系统
+        /// </summary>
+        [HttpGet]
+        public void exit()
+        {
+            FormsAuthentication.SignOut(); //取消授权
+            HttpContext.Current.Response.Redirect("/Home/Login");
         }
     }
 }

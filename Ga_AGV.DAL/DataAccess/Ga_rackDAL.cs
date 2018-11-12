@@ -30,21 +30,25 @@ namespace Ga_AGV.DAL.DataAccess
             {
                 sql += " and rackSerialNum=" + rackSerialNum + "";
             }
-            if (rackStatus == "空闲")
+            if (rackStatus=="全部")
             {
-                sql += " and rackStatus=" + 1;
+                sql += " and 1=1";
             }
-            if (rackStatus != "空闲")
+            if (rackStatus != "全部")
             {
+                if (rackStatus == "空闲")
+                {
+                    sql += " and rackStatus=" + 1;
+                }
                 if (rackStatus == "任务锁定")
                 {
                     sql += " and rackStatus=" + 2;
                 }
-                else if (rackStatus == "移动中")
+                if (rackStatus == "移动中")
                 {
                     sql += " and rackStatus=" + 3;
                 }
-                else if (rackStatus == "弃用")
+                if (rackStatus == "弃用")
                 {
                     sql += " and rackStatus=" + 4;
                 }

@@ -23,6 +23,7 @@
                             <label class="control-label col-sm-1" for="txt_search_desc">状态</label>
                             <div class="col-sm-3">
                                 <select class="selectpicker show-tick form-control" id="txt_search_statu" data-live-search="false">
+                                    <option>全部</option>
                                     <option>空闲</option>
                                     <option>任务锁定</option>
                                     <option>移动中</option>
@@ -89,7 +90,7 @@
                     <button type="button" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
                 </div>
             </div>
-        </div>
+        </div>1
     </div>
 </form>
 <script>
@@ -315,7 +316,9 @@
                         field: 'rackStatus',
                         title: '货架状态',
                         align: 'center', formatter: function (value, row, index) {
-                            if (value == '1') {
+                            if (value == null) {
+                                return "全部";
+                            }if (value == '1') {
                                 return "空闲";
                             } if (value == '2') {
                                 return "任务锁定";
@@ -332,7 +335,7 @@
                     },
                     {
                         field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                            var strHtml = '<a class="btn btn-xs btn-primary btn-update" onclick="agvedit(' + row.rackId + ',' + row.rackSerialNum + ',' + row.rackStatus + ',' + row.rack_agvSerailNum + ',' + row.rack_qrInfo + ')"><i class="fa fa-edit"></i>&nbsp;操作</a>&nbsp;&nbsp;' +
+                            var strHtml = '<a class="btn btn-xs btn-primary btn-update" onclick="agvedit(' + row.rackId + ',' + row.rackSerialNum + ',' + row.rack_qrInfo + ',' + row.rackStatus + ',' + row.rack_agvSerailNum + ')"><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;' +
                                 '<a class="btn btn-xs btn-danger btn-remove"  onclick="agvdelete(' + row.rackId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
                             return strHtml;
                         }, edit: false

@@ -30,8 +30,8 @@ namespace Ga_AGV.Core.API
         public JsonResult LoginUser([FromBody] Ga_user User)
         {
             var Context = HttpContext.Current;
-            //Ga_user user = Ga_AgvloginBLL.UserLogin(Md5.Encrypt(User.userName), Md5.Encrypt(User.userPassword));
-            Ga_user user = Ga_AgvloginBLL.UserLogin(User.userName,User.userPassword);
+            Ga_user user = Ga_AgvloginBLL.UserLogin(Md5.Encrypt(User.userName), Md5.Encrypt(User.userPassword));
+            //Ga_user user = Ga_AgvloginBLL.UserLogin(User.userName,User.userPassword);
             if (user != null)
             {
                 Context.Session["User"] = user;

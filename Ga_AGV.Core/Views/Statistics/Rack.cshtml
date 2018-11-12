@@ -79,7 +79,6 @@
                     <div class="form-group">
                         <label for="txt_defaulturl">货架状态</label>
                         <select class="selectpicker show-tick form-control" id="rackStatus" data-live-search="false">
-                            <option value="0">全部</option>
                             <option value="1">空闲</option>
                             <option value="2">任务锁定</option>
                             <option value="3">移动中</option>
@@ -103,9 +102,10 @@
 <script>
     $("#btn_add").click(function () {
         $("#myModalLabel").text("新增");
-        $("#rackStatus").selectpicker('refresh');//刷新UI
-        $('#rackStatus').selectpicker('val', "0");//绑定下拉
         $("#myModal").find(".form-control").val("");
+        $("#rackStatus").selectpicker('refresh');//刷新UI
+        $('#rackStatus').selectpicker('val', "1");//绑定下拉
+
         $('#myModal').modal();
     });
     $("#btn_close").click(function () {

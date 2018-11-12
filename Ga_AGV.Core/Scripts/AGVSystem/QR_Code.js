@@ -31,7 +31,8 @@
             $("#txt_qrInfo").val(row[0].qrInfo);
             $("#txt_qrX").val(row[0].qrX);
             $("#txt_qrY").val(row[0].qrY);
-            $("#txt_qrStatus").val(row[0].qrStatus);
+            $("#txt_qrStatus").selectpicker('refresh');//刷新UI
+            $('#txt_qrStatus').selectpicker('val', row[0].qrStatus);//绑定下拉
             $("#txt_qrRemark").val(row[0].qrRemark);
             $('#myModal').modal();
         }
@@ -81,10 +82,12 @@
             if (!Verify())
                 return;
             submit("/api/AGVSystem/AddQRCode", data);
+            $('#myModal').modal('toggle'); //关闭Modal窗口
         } else if (title == "修改") {
             if (!Verify())
                 return;
             submit("/api/AGVSystem/UpQRCode", data);
+            $('#myModal').modal('toggle'); //关闭Modal窗口
         }
     })
 
@@ -97,6 +100,7 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.Success) {
+
                     $("#tb_report").bootstrapTable('refresh');
                     toastr.success(data.Message)
                 }
@@ -129,8 +133,8 @@
 
 function operateFormatter(value, row, index) {
     return [
-        '<button type="button" class="RoleOfdelete btn btn-primary btn-sm" style="margin-right:15px;">修改</button>',
-        '<button type="button" class="RoleOfedit btn btn-primary btn-sm" style="margin-right:15px;">删除</button>'
+        '<a class="btn btn-xs btn-primary btn-update RoleOfdelete"><i class="fa fa-bolt"></i>&nbsp;编辑</a>&nbsp;&nbsp;',
+        '<a class="btn btn-xs btn-danger btn-remove RoleOfedit"><i class="fa fa-trash-o"></i>&nbsp;删除</a>'
     ].join('');
 };
 
@@ -146,14 +150,42 @@ window.operateEvents = {
         $("#txt_qrRemark").val(row.qrRemark);
     },
     'click .RoleOfedit': function (e, value, row, index) {
-        $("#myModalLabel").text("删除");
-        $('#myModal').modal();
-        $("#txt_qrId").val(row.qrId);
-        $("#txt_qrInfo").val(row.qrInfo);
-        $("#txt_qrX").val(row.qrX);
-        $("#txt_qrY").val(row.qrY);
-        $("#txt_qrStatus").val(row.qrStatus);
-        $("#txt_qrRemark").val(row.qrRemark);
+        bootbox.confirm({
+            message: "确认删除吗？",
+            buttons: {
+                confirm: {
+                    label: '确认',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-default'
+                }
+            },
+            callback: function () {
+                $.ajax({
+                    url: '/api/AGVSystem/DelQRCode',
+                    type: "post",
+                    data: JSON.stringify([{ "qrId": row.qrId }]),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data.Success) {
+                            $("#tb_report").bootstrapTable('refresh');
+                            toastr.success(data.Message)
+                        }
+                        else {
+                            $("#tb_report").bootstrapTable('refresh');
+                            toastr.error(data.Message);
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error(e.Message);
+                    }
+                });
+            }
+        });
+
+
     }
 };
 
@@ -182,7 +214,7 @@ var TableInit = function () {
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
             //height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "agvId",                  //每一行的唯一标识，一般为主键列
+            uniqueId: "qrId",                  //每一行的唯一标识，一般为主键列
             showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,
@@ -191,11 +223,11 @@ var TableInit = function () {
                 checkbox: true
             }, {
                 field: 'qrId',
-                title: '二维码编号',
+                title: '二维码ID',
                 align: 'center'
             }, {
                 field: 'qrInfo',
-                title: '信息',
+                title: '二维码信息',
                 align: 'center'
             }, {
                 field: 'qrX',
@@ -214,14 +246,14 @@ var TableInit = function () {
                 title: '备注',
                 align: 'center'
             },
-                {
-                    field: "operate",
-                    title: "操作",
-                    width: 200,
-                    align: "center",
-                    events: operateEvents,
-                    formatter: operateFormatter
-                    }
+            {
+                field: "operate",
+                title: "操作",
+                width: 200,
+                align: "center",
+                events: operateEvents,
+                formatter: operateFormatter
+            }
             ]
         });
     };

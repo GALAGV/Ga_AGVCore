@@ -49,6 +49,7 @@ namespace Ga_AGV.Core.API
         /// 添加
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult AddQRCode([FromBody] Ga_qrcode qrcode)
         {
             if (BLL.Ga_AddQRcodeBLL(qrcode))
@@ -65,6 +66,7 @@ namespace Ga_AGV.Core.API
         /// 更改
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult UpQRCode([FromBody] Ga_qrcode qrcode)
         {
             if (BLL.Ga_UpQRcodeBLL(qrcode))
@@ -81,6 +83,7 @@ namespace Ga_AGV.Core.API
         /// 删除
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult DelQRCode([FromBody] List<Ga_qrcode> qrcode)
         {
             if (BLL.Ga_DelQRcodeBLL(qrcode))

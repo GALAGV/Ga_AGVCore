@@ -35,5 +35,10 @@ namespace Ga_AGV.Core.Controllers
         {
             return View();
         }
+        //[Authorize]
+        public ActionResult RunMonitoring()
+        {
+            return View();
+        }
     }
 }

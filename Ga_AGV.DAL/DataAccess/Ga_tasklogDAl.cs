@@ -57,7 +57,7 @@ namespace Ga_AGV.DAL.DataAccess
             }
             if (taskComplete == "全部")
             {
-                sql += " and taskComplete=" + 0;
+                sql += " and 1=1";
             }
             if (taskComplete != "全部")
             {
@@ -65,9 +65,9 @@ namespace Ga_AGV.DAL.DataAccess
                 {
                     sql += " and taskComplete=" + 1;
                 }
-                else if (taskComplete == "未完成")
+                else if (taskComplete == "已取消")
                 {
-                    sql += " and askComplete=" + 2;
+                    sql += " and taskComplete=" + 2;
                 }
                 else if (taskComplete == "进行中")
                 {

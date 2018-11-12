@@ -22,7 +22,7 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, string qrStatus)
+        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, int qrStatus)
         {
             int pageCount = 0;
             try

@@ -20,6 +20,7 @@
         $("#myModalLabel").text("新增");
         $("#myModal").find(".form-control").val("");  //清空
         $('#myModal').modal();
+        $('#txt_qrStatus').selectpicker('val', "1");//绑定下拉
     });
 
     //修改
@@ -241,7 +242,13 @@ var TableInit = function () {
             }, {
                 field: 'qrStatus',
                 title: '状态',
-                align: 'center'
+                    align: 'center', formatter: function (value, row, index) {
+                        if (value == '1') {
+                            return "<span class='label label-success'>使用中</span>";
+                        } if (value == '2') {
+                            return "<span class='label label-errer'>禁用</span>";
+                        }
+                    }
             }, {
                 field: 'qrRemark',
                 title: '备注',

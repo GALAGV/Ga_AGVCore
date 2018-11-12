@@ -34,7 +34,7 @@ namespace Ga_AGV.Model.DataModel
         /// <summary>
         /// 二维码状态
         /// </summary>
-        public string qrStatus { get; set; }
+        public int qrStatus { get; set; }
 
         /// <summary>
         /// 二维码备注

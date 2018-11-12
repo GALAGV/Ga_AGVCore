@@ -21,7 +21,7 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset, string qrId, string qrStatus)
+        public List<Ga_qrcode> Ga_qrcodesList(ref int PageCount, int limit, int offset, string qrId, int qrStatus)
         {
             List<Ga_qrcode> ga_s = new List<Ga_qrcode>();
             string sql = "SELECT * FROM `ga_agv`.`ga_qrcode` WHERE 0 = 0 ";
@@ -30,9 +30,9 @@ namespace Ga_AGV.DAL.DataAccess
             {
                 sql += " AND qrId = " + qrId + " ";
             }
-            if (qrStatus != "全部")
+            if (qrStatus != 0)
             {
-                sql += " AND qrStatus = '" + qrStatus + "' ";
+                sql += " AND qrStatus = " + qrStatus + " ";
             }
             sql += " LIMIT " + offset + "," + limit + "";
 
@@ -46,7 +46,7 @@ namespace Ga_AGV.DAL.DataAccess
                     qrInfo = mySqlData["qrInfo"].ToString().Trim(),
                     qrX = Convert.ToInt32(mySqlData["qrX"].ToString().Trim()),
                     qrY = Convert.ToInt32(mySqlData["qrY"].ToString().Trim()),
-                    qrStatus = mySqlData["qrStatus"].ToString().Trim(),
+                    qrStatus = Convert.ToInt32(mySqlData["qrStatus"].ToString().Trim()),
                     qrRemark = mySqlData["qrRemark"].ToString().Trim(),
                 });
             }
@@ -73,7 +73,7 @@ namespace Ga_AGV.DAL.DataAccess
                         new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
                         new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
                         new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
-                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrStatus",MySqlDbType.Int32){ Value=qr.qrStatus },
                         new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
             };
             return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;
@@ -88,7 +88,7 @@ namespace Ga_AGV.DAL.DataAccess
                         new MySqlParameter("@qrInfo",MySqlDbType.VarChar){ Value=qr.qrInfo },
                         new MySqlParameter("@qrX",MySqlDbType.Int32){ Value=qr.qrX },
                         new MySqlParameter("@qrY",MySqlDbType.Int32){ Value=qr.qrY },
-                        new MySqlParameter("@qrStatus",MySqlDbType.VarChar){ Value=qr.qrStatus },
+                        new MySqlParameter("@qrStatus",MySqlDbType.Int32){ Value=qr.qrStatus },
                         new MySqlParameter("@qrRemark",MySqlDbType.VarChar){ Value=qr.qrRemark },
             };
             return MySqlHelper.ExecuteNonQuery(SQLString.ToString(), cmdParms) > 0 ? true : false;

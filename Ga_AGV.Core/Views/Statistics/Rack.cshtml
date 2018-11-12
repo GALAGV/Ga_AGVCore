@@ -292,7 +292,7 @@
                 showRefresh: true,                  //是否显示刷新按钮
                 minimumCountColumns: 2,             //最少允许的列数
                 clickToSelect: true,                //是否启用点击选中行
-                height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
                 uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
                 showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
@@ -319,13 +319,13 @@
                             if (value == null) {
                                 return "全部";
                             }if (value == '1') {
-                                return "空闲";
+                                return "<span class='label label-success'>空闲</span>";
                             } if (value == '2') {
-                                return "任务锁定";
+                                return "<span class='label label-lock'>任务锁定</span>";
                             } if (value == '3') {
-                                return "移动中";
+                                return "<span class='label label-move'>移动中</span>";
                             } if (value == '4') {
-                                return "弃用";
+                                return "<span class='label label-errer'>弃用</span>";
                             }
                         }
                     }, {

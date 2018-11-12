@@ -88,7 +88,7 @@
     }
 </style>
 <div class="modal  fade bs-example-modal-lg" id="AGVControl" tabindex="-1" role="dialog" aria-labelledby="AGVtitle">
-    <div class="modal-dialog modal-lg"  style="width:80%;min-width:980px;" role="document">
+    <div class="modal-dialog modal-lg"  style="width:95%;min-width:980px; max-width:1400px" role="document">
         <div class="modal-content">
             <div class="modal-header" style="padding:10px;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -97,7 +97,7 @@
             <div class="modal-body" style="background: #EDEDED;padding:6px">
                 <div>
                     <div style="display:inline-block;width:49.5%;margin-left:5px;">
-                        <div class="count-panel" style="width:100%;margin:0px auto;height:258px">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:438px">
                             <div class="x_title">
                                 <h2 style="font-size:18px;">基本信息</h2>
                                 <div class="clearfix"></div>
@@ -114,10 +114,20 @@
                                         <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">二维码</li>
                                         <li style="font-size:18px;font-weight:bold;background: #EDEDED;">00015</li>
                                         <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">状态</li>
-                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">在线</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;color:#139656">在线</li>
+                                    </ul>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">PBS</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">区域6</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">云台</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">上升</li>
+                                    </ul>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">报警信息</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;width:74%;color:#139656">正常</li>
                                     </ul>
                                 </div>
-                                <div style="margin-top:5px;">
+                                <div style="margin-top:30px;">
                                     <ul class="Control-li" style="display:block;height:50px;">
                                         <li style="padding:8px;padding-left:0px;"><button type="button" class="btn btn-danger" style="width:100%;height:45px;">急停</button></li>
                                         <li style="padding:8px"><button type="button" class="btn btn-primary" style="width:100%;height:45px;">手动</button></li>
@@ -127,19 +137,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="count-panel" style="width:100%;margin:0px auto;height:442px;margin-top:4px;">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:262px;margin-top:4px;">
                             <div class="x_title">
                                 <h2 style="font-size:18px;">AGV状态</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix">
                                 <ul>
-                                    <li style="width:50%;height:180px;float:left" id="container-speed" >
-
-                                    </li>
-                                    <li style="width:50%;height:180px;float:left" id="container-rpm"></li>
-                                    <li style="width:50%;height:180px;float:left"></li>
-                                    <li style="width:50%;height:180px;float:left"></li>
+                                    <li style="width:50%;height:200px;float:left" id="container-speed" ></li>
+                                    <li style="width:50%;height:200px;float:left" id="container-rpm"></li>
                                 </ul>
                             </div>
                         </div>
@@ -157,10 +163,6 @@
                     </div>
                 </div>
             </div>
-            @*<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-                <button type="button" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
-            </div>*@
         </div>
     </div>
 </div>
@@ -231,14 +233,14 @@
             dataLabels: {
                 format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                     ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                    '<span style="font-size:12px;color:silver">km/h</span></div>'
+                    '<span style="font-size:12px;color:silver">m/min</span></div>'
             },
             tooltip: {
                 valueSuffix: ' km/h'
             }
         }]
     });
-    // 转速仪表
+    // 电量仪表
     var chart2 = Highcharts.chart('container-rpm', {
         yAxis: {
             min: 0,

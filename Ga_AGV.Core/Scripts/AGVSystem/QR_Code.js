@@ -127,35 +127,35 @@
     }
 });
 
-//function operateFormatter(value, row, index) {
-//    return [
-//        '<button type="button" class="RoleOfdelete btn btn-primary btn-sm" style="margin-right:15px;">修改</button>',
-//        '<button type="button" class="RoleOfedit btn btn-primary btn-sm" style="margin-right:15px;">删除</button>'
-//    ].join('');
-//};
+function operateFormatter(value, row, index) {
+    return [
+        '<button type="button" class="RoleOfdelete btn btn-primary btn-sm" style="margin-right:15px;">修改</button>',
+        '<button type="button" class="RoleOfedit btn btn-primary btn-sm" style="margin-right:15px;">删除</button>'
+    ].join('');
+};
 
-//window.operateEvents = {
-//    'click .RoleOfdelete': function (e, value, row, index) {
-//        $("#myModalLabel").text("修改");
-//        $('#myModal').modal();
-//        $("#txt_qrId").val(row.qrId);
-//        $("#txt_qrInfo").val(row.qrInfo);
-//        $("#txt_qrX").val(row.qrX);
-//        $("#txt_qrY").val(row.qrY);
-//        $("#txt_qrStatus").val(row.qrStatus);
-//        $("#txt_qrRemark").val(row.qrRemark);
-//    },
-//    'click .RoleOfedit': function (e, value, row, index) {
-//        $("#myModalLabel").text("删除");
-//        $('#myModal').modal();
-//        $("#txt_qrId").val(row.qrId);
-//        $("#txt_qrInfo").val(row.qrInfo);
-//        $("#txt_qrX").val(row.qrX);
-//        $("#txt_qrY").val(row.qrY);
-//        $("#txt_qrStatus").val(row.qrStatus);
-//        $("#txt_qrRemark").val(row.qrRemark);
-//    }
-//};
+window.operateEvents = {
+    'click .RoleOfdelete': function (e, value, row, index) {
+        $("#myModalLabel").text("修改");
+        $('#myModal').modal();
+        $("#txt_qrId").val(row.qrId);
+        $("#txt_qrInfo").val(row.qrInfo);
+        $("#txt_qrX").val(row.qrX);
+        $("#txt_qrY").val(row.qrY);
+        $("#txt_qrStatus").val(row.qrStatus);
+        $("#txt_qrRemark").val(row.qrRemark);
+    },
+    'click .RoleOfedit': function (e, value, row, index) {
+        $("#myModalLabel").text("删除");
+        $('#myModal').modal();
+        $("#txt_qrId").val(row.qrId);
+        $("#txt_qrInfo").val(row.qrInfo);
+        $("#txt_qrX").val(row.qrX);
+        $("#txt_qrY").val(row.qrY);
+        $("#txt_qrStatus").val(row.qrStatus);
+        $("#txt_qrRemark").val(row.qrRemark);
+    }
+};
 
 var TableInit = function () {
     var oTableInit = new Object();
@@ -214,14 +214,14 @@ var TableInit = function () {
                 title: '备注',
                 align: 'center'
             },
-                //{
-                //    field: "operate",
-                //    title: "操作",
-                //    width: 200,
-                //    align: "center",
-                //    events: operateEvents,
-                //    formatter: operateFormatter
-                //    }
+                {
+                    field: "operate",
+                    title: "操作",
+                    width: 200,
+                    align: "center",
+                    events: operateEvents,
+                    formatter: operateFormatter
+                    }
             ]
         });
     };

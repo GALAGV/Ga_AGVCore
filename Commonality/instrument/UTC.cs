@@ -6,7 +6,7 @@ using System.Text;
 namespace Commonality.instrument
 {
     /// <summary>
-    /// UTC操作类
+    /// UTC时间转换
     /// </summary>
    public class UTC
     {

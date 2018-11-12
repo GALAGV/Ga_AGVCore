@@ -146,7 +146,8 @@ window.operateEvents = {
         $("#txt_qrInfo").val(row.qrInfo);
         $("#txt_qrX").val(row.qrX);
         $("#txt_qrY").val(row.qrY);
-        $("#txt_qrStatus").val(row.qrStatus);
+        $("#txt_qrStatus").selectpicker('refresh');//刷新UI
+        $('#txt_qrStatus').selectpicker('val', row.qrStatus);//绑定下拉
         $("#txt_qrRemark").val(row.qrRemark);
     },
     'click .RoleOfedit': function (e, value, row, index) {

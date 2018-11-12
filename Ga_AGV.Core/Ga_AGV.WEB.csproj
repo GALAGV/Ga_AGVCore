@@ -1403,6 +1403,7 @@
     <Content Include="Views\Statistics\Rack.cshtml" />
     <Content Include="Views\AGVSystem\QR_Code.cshtml" />
     <Content Include="Scripts\Highcharts-6.2.0\code\css\highcharts.scss" />
+    <Content Include="Views\Statistics\RunMonitoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

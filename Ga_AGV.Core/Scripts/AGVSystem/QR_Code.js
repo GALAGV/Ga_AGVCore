@@ -18,7 +18,7 @@
     //新增
     $("#btn_add").click(function () {
         $("#myModalLabel").text("新增");
-        $("#myModal").find(".form-control").val("");  //清空
+        $("#myModal").find(".form-control").val("");
         $('#myModal').modal();
     });
 
@@ -75,18 +75,17 @@
             qrStatus: $("#txt_qrStatus").val(),
             qrRemark: $("#txt_qrRemark").val()
         };
-        var title = $("#myModalLabel").text();
-        console.log("QR_Code" + title);
-        if (title == "新增") {
+        console.log("QR_Code" + $("#myModalLabel").text());
+        if ($("#myModalLabel").text() == "新增") {
             if (!Verify())
                 return;
             submit("/api/AGVSystem/AddQRCode", data);
-        } else if (title == "修改") {
+        } else if ($("#myModalLabel").text() == "修改") {
             if (!Verify())
                 return;
             submit("/api/AGVSystem/UpQRCode", data);
         }
-    })
+    });
 
     //提交方法
     function submit(url, data) {
@@ -97,8 +96,9 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.Success) {
+                    $('#myModal').modal('toggle'); //关闭模态窗体
                     $("#tb_report").bootstrapTable('refresh');
-                    toastr.success(data.Message)
+                    toastr.success(data.Message);
                 }
                 else {
                     $("#tb_report").bootstrapTable('refresh');
@@ -213,8 +213,8 @@ var TableInit = function () {
                 field: 'qrRemark',
                 title: '备注',
                 align: 'center'
-            },
-                //{
+            }
+                //,{
                 //    field: "operate",
                 //    title: "操作",
                 //    width: 200,
@@ -231,7 +231,7 @@ var TableInit = function () {
             limit: params.limit,   //页面大小
             offset: params.offset,  //页码
             qrID: $("#query_qrId").val(),
-            qrStatus: $("#query_qrStatus").val(),
+            qrStatus: $("#query_qrStatus").val()
         };
         return temp;
     };

@@ -752,6 +752,7 @@
     <Content Include="Views\Equipment\AGVManagement.cshtml" />
     <Content Include="Views\Statistics\Rack.cshtml" />
     <Content Include="Views\AGVSystem\QR_Code.cshtml" />
+    <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">

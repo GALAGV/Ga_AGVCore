@@ -78,3 +78,212 @@
         </div>
     </div>
 </form>
+<style>
+    .Control-li li{
+        width:24%;
+        height:50px;
+        text-align:center;
+        line-height:50px;
+        display:inline-block;
+    }
+</style>
+<div class="modal  fade bs-example-modal-lg" id="AGVControl" tabindex="-1" role="dialog" aria-labelledby="AGVtitle">
+    <div class="modal-dialog modal-lg"  style="width:95%;min-width:980px; max-width:1400px" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="AGVtitle"></h4>
+            </div>
+            <div class="modal-body" style="background: #EDEDED;padding:6px">
+                <div>
+                    <div style="display:inline-block;width:49.5%;margin-left:5px;">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:438px">
+                            <div class="x_title">
+                                <h2 style="font-size:18px;">基本信息</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix">
+                                <div style="width:100%;">
+                                    <ul class="Control-li" style="display:block;height:50px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">AGV编号</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">1号</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">固件版本</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">V1.0.5</li>
+                                    </ul>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">二维码</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">00015</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">状态</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;color:#139656">在线</li>
+                                    </ul>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">PBS</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">区域6</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">云台</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">上升</li>
+                                    </ul>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">报警信息</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;width:74%;color:#139656">正常</li>
+                                    </ul>
+                                </div>
+                                <div style="margin-top:30px;">
+                                    <ul class="Control-li" style="display:block;height:50px;">
+                                        <li style="padding:8px;padding-left:0px;"><button type="button" class="btn btn-danger" style="width:100%;height:45px;">急停</button></li>
+                                        <li style="padding:8px"><button type="button" class="btn btn-primary" style="width:100%;height:45px;">手动</button></li>
+                                        <li style="padding:8px"><button type="button" class="btn btn-primary" style="width:100%;height:45px;">复位</button></li>
+                                        <li style="padding:8px;padding-right:0px;"><button type="button" class="btn btn-primary" style="width:100%;height:45px;">固件升级</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:262px;margin-top:4px;">
+                            <div class="x_title">
+                                <h2 style="font-size:18px;">AGV状态</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix">
+                                <ul>
+                                    <li style="width:50%;height:200px;float:left" id="container-speed" ></li>
+                                    <li style="width:50%;height:200px;float:left" id="container-rpm"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:inline-block;width:49.5%">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:704px">
+                            <div class="x_title">
+                                <h2 style="font-size:18px;">AGV控制</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 公共配置
+    Highcharts.setOptions({
+        chart: {
+            type: 'solidgauge'
+        },
+        title: null,
+        pane: {
+            center: ['50%', '85%'],
+            size: '140%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            stops: [
+                [0.1, '#55BF3B'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#DF5353'] // red
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
+        }
+    });
+    // 速度仪表
+    var chart1 = Highcharts.chart('container-speed', {
+        yAxis: {
+            min: 0,
+            max: 200,
+            title: {
+                text: '速度'
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: '速度',
+            data: [80],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                    '<span style="font-size:12px;color:silver">m/min</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' km/h'
+            }
+        }]
+    });
+    // 电量仪表
+    var chart2 = Highcharts.chart('container-rpm', {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: '电量'
+            }
+        },
+        series: [{
+            name: '电量',
+            data: [1],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                    '<span style="font-size:12px;color:silver">kWh</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' revolutions/min'
+            }
+        }]
+    });
+    // 定时刷新数据
+    setInterval(function () {
+        var point,
+            newVal,
+            inc;
+        if (chart1) {
+            point = chart1.series[0].points[0];
+            inc = Math.round((Math.random() - 0.5) * 100);
+            newVal = point.y + inc;
+            if (newVal < 0 || newVal > 200) {
+                newVal = point.y - inc;
+            }
+            point.update(newVal);
+        }
+        if (chart2) {
+            point = chart2.series[0].points[0];
+            inc = Math.random() - 0.5;
+            newVal = point.y + inc;
+            if (newVal < 0 || newVal > 5) {
+                newVal = point.y - inc;
+            }
+            point.update(newVal);
+        }
+    }, 2000);
+</script>

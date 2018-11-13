@@ -74,7 +74,7 @@
                                 <span class="align-middle">AGV系统</span>
                             </a>
                             <ul id="ui4" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count">运行监控</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunMonitoring","Statistics")" target="Main-Count">运行监控</a></li>
                                 <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("QR_Code","AGVSystem")" target="Main-Count">二维码管理</a></li>
                             </ul>
                         </li>
@@ -95,12 +95,12 @@
                 <li class="dropdown  nav-li" id="Management">
                     <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
                     <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
-                        <li><a href="#">系统配置</a></li>
+                        <li><a href="javascript:;">系统配置</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li id="UpdatePwd"><a href="javascript:;">修改密码</a></li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/Home/Login">
+                            <a href="/api/agvlogin/exit">
                                 退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
                             </a>
                         </li>
@@ -116,10 +116,42 @@
         </div>
         <!-- 内容end -->
     </div>
+    <!-- 修改密码 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txt_rolename">原密码</label>
+                        <input type="text" name="agvNum" class="form-control" id="agvNum" placeholder="请输入原密码">
+                        <input id="agvId" class="form-control" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_rolename">新密码</label>
+                        <input type="text" name="agvSerialNum" class="form-control" id="agvSerialNum" placeholder="请输入新密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_defaulturl">确认密码</label>
+                        <input type="text" name="agvIp" class="form-control" id="agvIp" placeholder="再次输入密码">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(function () {
 
             //$("#external-frame").height($(window).height() - 90);
+            $("[data-toggle='tooltip']").tooltip();
 
             CirculationTimes();
 
@@ -155,6 +187,14 @@
             function msg() {
                 $('.msg').toggleClass('animated fadeIn');
             }
+
+
+            $('#UpdatePwd').click(function () {
+
+                $('#myModal').modal('toggle'); //关闭Modal窗口
+
+
+            });
         });
     </script>
 </body>

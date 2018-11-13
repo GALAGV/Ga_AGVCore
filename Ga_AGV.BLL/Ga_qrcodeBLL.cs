@@ -19,7 +19,7 @@ namespace Ga_AGV.BLL
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public List<Ga_qrcode> Ga_QrcodeBLL(ref int PageCount, int limit, int offset, string qrID, string qrStatus)
+        public List<Ga_qrcode> Ga_QrcodeBLL(ref int PageCount, int limit, int offset, string qrID, int qrStatus)
         {
             return ga_qrcodeDAL.Ga_qrcodesList(ref PageCount, limit, offset, qrID, qrStatus);
         }

@@ -14,16 +14,16 @@
                         <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label class="control-label col-sm-1" for="txt_search_rolename">QR Code编号</label>
+                                <label class="control-label col-sm-1" for="txt_search_rolename">二维码编号</label>
                                 <div class="col-sm-3">
                                     <input id="query_qrId" type="text" class="form-control">
                                 </div>
-                                <label class="control-label col-sm-1" for="txt_search_desc">QR Code状态</label>
+                                <label class="control-label col-sm-1" for="txt_search_desc">二维码状态</label>
                                 <div class="col-sm-3">
                                     <select id="query_qrStatus" class="selectpicker show-tick form-control" data-live-search="false">
-                                        <option>全部</option>
-                                        <option>使用</option>
-                                        <option>禁用</option>
+                                        <option value="0">全部</option>
+                                        <option value="1">使用中</option>
+                                        <option value="2">禁用</option>
                                     </select>
                                 </div>
                             </div>
@@ -80,8 +80,8 @@
                                     <label for="txt_defaulturl_Web">状态</label>
                                     <div>
                                         <select id="txt_qrStatus" class="selectpicker show-tick form-control" data-live-search="false">
-                                            <option>使用</option>
-                                            <option>禁用</option>
+                                            <option value="1">使用中</option>
+                                            <option value="2">禁用</option>
                                         </select>
                                     </div>
                                 </div>

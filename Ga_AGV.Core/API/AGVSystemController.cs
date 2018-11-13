@@ -22,7 +22,7 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, string qrStatus)
+        public JsonData<Ga_qrcode> QRCodeShow(int limit, int offset, string qrID, int qrStatus)
         {
             int pageCount = 0;
             try
@@ -49,6 +49,7 @@ namespace Ga_AGV.Core.API
         /// 添加
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult AddQRCode([FromBody] Ga_qrcode qrcode)
         {
             if (BLL.Ga_AddQRcodeBLL(qrcode))
@@ -65,6 +66,7 @@ namespace Ga_AGV.Core.API
         /// 更改
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult UpQRCode([FromBody] Ga_qrcode qrcode)
         {
             if (BLL.Ga_UpQRcodeBLL(qrcode))
@@ -81,6 +83,7 @@ namespace Ga_AGV.Core.API
         /// 删除
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult DelQRCode([FromBody] List<Ga_qrcode> qrcode)
         {
             if (BLL.Ga_DelQRcodeBLL(qrcode))

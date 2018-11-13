@@ -49,6 +49,7 @@ li {
     text-align: center;
     background-color: rgb(42, 57, 72);
     width: 220px;
+    cursor:pointer;
 }
 
 .sidebar-link .feather, .sidebar-link svg {

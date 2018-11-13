@@ -49,8 +49,8 @@
                                 <select id="taskComplete" class="selectpicker show-tick form-control" data-live-search="false">
                                     <option>全部</option>
                                     <option>已完成</option>
+                                    <option>已取消</option>
                                     <option>进行中</option>
-                                    <option>未完成</option>
                                 </select>
                             </div>
                         </div>
@@ -176,12 +176,12 @@
                     field: 'TaskComplete',
                     title: '任务状态',
                         align: 'center', formatter: function (value, row, index) {
-                            if (value == '0') {
+                            if (value == null) {
                                 return "全部";
                             } else if (value == '1') {
                                 return "已完成";
                             } else if (value == '2') {
-                                return "未完成";
+                                return "已取消";
                             } else if (value == '3') {
                                 return "进行中";
                             }

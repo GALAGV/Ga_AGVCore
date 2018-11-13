@@ -53,7 +53,12 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
+
             var s = "SELECT COUNT(*) FROM `ga_agv`.`ga_agv`";
+            if (agvNum != 0)
+            {
+               s+= "WHERE agvNum = "+ agvNum + "";
+            }
             DataTable f = MySqlHelper.ExecuteDataTable(s);
             foreach (DataRow item in f.Rows)
             {

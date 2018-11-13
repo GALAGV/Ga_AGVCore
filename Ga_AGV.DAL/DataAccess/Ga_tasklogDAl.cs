@@ -57,7 +57,7 @@ namespace Ga_AGV.DAL.DataAccess
             }
             if (taskComplete == "全部")
             {
-                sql += " and taskComplete=" + 0;
+                sql += " and 1=1";
             }
             if (taskComplete != "全部")
             {
@@ -65,9 +65,9 @@ namespace Ga_AGV.DAL.DataAccess
                 {
                     sql += " and taskComplete=" + 1;
                 }
-                else if (taskComplete == "未完成")
+                else if (taskComplete == "已取消")
                 {
-                    sql += " and askComplete=" + 2;
+                    sql += " and taskComplete=" + 2;
                 }
                 else if (taskComplete == "进行中")
                 {
@@ -98,11 +98,14 @@ namespace Ga_AGV.DAL.DataAccess
                 });
             }
             dd.Close();
-            var s = "SELECT COUNT(*) FROM `ga_agvlog`.`ga_taskloginfo20181105`";
-            DataTable f = MySqlHelper.ExecuteDataTable(s);
-            foreach (DataRow item in f.Rows)
+            string count = sql.Replace("*", "Count(*)");
+            count = count.Replace("LIMIT", " # ");
+
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
+            while (mySql.Read())
             {
-                pageCount = int.Parse(item[0].ToString().Trim());
+                pageCount = Convert.ToInt32(mySql[0].ToString().Trim());
+                break;
             }
             return list;
         }

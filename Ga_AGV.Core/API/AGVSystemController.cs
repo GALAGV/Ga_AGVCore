@@ -95,5 +95,14 @@ namespace Ga_AGV.Core.API
                 return new JsonResult() { Message = "删除失败", Success = false };
             }
         }
+
+        #region 监控
+
+        public JsonResult ShowPlace()
+        {
+            return new JsonResult() { Message = "删除成功", Success = true };
+        }
+
+        #endregion 监控
     }
 }

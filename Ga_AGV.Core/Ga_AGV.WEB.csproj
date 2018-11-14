@@ -324,6 +324,9 @@
     <Content Include="image\logo.png" />
     <Content Include="image\msg.png" />
     <Content Include="image\user.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui.min.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui.min.js" />
+    <Content Include="Scripts\AGVSystem\jquery.min.js" />
     <Content Include="Scripts\AGVSystem\QR_Code.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.css" />
@@ -1404,6 +1407,7 @@
     <Content Include="Views\AGVSystem\QR_Code.cshtml" />
     <Content Include="Scripts\Highcharts-6.2.0\code\css\highcharts.scss" />
     <Content Include="Views\Statistics\RunMonitoring.cshtml" />
+    <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

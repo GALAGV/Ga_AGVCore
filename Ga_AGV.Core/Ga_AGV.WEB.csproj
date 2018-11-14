@@ -318,6 +318,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="image\agv-on.gif" />
+    <Content Include="image\agv-off.gif" />
     <Content Include="image\bg.png" />
     <Content Include="image\close.png" />
     <Content Include="image\lo.png" />

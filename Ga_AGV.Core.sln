@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.BLL", "Ga_AGV.BLL\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality", "Commonality\Commonality.csproj", "{561E98D5-21AF-4492-B98A-812BE43683EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.TCPListener", "Ga_AGV.TCPListener\Ga_AGV.TCPListener.csproj", "{78A5243B-B18A-49BC-B260-906FA6229981}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{561E98D5-21AF-4492-B98A-812BE43683EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{561E98D5-21AF-4492-B98A-812BE43683EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{561E98D5-21AF-4492-B98A-812BE43683EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A5243B-B18A-49BC-B260-906FA6229981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A5243B-B18A-49BC-B260-906FA6229981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A5243B-B18A-49BC-B260-906FA6229981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A5243B-B18A-49BC-B260-906FA6229981}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,8 +22,25 @@ namespace Ga_AGV.BLL
         {
             return Getlogin.Login(UserName, Password);
         }
-
-
+        /// <summary>
+        /// 验证密码
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        public Ga_user UserPass( string Password)
+        {
+            return Getlogin.ga_User(Password);
+        }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="agv"></param>
+        /// <returns></returns>
+        public bool edit(Ga_user pass)
+        {
+            return Getlogin.Password(pass);
+        }
 
     }
 }

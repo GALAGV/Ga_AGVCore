@@ -79,24 +79,54 @@
     </div>
 </form>
 <style>
-    .Control-li li{
-        width:24%;
-        height:50px;
-        text-align:center;
-        line-height:50px;
-        display:inline-block;
+    .Control-li li {
+        width: 24%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        display: inline-block;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 103%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        list-style: none;
+        text-shadow: none;
+        max-height: 180px;
+        margin: 0px;
+        font-size: 14px;
+        font-family: "Segoe UI",Helvetica, Arial, sans-serif;
+        border: 1px solid #ddd;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
 </style>
 <div class="modal  fade bs-example-modal-lg" id="AGVControl" tabindex="-1" role="dialog" aria-labelledby="AGVtitle">
-    <div class="modal-dialog modal-lg"  style="width:95%;min-width:980px; max-width:1400px" role="document">
+    <div class="modal-dialog modal-lg" style="width:95%;min-width:980px; max-width:1400px" role="document">
         <div class="modal-content">
             <div class="modal-header" style="padding:10px;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="AGVtitle"></h4>
             </div>
-            <div class="modal-body" style="background: #EDEDED;padding:6px">
+            <div class="modal-body" style="background: #EDEDED;padding:6px 10px;overflow:hidden;">
                 <div>
-                    <div style="display:inline-block;width:49.5%;margin-left:5px;">
+                    <div style="display:block;float:left;width:49.8%;">
                         <div class="count-panel" style="width:100%;margin:0px auto;height:438px">
                             <div class="x_title">
                                 <h2 style="font-size:18px;">基本信息</h2>
@@ -144,20 +174,98 @@
                             </div>
                             <div class="clearfix">
                                 <ul>
-                                    <li style="width:50%;height:200px;float:left" id="container-speed" ></li>
+                                    <li style="width:50%;height:200px;float:left" id="container-speed"></li>
                                     <li style="width:50%;height:200px;float:left" id="container-rpm"></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div style="display:inline-block;width:49.5%">
+                    <div style="display:block;float:right;width:49.8%">
                         <div class="count-panel" style="width:100%;margin:0px auto;height:704px">
                             <div class="x_title">
                                 <h2 style="font-size:18px;">AGV控制</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix">
-
+                                <div style="height:50%;overflow:hidden;">
+                                    <div style="width:50%;float:left;position:relative;max-width:290px;">
+                                        <img src="~/image/agv-on.gif" style="max-width:290px;width:100%;height:250px; " />
+                                        <span style="position:absolute;top:40px;left:0%;text-align:center;width:100%;"><span style="font-size:20px;color:white;font-weight:bold;font-family:'微软雅黑';padding:0px 8px;border:1px solid white;border-radius:5%">001</span></span>
+                                        <span style="position:absolute;top:190px;left:0%;text-align:center;width:100%;"><span style="font-size:20px;color:white;font-weight:bold;font-family:'微软雅黑';">在线</span></span>
+                                    </div>
+                                    <div style="float:right;width:49%;height:250px;">
+                                        <ul style="margin-top:60px;">
+                                            <li style="text-align:center"><button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">启动</button></li>
+                                            <li style="margin-top:50px;text-align:center"><button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">停止</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div style="width:100%;margin-top:40px;">
+                                    <ul>
+                                        <li style="height:32px;">
+                                            <div style="width:80%;float:left;">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="basic-addon2">PBS：</span>
+                                                        <select id="Password" name="Password" class="selectpicker show-tick form-control" data-live-search="false" aria-describedby="basic-addon2">
+                                                            <option>区域0</option>
+                                                            <option>区域1</option>
+                                                            <option>区域2</option>
+                                                            <option>区域3</option>
+                                                            <option>区域4</option>
+                                                            <option>区域5</option>
+                                                            <option>区域6</option>
+                                                            <option>区域7</option>
+                                                            <option>区域8</option>
+                                                            <option>区域9</option>
+                                                            <option>区域10</option>
+                                                            <option>区域11</option>
+                                                            <option>区域12</option>
+                                                            <option>区域13</option>
+                                                            <option>区域14</option>
+                                                            <option>区域15</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="width:20%;float:right;padding:0px 9px;">
+                                                <button type="button" class="btn btn-primary" style="width:100%;height:32px;max-width:250px;">修改</button>
+                                            </div>
+                                        </li>
+                                        <li style="margin-top:50px;text-align:center;">
+                                            <button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">云台上升</button>
+                                            <button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">云台下降</button>
+                                        </li>
+                                        <li style="margin-top:50px;text-align:center">
+                                            <button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">左转</button>
+                                            <button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">右转</button>
+                                        </li>
+                                        <li style="margin-top:50px;">
+                                            <div style="width:80%;float:left;">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" id="basic-addon2">速度：</span>
+                                                        <select class="selectpicker show-tick form-control" aria-describedby="basic-addon2" data-live-search="false">
+                                                            <option>0：5</option>
+                                                            <option>1：0</option>
+                                                            <option>2：15</option>
+                                                            <option>3：20</option>
+                                                            <option>4：25</option>
+                                                            <option>5：30</option>
+                                                            <option>6：35</option>
+                                                            <option>7：40</option>
+                                                            <option>8：50</option>
+                                                            <option>9：30</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="width:20%;float:right;padding:0px 9px;">
+                                                <button type="button" class="btn btn-primary" style="width:100%;height:32px;max-width:250px;">修改</button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -246,16 +354,16 @@
             min: 0,
             max: 100,
             title: {
-                text: '电量'
+                text: '电压'
             }
         },
         series: [{
-            name: '电量',
+            name: '电压',
             data: [1],
             dataLabels: {
                 format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                     ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-                    '<span style="font-size:12px;color:silver">kWh</span></div>'
+                    '<span style="font-size:12px;color:silver">v</span></div>'
             },
             tooltip: {
                 valueSuffix: ' revolutions/min'

@@ -164,30 +164,30 @@ window.operateEvents = {
                     className: 'btn-default'
                 }
             },
-            callback: function () {
-                $.ajax({
-                    url: '/api/AGVSystem/DelQRCode',
-                    type: "post",
-                    data: JSON.stringify([{ "qrId": row.qrId }]),
-                    contentType: 'application/json',
-                    success: function (data) {
-                        if (data.Success) {
-                            $("#tb_report").bootstrapTable('refresh');
-                            toastr.success(data.Message)
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: '/api/AGVSystem/DelQRCode',
+                        type: "post",
+                        data: JSON.stringify([{ "qrId": row.qrId }]),
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.Success) {
+                                $("#tb_report").bootstrapTable('refresh');
+                                toastr.success(data.Message)
+                            }
+                            else {
+                                $("#tb_report").bootstrapTable('refresh');
+                                toastr.error(data.Message);
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error(e.Message);
                         }
-                        else {
-                            $("#tb_report").bootstrapTable('refresh');
-                            toastr.error(data.Message);
-                        }
-                    },
-                    error: function (e) {
-                        toastr.error(e.Message);
-                    }
-                });
+                    });
+                }
             }
         });
-
-
     }
 };
 

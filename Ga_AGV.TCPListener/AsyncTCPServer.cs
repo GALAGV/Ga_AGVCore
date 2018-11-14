@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ga_AGV.BLL
+namespace Ga_AGV.TCPListener
 {
     internal class AsyncTCPServer : IDisposable
     {

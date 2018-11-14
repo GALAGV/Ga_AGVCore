@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Commonality\JsonData.cs" />
     <Compile Include="Commonality\JsonResult.cs" />
+    <Compile Include="Commonality\SocketData.cs" />
     <Compile Include="DataModel\Ga_agv.cs" />
     <Compile Include="DataModel\Ga_agvloginfo.cs" />
     <Compile Include="DataModel\Ga_qrcode.cs" />

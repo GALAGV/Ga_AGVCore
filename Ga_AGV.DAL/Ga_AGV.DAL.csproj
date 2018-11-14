@@ -50,6 +50,7 @@
     <Compile Include="DataAccess\Ga_agvloginDAL.cs" />
     <Compile Include="DataAccess\Ga_qrcodeDAL.cs" />
     <Compile Include="DataAccess\Ga_rackDAL.cs" />
+    <Compile Include="DataAccess\Ga_settingDAL.cs" />
     <Compile Include="DataAccess\Ga_tasklogDAl.cs" />
     <Compile Include="DataHelper\MySqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

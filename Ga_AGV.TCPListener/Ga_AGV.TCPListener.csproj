@@ -42,6 +42,22 @@
   <ItemGroup>
     <Compile Include="AsyncTCPServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TCPData\TCPSocket.cs" />
+    <Compile Include="TCPMonitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commonality\Commonality.csproj">
+      <Project>{561e98d5-21af-4492-b98a-812be43683ee}</Project>
+      <Name>Commonality</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ga_AGV.BLL\Ga_AGV.BLL.csproj">
+      <Project>{2844da55-3820-4957-8bb2-5a2b8180313d}</Project>
+      <Name>Ga_AGV.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ga_AGV.Model\Ga_AGV.Model.csproj">
+      <Project>{2abaea35-390f-453c-9350-71fdd2d5a4bb}</Project>
+      <Name>Ga_AGV.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

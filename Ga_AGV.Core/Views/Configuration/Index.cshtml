@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.PageTitle = "AGV系统";
+    ViewBag.PageColumn = "系统配置";
+}
+@model List<Ga_AGV.Model.DataModel.Ga_setting>
+<style>
+    .tab-content {
+        margin-top: 20px;
+    }
+</style>
+<div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
+    <div class="x_title">
+        <h2 style="font-size:18px;">系统配置</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix">
+        <div class="col-md-12 col-sm-12 col-xs-12 profile_left">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#tab_network" id="basic-tab" role="tab" data-toggle="tab" aria-expanded="true">网络配置</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab_networkStatic" id="seo-tab" role="tab" data-toggle="tab" aria-expanded="true">网络状态</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_network" aria-labelledby="basic-tab">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <input type="hidden" name="id">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domain">服务器IP<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="domain" id="ServerIp"
+                                           required="required" placeholder="请输入服务器IP地址" value="@Model.FirstOrDefault(x=>x.settingItem.Equals("ServerIp")).settingVlaue" />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siteName">
+                                    端口号<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="siteName" id="ServePort"
+                                           required="required" placeholder="请输入端口号" value="@Model.FirstOrDefault(x=>x.settingItem.Equals("ServePort")).settingVlaue" />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siteUrl">
+                                    最大连接数量<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="siteUrl" id="ServemaxConnect"
+                                           required="required" placeholder="请输入服务器最大连接数量" value="@Model.FirstOrDefault(x=>x.settingItem.Equals("ServemaxConnect")).settingVlaue" />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment"></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <button type="button" class="btn btn-primary saveBtn"><i class="fa fa-save"> 保存</i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab_networkStatic" aria-labelledby="seo-tab">
+                        <div style="width:50%;margin:0px auto;">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td width="140" style="font-size:15px;text-align:center;font-weight:bold">监听IP</td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7" id="Address"></td>
+                                </tr>
+                                <tr>
+                                    <td width="140" style="font-size:15px;text-align:center;font-weight:bold">监听端口</td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="Port"></td>
+                                </tr>
+                                <tr>
+                                    <td width="140" style="font-size:15px;text-align:center;font-weight:bold">最大连接数</td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="maxConnect"></td>
+                                </tr>
+                                <tr>
+                                    <td width="140" style="font-size:15px;text-align:center;font-weight:bold">在线数量</td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="OnClientCount"></td>
+                                </tr>
+                                <tr>
+                                    <td width="140" style="font-size:15px;text-align:center;font-weight:bold">连接状态</td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="IsRunning"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width:50%;margin:0px auto;height:60px;">
+                            <ul>
+                                <li style="float:left">
+                                    <button type="button" class="btn btn-primary">监听</button>
+                                </li>
+                                <li style="float:left;margin-left:10px;">
+                                    <button type="button" class="btn btn-primary">关闭</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        //更新配置
+        $('.saveBtn').click(function () {
+            if (!Verify())
+                return;
+
+            $.ajax({
+                type: 'post',
+                url: '/api/Setting/UpdateSetting',
+                contentType: 'application/json',
+                data: JSON.stringify([{ 'settingItem': 'ServerIp', 'settingVlaue': $('#ServerIp').val() }, { 'settingItem': 'ServePort', 'settingVlaue': $('#ServePort').val() }, { 'settingItem': 'ServemaxConnect', 'settingVlaue': $('#ServemaxConnect').val() }]),
+                datatype: 'json',
+                success: function (res) {
+                    toastr.success(res.Message);
+                },
+                error: function (e) {
+                    toastr.error(e.responseText);
+                }
+            });
+        });
+
+
+        setInterval(function () {
+
+            $.ajax({
+                type: 'post',
+                url: '/api/Services/Socket',
+                contentType: 'application/json',
+                datatype: 'json',
+                success: function (res) {
+                    $('#Address').text(res.Address);
+                    $('#Port').text(res.Port);
+                    $('#maxConnect').text(res.maxConnect);
+                    if (res.IsRunning) {
+                        $('#IsRunning').text("监听中");
+                    }
+                    else {
+                        $('#IsRunning').text("断开");
+                    } 
+                    $('#OnClientCount').text(res.OnClientCount);
+                },
+                error: function (e) {
+                    toastr.error(e.responseText);
+                }
+            });
+
+        }, 1000);
+
+
+        //表单验证
+        function Verify() {
+            if ($('#ServerIp').val() == "" || $('#ServePort').val() == "" || $('#ServemaxConnect').val() == "" ) {
+                toastr.error('必填项不能为空！！！');
+                return false;
+            }
+            var rexip = /^\d+\.\d+\.\d+\.\d+$/;//验证IP
+            var rexNum = /^[0-9]*$/; //验证数字
+            if (!rexip.test($('#ServerIp').val())) {
+                toastr.error('IP地址格式不正确');
+                return false;
+            }
+            if (!rexNum.test($('#ServePort').val()) || !rexNum.test($('#ServemaxConnect').val())) {
+                toastr.error('最大连接数或端口号格式输入错误');
+                return false;
+            }
+            return true;
+        }
+    });
+</script>
+

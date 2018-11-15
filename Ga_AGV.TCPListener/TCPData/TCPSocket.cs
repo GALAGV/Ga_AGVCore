@@ -26,9 +26,6 @@ namespace Ga_AGV.TCPListener
         /// 异步TCP服务器对象
         /// </summary>
         public static AsyncTCPServer TCPServer;
-
-
-
-
+        
     }
 }

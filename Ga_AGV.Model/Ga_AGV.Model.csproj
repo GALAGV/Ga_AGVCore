@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commonality\JsonagvInfo.cs" />
     <Compile Include="Commonality\JsonData.cs" />
     <Compile Include="Commonality\JsonResult.cs" />
     <Compile Include="Commonality\SocketData.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="DataModel\Ga_qrcode.cs" />
     <Compile Include="DataModel\Ga_rack.cs" />
     <Compile Include="DataModel\Ga_setting.cs" />
+    <Compile Include="DataModel\Ga_task.cs" />
     <Compile Include="DataModel\Ga_taskloginfo.cs" />
     <Compile Include="DataModel\Ga_user.cs" />
     <Compile Include="DataModel\Ga_widget.cs" />

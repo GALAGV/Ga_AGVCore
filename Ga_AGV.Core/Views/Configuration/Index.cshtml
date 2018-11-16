@@ -92,10 +92,10 @@
                         <div style="width:50%;margin:0px auto;height:60px;">
                             <ul>
                                 <li style="float:left">
-                                    <button type="button" class="btn btn-primary">监听</button>
+                                    <button type="button" class="btn btn-primary" id="monitor">监听</button>
                                 </li>
                                 <li style="float:left;margin-left:10px;">
-                                    <button type="button" class="btn btn-primary">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="close">关闭</button>
                                 </li>
                             </ul>
                         </div>
@@ -107,6 +107,37 @@
 </div>
 <script>
     $(function () {
+
+        //监听
+        $('#monitor').click(function () {
+            TCP('/api/Services/start');
+        });
+
+        //取消监听
+        $('#close').click(function () {
+            TCP('/api/Services/close');
+        });
+
+        function TCP(Url) {
+            $.ajax({
+                type: 'post',
+                url: Url,
+                contentType: 'application/json',
+                datatype: 'json',
+                success: function (res) {
+                    if (res.Success) {
+                        toastr.success(res.Message);
+                    } else {
+                        toastr.error(res.Message);
+                    }
+
+                },
+                error: function (e) {
+                    toastr.error(e.responseText);
+                }
+            });
+        }
+
 
         //更新配置
         $('.saveBtn').click(function () {
@@ -120,7 +151,11 @@
                 data: JSON.stringify([{ 'settingItem': 'ServerIp', 'settingVlaue': $('#ServerIp').val() }, { 'settingItem': 'ServePort', 'settingVlaue': $('#ServePort').val() }, { 'settingItem': 'ServemaxConnect', 'settingVlaue': $('#ServemaxConnect').val() }]),
                 datatype: 'json',
                 success: function (res) {
-                    toastr.success(res.Message);
+                    if (res.Success) {
+                        toastr.success(res.Message);
+                    } else {
+                        toastr.error(res.Message);
+                    }
                 },
                 error: function (e) {
                     toastr.error(e.responseText);
@@ -145,7 +180,7 @@
                     }
                     else {
                         $('#IsRunning').text("断开");
-                    } 
+                    }
                     $('#OnClientCount').text(res.OnClientCount);
                 },
                 error: function (e) {
@@ -158,7 +193,7 @@
 
         //表单验证
         function Verify() {
-            if ($('#ServerIp').val() == "" || $('#ServePort').val() == "" || $('#ServemaxConnect').val() == "" ) {
+            if ($('#ServerIp').val() == "" || $('#ServePort').val() == "" || $('#ServemaxConnect').val() == "") {
                 toastr.error('必填项不能为空！！！');
                 return false;
             }

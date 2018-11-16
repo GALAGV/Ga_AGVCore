@@ -16,10 +16,18 @@ namespace Ga_AGV.Model.Commonality
         /// </summary>
         public bool Success { get; set; }
 
-
         /// <summary>
         /// 错误信息
         /// </summary>
         public string Message { get; set; }
     }
+
+
+    public class Json<T> where T : class
+    {
+        public T Data { get; set; }
+
+        public string Value { get; set; }
+    }
+
 }

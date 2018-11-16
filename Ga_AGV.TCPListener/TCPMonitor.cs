@@ -71,8 +71,15 @@ namespace Ga_AGV.TCPListener
             int Port = Convert.ToInt32(ga_s.FirstOrDefault(x => x.settingItem.Equals("ServePort")).settingVlaue);
             TCPSocket.maxConnect = Convert.ToInt32(ga_s.FirstOrDefault(x => x.settingItem.Equals("ServemaxConnect")).settingVlaue);
             TCPSocket.TCPServer = new AsyncTCPServer(IPAddress.Parse(Address), Port, TCPSocket.maxConnect);
+            TCPSocket.TCPServer.ClientConnected += TCPServer_ClientConnected;
+            TCPSocket.TCPServer.DataReceived += TCPServer_DataReceived;
             //TCPSocket.TCPServer.DataReceived += TCPServer_DataReceived;
             TCPSocket.TCPServer.Start();
+        }
+
+        private void TCPServer_ClientConnected(object sender, AsyncEventArgs e)
+        {
+            
         }
 
         private void TCPServer_DataReceived(object sender, AsyncEventArgs e)
@@ -88,20 +95,25 @@ namespace Ga_AGV.TCPListener
             {
                 if (i < byteLen - 5 && byteStr[i] == 0x23 && byteStr[i + 1] == 0x79 && byteStr[i + 2] == 0x6C)//找到帧头
                 {
-                    int getDateLen = byteStr[i+3]*256 + byteStr[i + 4];//需要获取的消息长度
+                    int getDateLen = byteStr[i + 3] * 256 + byteStr[i + 4];//需要获取的消息长度
                     byte[] messageByte = new byte[getDateLen];
-                    if (getDateLen <= byteLen - i && byteStr[i+byteLen - 2] == 0x7E && byteStr[i + byteLen - 1] == 0x23)//确认长度足够以及帧尾正确
+                    if (getDateLen <= byteLen - i && byteStr[i + byteLen - 2] == 0x7E && byteStr[i + byteLen - 1] == 0x23)//确认长度足够以及帧尾正确
                     {
                         for (int k = 0; k < getDateLen; k++)
                         {
                             messageByte[k] = byteStr[i + k];
-                        }                        
+                        }
 
                         MessageList.Add(messageByte);
-                        i = i + getDateLen - 1;                        
+                        i = i + getDateLen - 1;
                     }
                 }
             }
         }
+
+
+
+
+
     }
 }

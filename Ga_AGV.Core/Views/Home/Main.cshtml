@@ -12,8 +12,6 @@
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
-    <script src="~/Content/Pass/assets/jquery.min.js"></script>
-    <script src="~/Content/Pass/assets/bootstrap-v2/js/bootstrap.js"></script>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 
@@ -169,8 +167,7 @@
                     success: function (res) {
                         if (res.Success) {
                             //$('#myModal').modal('toggle'); //关闭Modal窗口
-                            toastr.success(res.Message)
-                            $("#tb_report").bootstrapTable('refresh');//刷新表格
+                            toastr.success(res.Message);
                         }
                         else {
                             toastr.error(res.Message);

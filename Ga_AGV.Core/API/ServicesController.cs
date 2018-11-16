@@ -39,11 +39,11 @@ namespace Ga_AGV.Core.API
         {
             if (TCPMonitors.LoadTCP())
             {
-                return new JsonResult() { Message = "启动成功", Success = true };
+                return new JsonResult() { Message = "监听成功", Success = true };
             }
             else
             {
-                return new JsonResult() { Message = "启动失败", Success = false };
+                return new JsonResult() { Message = "监听失败,请确认服务器状态！", Success = false };
             }
         }
 

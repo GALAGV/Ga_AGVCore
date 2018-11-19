@@ -14,6 +14,7 @@ namespace Ga_AGV.Core.API
     public class AGVSystemController : ApiController
     {
         private Ga_qrcodeBLL BLL = new Ga_qrcodeBLL();
+        private Ga_agvMonitoringBLL agvMonitoring = new Ga_agvMonitoringBLL();
 
         /// <summary>
         /// 获取所有QR_Code数据
@@ -98,9 +99,17 @@ namespace Ga_AGV.Core.API
 
         #region 监控
 
-        public JsonResult ShowPlace()
+        [HttpPost]
+        public JsonData<Ga_qrcode> ShowPlace()
         {
-            return new JsonResult() { Message = "删除成功", Success = true };
+            int pageCount = 0;
+            JsonData<Ga_qrcode> data = new JsonData<Ga_qrcode>
+            {
+                rows = agvMonitoring.BLLShowQRplace(ref pageCount),
+                total = pageCount
+            };
+
+            return data;
         }
 
         #endregion 监控

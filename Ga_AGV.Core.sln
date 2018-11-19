@@ -15,6 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commonality", "Commonality\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ga_AGV.TCPListener", "Ga_AGV.TCPListener\Ga_AGV.TCPListener.csproj", "{78A5243B-B18A-49BC-B260-906FA6229981}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "开发文档", "开发文档", "{6025E04C-2FAA-4F80-9AF4-F5AD38042547}"
+	ProjectSection(SolutionItems) = preProject
+		D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Bootstrap_Table.rar = D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Bootstrap_Table.rar
+		D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\KivaAGV数据库表结构.xlsx = D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\KivaAGV数据库表结构.xlsx
+		D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Kiva上位系统需求说明V3(1).docx = D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Kiva上位系统需求说明V3(1).docx
+		D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Kiva界面原型功能设计.docx = D:\Ku\YangKunJuly\凯流\项目\Kiva\开发文档\Kiva界面原型功能设计.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -14,7 +14,6 @@
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body style="background-color: #F7F7F7;height:100%">
     <div>
@@ -75,7 +74,7 @@
                                 <span class="align-middle">AGV系统</span>
                             </a>
                             <ul id="ui4" class="sidebar-dropdown list-unstyled collapse ">
-                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("RunMonitoring","Statistics")" target="Main-Count">运行监控</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count">运行监控</a></li>
                                 <li class="sidebar-item"><a class="sidebar-link" href="@Url.Action("QR_Code","AGVSystem")" target="Main-Count">二维码管理</a></li>
                             </ul>
                         </li>
@@ -129,7 +128,7 @@
                     <div class="form-group">
                         <label for="txt_rolename">原密码</label>
                         <input type="password" name="agvNum" class="form-control" id="agvNum" placeholder="请输入原密码">
-                        <input id="userId" class="form-control" type="hidden" value="<%=u_id %>"/>
+                        <input id="userId" class="form-control" type="hidden" value="<%=u_id %>" />
                     </div>
                     <div class="form-group">
                         <label for="txt_rolename">新密码</label>
@@ -154,7 +153,7 @@
         });
         //修改密码
         $('#btn_submit').click(function () {
-            Addedit('/api/agvlogin/UserPass', $("#agvNum").val() );
+            Addedit('/api/agvlogin/UserPass', $("#agvNum").val());
         });
         function password(url, pass) {
             if ($("userPassword").val() == $("agvIp").val()) {
@@ -177,20 +176,20 @@
                         toastr.error(e.responseText);
                     }
                 });
-            } 
+            }
         }
         //修改密码
-        function Addedit(url,pass) {
+        function Addedit(url, pass) {
             $.ajax({
                 type: 'post',
                 url: url,
                 contentType: 'application/json',
-                data: JSON.stringify({"userPassword": pass }),
+                data: JSON.stringify({ "userPassword": pass }),
                 datatype: 'json',
                 success: function (res) {
                     if (res.Success) {
                         password('/api/agvlogin/Password', $("#userPassword").val());
-                        $('#myModal').modal('toggle'); //关闭Modal窗口 
+                        $('#myModal').modal('toggle'); //关闭Modal窗口
                     }
                     else {
                         toastr.error(res.Message);
@@ -241,11 +240,9 @@
                 $('.msg').toggleClass('animated fadeIn');
             }
 
-
             $('#UpdatePwd').click(function () {
 
                 $('#myModal').modal('toggle'); //关闭Modal窗口
-
 
             });
         });

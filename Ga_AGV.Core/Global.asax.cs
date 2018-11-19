@@ -17,7 +17,8 @@ namespace Ga_AGV.Core
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        TCPMonitor GetMonitor = new TCPMonitor();
+        private TCPMonitor GetMonitor = new TCPMonitor();
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -26,7 +27,7 @@ namespace Ga_AGV.Core
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            GetMonitor.LoadTCP();
+            //GetMonitor.LoadTCP();
         }
 
         #region 开启WebApi Session支持

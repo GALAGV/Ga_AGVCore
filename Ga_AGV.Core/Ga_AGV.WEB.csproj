@@ -163,12 +163,15 @@
     <Compile Include="API\agvloginController.cs" />
     <Compile Include="API\AGVSystemController.cs" />
     <Compile Include="API\RackController.cs" />
+    <Compile Include="API\ServicesController.cs" />
+    <Compile Include="API\SettingController.cs" />
     <Compile Include="API\TaskLogController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AGVSystemController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
@@ -1406,6 +1409,7 @@
     <Content Include="Views\AGVSystem\QR_Code.cshtml" />
     <Content Include="Scripts\Highcharts-6.2.0\code\css\highcharts.scss" />
     <Content Include="Views\Statistics\RunMonitoring.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">
@@ -1419,6 +1423,10 @@
     <ProjectReference Include="..\Ga_AGV.Model\Ga_AGV.Model.csproj">
       <Project>{2abaea35-390f-453c-9350-71fdd2d5a4bb}</Project>
       <Name>Ga_AGV.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ga_AGV.TCPListener\Ga_AGV.TCPListener.csproj">
+      <Project>{78a5243b-b18a-49bc-b260-906fa6229981}</Project>
+      <Name>Ga_AGV.TCPListener</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

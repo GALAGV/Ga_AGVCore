@@ -12,8 +12,6 @@
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
-    <script src="~/Content/Pass/assets/jquery.min.js"></script>
-    <script src="~/Content/Pass/assets/bootstrap-v2/js/bootstrap.js"></script>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 
@@ -98,7 +96,7 @@
                 <li class="dropdown  nav-li" id="Management">
                     <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
                     <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
-                        <li><a href="javascript:;">系统配置</a></li>
+                        <li><a href="@Url.Action("Index","Configuration")" target="Main-Count">系统配置</a></li>
                         <li class="divider"></li>
                         <li id="UpdatePwd"><a href="javascript:;">修改密码</a></li>
                         <li class="divider"></li>
@@ -169,8 +167,7 @@
                     success: function (res) {
                         if (res.Success) {
                             //$('#myModal').modal('toggle'); //关闭Modal窗口
-                            toastr.success(res.Message)
-                            $("#tb_report").bootstrapTable('refresh');//刷新表格
+                            toastr.success(res.Message);
                         }
                         else {
                             toastr.error(res.Message);

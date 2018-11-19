@@ -76,7 +76,6 @@ namespace Ga_AGV.Core.API
             var Context = HttpContext.Current;
             Ga_user user = Context.Session["User"] as Ga_user;
             //Ga_user user = Ga_AgvloginBLL.UserPass(Md5.Encrypt(pass.userPassword));
-            //= user;
             user.userPassword = Md5.Encrypt(pass.userPassword);
             if (Ga_AgvloginBLL.edit(user))
             {

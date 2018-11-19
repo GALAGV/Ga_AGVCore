@@ -160,6 +160,7 @@
         }
         return true;
     }
+
 });
 
 var TableInit = function () {
@@ -180,7 +181,7 @@ var TableInit = function () {
             pageNumber: 1,                      //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [10, 25, 50, 100, 500],   //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
@@ -219,7 +220,8 @@ var TableInit = function () {
                 },
                 {
                     field: "agvId", title: "操作", width: 200, align: "center", formatter: function (value, row, index) {
-                        var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="control(' + row.agvNum+')"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
+                        agvInfo[index] = row;
+                        var strHtml = '<a class="btn btn-xs btn-primary btn-update"  onclick="control(' + index + ')"><i class="fa fa-bolt"></i>&nbsp;控制</a>&nbsp;&nbsp;' +
                             '<a class="btn btn-xs btn-danger btn-remove" onclick="agvdelete(' + row.agvId + ')"><i class="fa fa-trash-o"></i>&nbsp;删除</a>';
                         return strHtml;
                     }, edit: false
@@ -240,10 +242,123 @@ var TableInit = function () {
     return oTableInit;
 };
 
+var agvInfo = new Array();//AGV信息
+var Index;//AGV下标
 
-function control(agvNum) {
+function control(agvIndex) {
     $("#AGVtitle").text("AGV控制");
+    var agvNu;
+    if (agvInfo[agvIndex].agvNum < 10) {
+        agvNu = "00" + agvInfo[agvIndex].agvNum;
+    } else if (agvInfo[agvIndex].agvNum < 99 && agvInfo[agvIndex].agvNum >= 10) {
+        agvNu = "0" + agvInfo[agvIndex].agvNum;
+    } else {
+        agvNu = agvInfo[agvIndex].agvNum;
+    }
+    $('#agvNums').html(agvNu);
+    $('#agvNu').html(agvInfo[agvIndex].agvNum + '号');
+    Index = agvIndex;
     $('#AGVControl').modal();
+}
+
+//启动AGV
+function agvstarts() {
+    agv('/api/agvlist/agvstart', agvInfo[Index]);
+}
+
+//停止AGV
+function agvstop() {
+    agv('/api/agvlist/agvstop', agvInfo[Index]);
+}
+
+//云台上升
+function DeckRise() {
+    agv('/api/agvlist/DeckRise', agvInfo[Index]);
+}
+
+//云台下降
+function DeckDecline() {
+    agv('/api/agvlist/DeckDecline', agvInfo[Index]);
+}
+
+//左转
+function LeftTurn() {
+    agv('/api/agvlist/LeftTurn', agvInfo[Index]);
+}
+
+//右转
+function rightTurn() {
+    agv('/api/agvlist/rightTurn', agvInfo[Index]);
+}
+
+//更改速度
+function UpdateSpeed() {
+    agvCom('/api/agvlist/UpdateSpeed', agvInfo[Index], $('#speed').val());
+}
+
+//更改速度
+function UpdatePBS() {
+    agvCom('/api/agvlist/UpdatePBS', agvInfo[Index], $('#PBS').val());
+}
+
+//急停
+function Scram() {
+    agv('/api/agvlist/Scram', agvInfo[Index]);
+}
+
+//手动自动
+function ManualSelfMotion() {
+    agv('/api/agvlist/ManualSelfMotion', agvInfo[Index]);
+}
+
+//复位
+function Restoration() {
+    agv('/api/agvlist/Restoration', agvInfo[Index]);
+}
+
+
+//AGV控制
+function agv(agvurl, agvdata) {
+    $.ajax({
+        type: 'post',
+        url: agvurl,
+        contentType: 'application/json',
+        data: JSON.stringify(agvdata),
+        datatype: 'json',
+        success: function (res) {
+            if (res.Success) {
+                toastr.success(res.Message);
+            }
+            else {
+                toastr.error(res.Message);
+            }
+        },
+        error: function (e) {
+            toastr.error(e.responseText);
+        }
+    });
+}
+
+//AGV控制
+function agvCom(agvurl, agvdata, agvValue) {
+    $.ajax({
+        type: 'post',
+        url: agvurl,
+        contentType: 'application/json',
+        data: JSON.stringify({ "Data": agvdata, "Value": agvValue }),
+        datatype: 'json',
+        success: function (res) {
+            if (res.Success) {
+                toastr.success(res.Message);
+            }
+            else {
+                toastr.error(res.Message);
+            }
+        },
+        error: function (e) {
+            toastr.error(e.responseText);
+        }
+    });
 }
 
 

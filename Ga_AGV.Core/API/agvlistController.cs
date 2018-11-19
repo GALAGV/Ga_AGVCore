@@ -103,6 +103,129 @@ namespace Ga_AGV.Core.API
             }
         }
 
+        /// <summary>
+        /// 启动AGV
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult agvstart([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 停止AGV
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult agvstop([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 云台上升
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult DeckRise([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 云台下降
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult DeckDecline([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 左转
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult LeftTurn([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 右转
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult rightTurn([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 更改速度
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult UpdateSpeed([FromBody] Json<Ga_agv> agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 更改PBS
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult UpdatePBS([FromBody] Json<Ga_agv> agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 急停
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult Scram([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 手动自动
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult ManualSelfMotion([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// 复位
+        /// </summary>
+        /// <param name="agvdata"></param>
+        /// <returns></returns>
+        public JsonResult Restoration([FromBody] Ga_agv agvdata)
+        {
+            return new JsonResult();
+        }
+
+        /// <summary>
+        /// AGV状态回读
+        /// </summary>
+        /// <returns></returns>
+        public JsonagvInfo agvState()
+        {
+            return new JsonagvInfo();
+        }
+
+
+
+
 
     }
 }

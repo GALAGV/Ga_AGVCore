@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ga_AGV.TCPListener
 {
-    internal class AsyncTCPServer : IDisposable
+    public class AsyncTCPServer : IDisposable
     {
         #region Fields
 

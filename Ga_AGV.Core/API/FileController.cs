@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Http;
+using System.Threading;
 
 namespace Ga_AGV.Core.API
 {
@@ -35,6 +36,7 @@ namespace Ga_AGV.Core.API
                     if (Directory.Exists(HttpContext.Current.Server.MapPath("~/Log")) == true)
                     {
                         Directory.Delete(HttpContext.Current.Server.MapPath("~/Log"), true);
+                        Thread.Sleep(500);
                     }
                     if (Directory.Exists(HttpContext.Current.Server.MapPath("~/Log")) == false)
                     {
@@ -47,7 +49,7 @@ namespace Ga_AGV.Core.API
                     }
                     string fileNames = Time + "(log)" + ".zip";
                     byte[] bytes = System.Text.Encoding.Default.GetBytes(sqlText);//把字符串转成byte数组
-                    using (FileStream outfile = new FileStream(HttpContext.Current.Server.MapPath("~/Log/" + fileNames + ""), FileMode.OpenOrCreate))
+                    using (FileStream outfile = new FileStream(HttpContext.Current.Server.MapPath("~/Log/" + fileNames + ""), FileMode.Create))
                     {
                         using (GZipStream zipStream = new GZipStream(outfile, CompressionMode.Compress))
                         {

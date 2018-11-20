@@ -1427,7 +1427,6 @@
     <Content Include="Views\Statistics\Rack.cshtml" />
     <Content Include="Views\AGVSystem\QR_Code.cshtml" />
     <Content Include="Scripts\Highcharts-6.2.0\code\css\highcharts.scss" />
-    <Content Include="Views\Statistics\RunMonitoring.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Scripts\toastr-master\nuget\content\content\toastr.less" />
     <Content Include="Scripts\toastr-master\nuget\content\content\toastr.scss" />
@@ -1473,6 +1472,8 @@
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.2.nuspec" />
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nupkg" />
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nuspec" />
+    <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
+    <Content Include="Views\Statistics\StatisticsData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

@@ -36,6 +36,9 @@
                     <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表</div>
                     <div class="panel-body" style="padding:10px;">
                         <div id="toolbar" class="btn-group">
+                            <button id="btn_add_s" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size:10px;"></span>&nbsp;批量新增
+                            </button>
                             <button id="btn_add" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size:10px;"></span>&nbsp;新增
                             </button>
@@ -94,6 +97,49 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" id="btn_submit" click="upSubmit" class="btn btn-primary">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form id="ajaxForm_s">
+                <div class="modal fade" id="myModal_s" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-full" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" name="title" id="myModalLabel_s">批量新增</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="txt_rolename">地图名称</label>
+                                    <input type="text" name="map_name" class="form-control" id="map_name" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_rolename">地图宽度(X)</label>
+                                    <input type="text" name="map_x" class="form-control" id="map_x" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_roledesc">二维码间隔(X)</label>
+                                    <input type="text" name="qr_x" class="form-control" id="qr_x" placeholder="">
+                                </div>·
+                                <div class="form-group">
+                                    <label for="txt_roledesc">地图高度(Y)</label>
+                                    <input type="text" name="map_y" class="form-control" id="map_y" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_roledesc">二维码间隔(Y)</label>
+                                    <input type="text" name="qr_y" class="form-control" id="qr_y" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt_defaulturl_Web">备注</label>
+                                    <input type="text" name="widget_info" class="form-control" id="widget_info" placeholder="">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" id="btn_submit_s" click="upSubmit" class="btn btn-primary">确认</button>
                             </div>
                         </div>
                     </div>

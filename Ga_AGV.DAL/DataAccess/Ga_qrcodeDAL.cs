@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,6 +106,43 @@ namespace Ga_AGV.DAL.DataAccess
         }
 
         #endregion 增删查改 二维码管理
+
+        /// <summary>
+        /// 批量添加二维码 and 添加地图尺寸
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="qr"></param>
+        /// <returns></returns>
+        public bool Ga_AddsQRcode(string map_name, int map_x, int map_y, string widget_info, List<Ga_qrcode> qr)
+        {
+            //map_name: $("#map_name").val(),
+            //map_length: $("#map_length").val(),
+            //qr_length: $("#qr_length").val(),
+            //map_width: $("#map_width").val(),
+            //qr_width: $("#qr_width").val(),
+            //widget_info: $("#widget_info").val()
+
+            StringBuilder SQLString_map = new StringBuilder();
+            SQLString_map.Append("INSERT INTO `ga_agv`.`ga_widget`(`widgetName`, `widgetType`, `widgetLong`, `widgetHeight`, `widgetInfo`) VALUES (@widgetName, 3, @widgetLong, @widgetHeight, @widget_info)");
+            MySqlParameter[] cmdParms_map ={
+                        new MySqlParameter("@widgetName",MySqlDbType.VarChar){ Value=map_name },
+                        new MySqlParameter("@widgetLong",MySqlDbType.Int32){ Value= map_x},
+                        new MySqlParameter("@widgetHeight",MySqlDbType.Int32){ Value= map_y},
+                        new MySqlParameter("@widget_info",MySqlDbType.VarChar){ Value= widget_info},
+            };
+            bool is_map = MySqlHelper.ExecuteNonQuery(SQLString_map.ToString(), cmdParms_map) > 0 ? true : false;
+
+            List<string> sql = new List<string>();
+            foreach (Ga_qrcode item in qr)
+            {
+                sql.Add("INSERT INTO `ga_agv`.`ga_qrcode`(`qrX`, `qrY`, `qrStatus`) VALUES (" + item.qrX + ", " + item.qrY + ", 1)");
+            }
+            bool is_qr = MySqlHelper.ExecuteSqlTran(sql);
+
+            if (is_map && is_qr)
+                return true;
+            return false;
+        }
 
         #endregion 数据处理
     }

@@ -27,6 +27,41 @@
         $("#tb_report").bootstrapTable('refresh');
     });
 
+    //批量新增s
+    $("#btn_add_s").click(function () {
+        $("#myModal_s").find(".form-control").val("");  //清空
+        $('#myModal_s').modal();
+    });
+
+    //模态窗体 提交_s
+    $("#btn_submit_s").click(function () {
+        var data = {
+            map_name: $("#map_name").val(),
+            map_x: $("#map_x").val(),
+            qr_x: $("#qr_x").val(),
+            map_y: $("#map_y").val(),
+            qr_y: $("#qr_y").val(),
+            widget_info: $("#widget_info").val()
+        };
+        if (!Verify_s())
+            return;
+        submit("/api/AGVSystem/AddQRCode_s", data);
+        $('#myModal_s').modal('toggle'); //关闭Modal窗口
+    });
+    //验证_s
+    function Verify_s() {
+        if ($('#map_name').val() == "" || $('#map_x').val() == "" || $('#qr_x').val() == "" || $('#map_y').val() == "" || $('#qr_y').val() == "") {
+            toastr.error('不能为空！！！');
+            return false;
+        }
+        var rexNum = /^[0-9]*$/; //数字
+        if (!rexNum.test($('#map_x').val() || $('#qr_x').val() || $('#map_y').val() || $('#qr_y').val())) {
+            toastr.error('数值输入不正确！！！');
+            return false;
+        }
+        return true;
+    };
+
     //新增
     $("#btn_add").click(function () {
         $("#myModalLabel").text("新增");
@@ -102,7 +137,7 @@
             submit("/api/AGVSystem/UpQRCode", data);
             $('#myModal').modal('toggle'); //关闭Modal窗口
         }
-    })
+    });
 
     //提交方法
     function submit(url, data) {
@@ -113,9 +148,8 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.Success) {
-
                     $("#tb_report").bootstrapTable('refresh');
-                    toastr.success(data.Message)
+                    toastr.success(data.Message);
                 }
                 else {
                     $("#tb_report").bootstrapTable('refresh');
@@ -126,7 +160,7 @@
                 toastr.error(e.Message);
             }
         });
-    }
+    };
 
     //验证
     function Verify() {
@@ -135,13 +169,12 @@
             return false;
         }
         var rexNum = /^[0-9]*$/; //数字
-        console.log($('#txt_qrX').val()); console.log($('#txt_qrY').val());
         if (!rexNum.test($('#txt_qrX').val() || $('#txt_qrY').val())) {
             toastr.error('坐标值输入不正确！！！');
             return false;
         }
         return true;
-    }
+    };
 });
 
 function operateFormatter(value, row, index) {

@@ -21,7 +21,7 @@ namespace Ga_AGV.TCPListener
         /// <summary>
         /// 开启 Server 线程
         /// </summary>
-        public bool LoadTCP()
+        public bool LoadTCP(ref string msg)
         {
             try
             {
@@ -37,11 +37,12 @@ namespace Ga_AGV.TCPListener
                 TCPMonitoring();
                 return TCPSocket.TCPServer.IsRunning;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                msg = ex.Message;
+                closeTCP();
                 return false;
             }
-
         }
 
         /// <summary>

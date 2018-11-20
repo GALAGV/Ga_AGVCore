@@ -37,13 +37,14 @@ namespace Ga_AGV.Core.API
         [HttpPost]
         public JsonResult start()
         {
-            if (TCPMonitors.LoadTCP())
+            string msg = "";
+            if (TCPMonitors.LoadTCP(ref msg))
             {
                 return new JsonResult() { Message = "监听成功", Success = true };
             }
             else
             {
-                return new JsonResult() { Message = "监听失败,请确认服务器状态！", Success = false };
+                return new JsonResult() { Message = "监听失败,错误信息:"+ msg, Success = false };
             }
         }
 

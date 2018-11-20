@@ -132,14 +132,29 @@
 
     $(function () {
         $("#query_qrStatus").bind('change', function () {
-            ShowAgvInfo($(this).val());
+            ShowAgvInfo($(this).val(), ar, 1);
         })
-        function ShowAgvInfo(agvNum) {
+        function ShowAgvInfo(agvNum, ar, coe) {
             $("#agvNum").text(agvNum + "号");
             $("#qrCode").text("00055146512");
             $("#current_position").text("X15Y02");
             $("#place_of_departure").text("X04Y07");
             $("#destination").text("X13Y14");
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext("2d");
+            ////横线
+            ctx.lineWidth = (Wid / 100);//粗细
+            ctx.strokeStyle = "red";
+            ctx.beginPath();
+            ctx.moveTo(ar[2].qrX * coe, ar[2].qrY * coe);
+            ctx.lineTo(ar[4].qrX * coe, ar[4].qrY * coe);
+            ctx.stroke();
+            ////纵线
+            ctx.strokeStyle = "red";
+            ctx.beginPath();
+            ctx.moveTo(ar[4].qrX * coe, ar[4].qrY * coe);
+            ctx.lineTo(ar[18].qrX * coe, ar[18].qrY * coe);
+            ctx.stroke();
         }
         $.ajax({
             url: '/api/AGVSystem/ShowPlace',
@@ -190,19 +205,6 @@
                     }
                     ctx.fill();//以填充方式绘制圆
                 }
-                //////横线
-                //ctx.lineWidth = (Wid / 100);//粗细
-                //ctx.strokeStyle = "red";
-                //ctx.beginPath();
-                //ctx.moveTo(ar[2].qrX * coe, ar[2].qrY * coe);
-                //ctx.lineTo(ar[4].qrX * coe, ar[4].qrY * coe);
-                //ctx.stroke();
-                //////纵线
-                //ctx.strokeStyle = "red";
-                //ctx.beginPath();
-                //ctx.moveTo(ar[4].qrX * coe, ar[4].qrY * coe);
-                //ctx.lineTo(ar[18].qrX * coe, ar[18].qrY * coe);
-                //ctx.stroke();
 
             }
         }

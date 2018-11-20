@@ -22,6 +22,12 @@ namespace Ga_AGV.Model.Commonality
         public string Message { get; set; }
     }
 
+    public class JsonFile : JsonResult
+    {
+        public string Data { get; set; }
+    }
+
+
 
     public class Json<T> where T : class
     {

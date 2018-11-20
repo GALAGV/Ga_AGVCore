@@ -24,7 +24,7 @@ namespace Ga_AGV.Core.API
         /// <param name="offset"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonData<Ga_agv> agv(int limit, int offset,string agvNum)
+        public JsonData<Ga_agv> agv(int limit, int offset, string agvNum)
         {
             int pageCount = 0;
             JsonData<Ga_agv> data = new JsonData<Ga_agv>();
@@ -111,7 +111,7 @@ namespace Ga_AGV.Core.API
         [HttpPost]
         public JsonResult agvstart([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult agvstop([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult DeckRise([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult DeckDecline([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult LeftTurn([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult rightTurn([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult UpdateSpeed([FromBody] Json<Ga_agv> agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult UpdatePBS([FromBody] Json<Ga_agv> agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult Scram([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult ManualSelfMotion([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message = "模拟测试" };
         }
 
         /// <summary>
@@ -211,16 +211,23 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult Restoration([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult();
+            return new JsonResult() { Message="模拟测试" };
         }
 
+        static int a = 0;
         /// <summary>
         /// AGV状态回读
         /// </summary>
         /// <returns></returns>
-        public JsonagvInfo agvState()
+        public JsonagvInfo agvState([FromBody] Ga_agv agvdata)
         {
-            return new JsonagvInfo();
+
+            if (a > 10)
+            {
+                a = 0;
+            }
+            a++;
+            return new JsonagvInfo() { Success = true, agvNum = 1, agvFirmware = "V1.02.3" + a, agvHolder = a > 5 ? "上升" : "下降", agvIsRunning = a > 5 ? "离线" : "在线", Message = a > 5 ? "正常" : "障碍物检测中", qrcode = "003", PBS = "区域" + a, agvspeed = a * 2, voltage = a * 6 };
         }
 
 

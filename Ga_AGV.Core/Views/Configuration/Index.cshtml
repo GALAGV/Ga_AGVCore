@@ -161,7 +161,7 @@
             });
         });
 
-        setInterval(function () {
+      var updates=  setInterval(function () {
 
             $.ajax({
                 type: 'post',
@@ -182,6 +182,7 @@
                 },
                 error: function (e) {
                     toastr.error(e.responseText);
+                    clearInterval(updates);
                 }
             });
 

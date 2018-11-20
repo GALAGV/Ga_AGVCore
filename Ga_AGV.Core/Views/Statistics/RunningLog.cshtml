@@ -10,14 +10,14 @@
             <div class="panel-body" style="padding:0px;">
                 <form id="formSearch" class="form-horizontal">
                     <div class="panel panel-default">
-                        <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
+                        <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;查询条件<span style="float:right;"><a href="javascript:;" style="text-decoration:none" class="Inquire-text" id="btn_query"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a></span></div>
                         <div class="panel-body">
 
                             <div class="form-group">
                                 <label class="control-label col-sm-1" for="txt_search_rolename">日志时间</label>
                                 <div class="col-sm-3">
                                     <div class="input-group date log_datetime col-sm-12" data-link-field="dt_set_order_time_input">
-                                        <input id="query_log_time" class="form-control" disabled type="text">
+                                        <input id="query_log_time" class="form-control" disabled type="text" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <label class="control-label col-sm-1" for="txt_search_desc">任务状态</label>
                                 <div class="col-sm-3">
-                                    <select id="query_task_status" class="selectpicker show-tick form-control" data-live-search="false">
+                                    <select id="query_task_status" class="selectpicker show-tick form-control">
                                         <option value="0">全部</option>
                                         <option value="1">已完成</option>
                                         <option value="2">进行中</option>
@@ -69,7 +69,7 @@
                 </form>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表</div>
+                    <div class="panel-heading" id="pal-text"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;数据列表<a href="javascript:;" id="export" style="float:right;text-decoration:none"><sapn class="Inquire-text"><span class="glyphicon glyphicon-open" aria-hidden="true"></span>&nbsp;导出</sapn></a></div>
                     <div class="panel-body" style="padding:10px;">
                         <table id="tb_report"></table>
                     </div>
@@ -113,6 +113,30 @@
         });
     });
 
+    //导出日志
+    $('#export').click(function () {
+        toastr.info('系统处理中请稍等！');
+        $.ajax({
+            type: 'post',
+            url: '/api/File/Filelog',
+            contentType: 'application/json',
+            data: JSON.stringify({ "agvLogTime": $("#query_log_time").val() }),
+            datatype: 'json',
+            success: function (res) {
+                if (res.Success) {
+                    toastr.success(res.Message);
+                    window.location.href = '/Log/' + res.Data + '';
+                }
+                else {
+                    toastr.error(res.Message);
+                }
+            },
+            error: function (e) {
+                toastr.error(e.responseText);
+            }
+        });
+    });
+
     var TableInit = function () {
         var oTableInit = new Object();
         //初始化Table
@@ -131,7 +155,7 @@
                 pageNumber: 1,                      //初始化加载第一页，默认第一页
                 pageSize: 10,                       //每页的记录行数（*）
                 pageList: [10, 25, 50, 100, 500],   //可供选择的每页的行数（*）
-                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
                 showRefresh: true,                  //是否显示刷新按钮

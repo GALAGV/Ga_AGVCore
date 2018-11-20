@@ -37,13 +37,14 @@ namespace Ga_AGV.Core.API
         [HttpPost]
         public JsonResult start()
         {
-            if (TCPMonitors.LoadTCP())
+            string msg = "";
+            if (TCPMonitors.LoadTCP(ref msg))
             {
                 return new JsonResult() { Message = "监听成功", Success = true };
             }
             else
             {
-                return new JsonResult() { Message = "监听失败,请确认服务器状态！", Success = false };
+                return new JsonResult() { Message = "监听失败,错误信息:"+ msg, Success = false };
             }
         }
 
@@ -54,7 +55,15 @@ namespace Ga_AGV.Core.API
         [HttpPost]
         public SocketData Socket()
         {
-            return new SocketData (){ Address = TCPSocket.TCPServer.Address.ToString(), Port= TCPSocket.TCPServer.Port, maxConnect= TCPSocket.maxConnect, IsRunning= TCPSocket.TCPServer.IsRunning , OnClientCount= TCPSocket.TCPServer._clients.Count };
+            if (TCPSocket.TCPServer != null)
+            {
+                return new SocketData() { Address = TCPSocket.TCPServer.Address.ToString(), Port = TCPSocket.TCPServer.Port, maxConnect = TCPSocket.maxConnect, IsRunning = TCPSocket.TCPServer.IsRunning, OnClientCount = TCPSocket.TCPServer._clients.Count };
+            }
+            else
+            {
+                return new SocketData() { Address = "0", Port = 0, maxConnect = 0, IsRunning = false, OnClientCount = 0 };
+            }
+            
         }
     }
 }

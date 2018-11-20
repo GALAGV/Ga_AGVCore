@@ -16,12 +16,12 @@ namespace Ga_AGV.TCPListener
     /// </summary>
     public class TCPMonitor
     {
-        private Ga_settingBLL ga_Setting = new Ga_settingBLL();
+        Ga_settingBLL ga_Setting = new Ga_settingBLL();
 
         /// <summary>
         /// 开启 Server 线程
         /// </summary>
-        public bool LoadTCP()
+        public bool LoadTCP(ref string msg)
         {
             try
             {
@@ -32,12 +32,15 @@ namespace Ga_AGV.TCPListener
                         return false;
                     }
                 }
-                TCPSocket.TokenSource = new CancellationTokenSource(); //一种多线程取消任务开关对象
-                Task.Factory.StartNew(TCPMonitoring, TCPSocket.TokenSource.Token);//启动线程
-                return true;
+                //TCPSocket.TokenSource = new CancellationTokenSource(); //一种多线程取消任务开关对象
+                //Task.Factory.StartNew(TCPMonitoring, TCPSocket.TokenSource.Token);//启动线程
+                TCPMonitoring();
+                return TCPSocket.TCPServer.IsRunning;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                msg = ex.Message;
+                closeTCP();
                 return false;
             }
         }
@@ -51,8 +54,8 @@ namespace Ga_AGV.TCPListener
             {
                 TCPSocket.TCPServer.Stop();//停止服务器
                 TCPSocket.TCPServer.Dispose();//释放资源
-                TCPSocket.TokenSource.Cancel();
-                return true;
+                //TCPSocket.TokenSource.Cancel();
+                return !TCPSocket.TCPServer.IsRunning;
             }
             catch (Exception)
             {
@@ -78,11 +81,14 @@ namespace Ga_AGV.TCPListener
 
         private void TCPServer_ClientConnected(object sender, AsyncEventArgs e)
         {
+            
         }
 
         private void TCPServer_DataReceived(object sender, AsyncEventArgs e)
         {
+ 
         }
+
 
         private void GetMessageList(byte[] byteStr, ref List<byte[]> MessageList)
         {
@@ -106,5 +112,10 @@ namespace Ga_AGV.TCPListener
                 }
             }
         }
+
+
+
+
+
     }
 }

@@ -15,7 +15,6 @@
             text-align: center;
             line-height: 50px;
             display: inline-block;
-            margin-top：50px;
         }
 
         .dropdown-menu {
@@ -55,16 +54,11 @@
             <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>&nbsp;AGV监控</div>
             <div class="panel-body" style="overflow:hidden;display:block;">
                 <div class="form-group">
-                    <div style="float:left;display:block;width:30%;height:800px;">
+                    <div style="float:left;display:block;width:30%;height:800px;border:red solid 1px;">
                         <div class="panel-body">
-                            <div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
-                                <form id="reservation">
-                                    <div id='slider'></div>
-                                </form>
-                            </div>
                             <div class="form-group">
+                                <label class="control-label" for="txt_search_desc">选择AGV</label>
                                 <select id="combobox_agv" class="selectpicker show-tick form-control" data-live-search="false">
-                                    <option value="-1">请选择 AGV</option>
                                     <option value="1">AGV 1</option>
                                     <option value="2">AGV 2</option>
                                     <option value="3">AGV 3</option>
@@ -74,44 +68,44 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="count-panel" style="width:100%;margin:0px auto;height:600px">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:465px">
                             <div class="x_title">
                                 <h2 style="font-size:18px;">基本信息</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix">
                                 <div style="width:100%;">
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:20px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">AGV编号</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="agvNum">1号</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">状态</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;color:#139656">在线</li>
+                                    <ul class="Control-li" style="display:block;height:50px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">AGV编号</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;" id="agvNum">1号</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">状态</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;color:#139656">在线</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">二维码</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;width:74%;" id="qrCode">00015</li>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">二维码</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;width:74%;" id="qrCode">00015</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">PBS</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;">区域6</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">云台</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;">上升</li>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">PBS</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">区域6</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">云台</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">上升</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">报警信息</li>
-                                        <li style="font-size:18px;font-weight:bold;background:  Linen;width:74%;color:#139656">正常</li>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">报警信息</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;width:74%;color:#139656">正常</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">当前位置</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="current_position">X10Y21</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">当前任务</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;">运输</li>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">当前位置</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;" id="current_position">X10Y21</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">当前任务</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;">运输</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">出发地</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="place_of_departure">X10Y21</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">目的地</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="destination">X10Y21</li>
+                                    <ul class="Control-li" style="display:block;height:50px;margin-top:15px;">
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">出发地</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;" id="place_of_departure">X10Y21</li>
+                                        <li style="background-color:#1ABC9C;color:white;font-size:18px;border-radius:2%">目的地</li>
+                                        <li style="font-size:18px;font-weight:bold;background: #EDEDED;" id="destination">X10Y21</li>
                                     </ul>
                                 </div>
                             </div>
@@ -119,8 +113,12 @@
                     </div>
 
                     <div style="height:800px;width:1000px;float:left;margin-left:60px;display:block;overflow:scroll;border:#000000 solid 2px;padding:10px 15px 5px 10px;">
-
-                        <canvas id="canvas" style="border:#EDEDED solid 1px">您当前的浏览器版本不支持此功能</canvas>
+                        <div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
+                            <form id="reservation">
+                                <div id='slider'></div>
+                            </form>
+                        </div>
+                        <canvas id="canvas" style="border:red solid 1px">您当前的浏览器版本不支持此功能</canvas>
                     </div>
                 </div>
             </div>
@@ -196,13 +194,12 @@
                     width = canvas.width,
                     height = canvas.height;
                 //点
-                ctx.background = "background";
                 for (var i = 0; i < ar.length; i++) {
                     ctx.beginPath();
                     ctx.arc(ar[i].qrX * coe, ar[i].qrY * coe, (Wid / 100), 0, 2 * Math.PI, false);
                     ctx.closePath(); //关闭路径
                     if (ar[i].qrStatus == 1) {
-                        ctx.fillStyle = "#778899";
+                        ctx.fillStyle = "green";
                     } else {
                         ctx.fillStyle = "red";
                     }

@@ -1473,6 +1473,7 @@
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.2.nuspec" />
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nupkg" />
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nuspec" />
+    <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

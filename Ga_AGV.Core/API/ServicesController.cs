@@ -54,7 +54,15 @@ namespace Ga_AGV.Core.API
         [HttpPost]
         public SocketData Socket()
         {
-            return new SocketData (){ Address = TCPSocket.TCPServer.Address.ToString(), Port= TCPSocket.TCPServer.Port, maxConnect= TCPSocket.maxConnect, IsRunning= TCPSocket.TCPServer.IsRunning , OnClientCount= TCPSocket.TCPServer._clients.Count };
+            if (TCPSocket.TCPServer != null)
+            {
+                return new SocketData() { Address = TCPSocket.TCPServer.Address.ToString(), Port = TCPSocket.TCPServer.Port, maxConnect = TCPSocket.maxConnect, IsRunning = TCPSocket.TCPServer.IsRunning, OnClientCount = TCPSocket.TCPServer._clients.Count };
+            }
+            else
+            {
+                return new SocketData() { Address = "0", Port = 0, maxConnect = 0, IsRunning = false, OnClientCount = 0 };
+            }
+            
         }
     }
 }

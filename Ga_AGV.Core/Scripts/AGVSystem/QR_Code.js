@@ -1,4 +1,16 @@
 ﻿$(function () {
+
+    toastr.options = {
+        showDuration: "300",                                      // 显示动画的时间
+        hideDuration: "1300",                                     //  消失的动画时间
+        timeOut: "1000",                                             //  自动关闭超时时间 
+        extendedTimeOut: "1000",                                  //  加长展示时间
+        showEasing: "swing",                                     //  显示时的动画缓冲方式
+        hideEasing: "linear",                                       //   消失时的动画缓冲方式
+        showMethod: "fadeIn",                                   //   显示时的动画方式
+        hideMethod: "fadeOut"                                   //   消失时的动画方式
+    };
+
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
@@ -242,13 +254,13 @@ var TableInit = function () {
             }, {
                 field: 'qrStatus',
                 title: '状态',
-                    align: 'center', formatter: function (value, row, index) {
-                        if (value == '1') {
-                            return "<span class='label label-success'>使用中</span>";
-                        } if (value == '2') {
-                            return "<span class='label label-errer'>禁用</span>";
-                        }
+                align: 'center', formatter: function (value, row, index) {
+                    if (value == '1') {
+                        return "<span class='label label-success'>使用中</span>";
+                    } if (value == '2') {
+                        return "<span class='label label-errer'>禁用</span>";
                     }
+                }
             }, {
                 field: 'qrRemark',
                 title: '备注',

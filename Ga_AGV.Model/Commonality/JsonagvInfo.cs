@@ -29,17 +29,17 @@ namespace Ga_AGV.Model.Commonality
         /// <summary>
         /// 是否在运行
         /// </summary>
-        public int agvIsRunning { get; set; }
+        public string agvIsRunning { get; set; }
 
         /// <summary>
         /// PBS
         /// </summary>
-        public int PBS { get; set; }
+        public string PBS { get; set; }
 
         /// <summary>
         /// 云台状态
         /// </summary>
-        public int agvHolder { get; set; }
+        public string agvHolder { get; set; }
 
         /// <summary>
         /// AGV报警信息
@@ -49,12 +49,15 @@ namespace Ga_AGV.Model.Commonality
         /// <summary>
         /// agv速度
         /// </summary>
-        public string agvspeed { get; set; }
+        public double agvspeed { get; set; }
 
         /// <summary>
         /// 电压
         /// </summary>
-        public string voltage { get; set; }
+        public double voltage { get; set; }
+
+
+        public bool Success { get; set; }
 
     }
 }

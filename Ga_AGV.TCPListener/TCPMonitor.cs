@@ -32,9 +32,10 @@ namespace Ga_AGV.TCPListener
                         return false;
                     }
                 }
-                TCPSocket.TokenSource = new CancellationTokenSource(); //一种多线程取消任务开关对象
-                Task.Factory.StartNew(TCPMonitoring, TCPSocket.TokenSource.Token);//启动线程
-                return true;
+                //TCPSocket.TokenSource = new CancellationTokenSource(); //一种多线程取消任务开关对象
+                //Task.Factory.StartNew(TCPMonitoring, TCPSocket.TokenSource.Token);//启动线程
+                TCPMonitoring();
+                return TCPSocket.TCPServer.IsRunning;
             }
             catch (Exception)
             {
@@ -52,8 +53,8 @@ namespace Ga_AGV.TCPListener
             {
                 TCPSocket.TCPServer.Stop();//停止服务器
                 TCPSocket.TCPServer.Dispose();//释放资源
-                TCPSocket.TokenSource.Cancel();
-                return true;
+                //TCPSocket.TokenSource.Cancel();
+                return !TCPSocket.TCPServer.IsRunning;
             }
             catch (Exception)
             {
@@ -84,7 +85,7 @@ namespace Ga_AGV.TCPListener
 
         private void TCPServer_DataReceived(object sender, AsyncEventArgs e)
         {
-
+ 
         }
 
 

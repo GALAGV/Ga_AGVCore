@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿
+$(function () {
 
     toastr.options = {
         showDuration: "300",                                      // 显示动画的时间
@@ -181,7 +182,7 @@ var TableInit = function () {
             pageNumber: 1,                      //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [10, 25, 50, 100, 500],   //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
             strictSearch: true,
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
@@ -244,6 +245,7 @@ var TableInit = function () {
 
 var agvInfo = new Array();//AGV信息
 var Index;//AGV下标
+var iCount; //状态更新定时器
 
 function control(agvIndex) {
     $("#AGVtitle").text("AGV控制");
@@ -258,8 +260,61 @@ function control(agvIndex) {
     $('#agvNums').html(agvNu);
     $('#agvNu').html(agvInfo[agvIndex].agvNum + '号');
     Index = agvIndex;
+    agvstatic();
     $('#AGVControl').modal();
+    clearInterval(iCount);
+    iCount= setInterval(function () { agvstatic(); },500);
 }
+
+//停止更新状态
+function agvclose() {
+    clearInterval(iCount);
+}
+
+//查询AGV状态
+function agvstatic() {
+    $.ajax({
+        type: 'post',
+        url: '/api/agvlist/agvState',
+        contentType: 'application/json',
+        data: JSON.stringify(agvInfo[Index]),
+        datatype: 'json',
+        success: function (res) {
+            if (res.Success) {
+                if (res.Message != "正常") {
+                    $('#Message').css("color", "red");
+                } else {
+                    $('#Message').css("color", "#139656");
+                }
+                if (res.agvIsRunning != "在线") {
+                    $('#agvIsRunning').css("color", "red");
+                    $("#agvimg").attr("src", "/image/agv-off.gif");
+                    $("#agvsNumer").html("离线");
+                } else {
+                    $('#agvIsRunning').css("color", "#139656");
+                    $("#agvimg").attr("src", "/image/agv-on.gif");
+                    $("#agvsNumer").html("在线");
+                }
+                $('#agvFirmware').html(res.agvFirmware);
+                $('#qrcode').html(res.qrcode);
+                $('#agvIsRunning').html(res.agvIsRunning);
+                $('#PBS').html(res.PBS);
+                $('#agvHolder').html(res.agvHolder);
+
+                $('#Message').html(res.Message);
+                var point = chart1.series[0].points[0];
+                point.update(res.agvspeed);
+                var point2 = chart2.series[0].points[0];
+                point2.update(res.voltage);
+            }
+        },
+        error: function (e) {
+            toastr.error(e.responseText);
+            agvclose();
+        }
+    });
+}
+
 
 //启动AGV
 function agvstarts() {
@@ -401,3 +456,99 @@ function agvdelete(id) {
         }
     });
 }
+
+// 公共配置
+Highcharts.setOptions({
+    chart: {
+        type: 'solidgauge'
+    },
+    title: null,
+    pane: {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+            innerRadius: '60%',
+            outerRadius: '100%',
+            shape: 'arc'
+        }
+    },
+    tooltip: {
+        enabled: false
+    },
+    yAxis: {
+        stops: [
+            [0.1, '#55BF3B'], // green
+            [0.5, '#DDDF0D'], // yellow
+            [0.9, '#DF5353'] // red
+        ],
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickPixelInterval: 400,
+        tickWidth: 0,
+        title: {
+            y: -70
+        },
+        labels: {
+            y: 16
+        }
+    },
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+            }
+        }
+    }
+});
+// 速度仪表
+var chart1 = Highcharts.chart('container-speed', {
+    yAxis: {
+        min: 0,
+        max: 100,
+        title: {
+            text: '速度'
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: '速度',
+        data: [80],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                '<span style="font-size:12px;color:silver">m/min</span></div>'
+        },
+        tooltip: {
+            valueSuffix: ' km/h'
+        }
+    }]
+});
+// 电量仪表
+var chart2 = Highcharts.chart('container-rpm', {
+    yAxis: {
+        min: 0,
+        max: 100,
+        title: {
+            text: '电压'
+        }
+    },
+    series: [{
+        name: '电压',
+        data: [1],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                '<span style="font-size:12px;color:silver">v</span></div>'
+        },
+        tooltip: {
+            valueSuffix: ' revolutions/min'
+        }
+    }]
+});

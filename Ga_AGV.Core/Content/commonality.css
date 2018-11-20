@@ -5,6 +5,9 @@
     border: 0px;
     text-decoration: none;
 }
+a {
+    text-decoration: none;
+}
 
 .count-panel {
     width: 100%;

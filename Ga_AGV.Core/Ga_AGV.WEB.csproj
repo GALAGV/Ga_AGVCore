@@ -162,6 +162,7 @@
     <Compile Include="API\agvlogController.cs" />
     <Compile Include="API\agvloginController.cs" />
     <Compile Include="API\AGVSystemController.cs" />
+    <Compile Include="API\FileController.cs" />
     <Compile Include="API\RackController.cs" />
     <Compile Include="API\ServicesController.cs" />
     <Compile Include="API\SettingController.cs" />
@@ -1290,6 +1291,24 @@
     <Content Include="Scripts\Highcharts-6.2.0\code\themes\sunset.js" />
     <Content Include="Scripts\Highcharts-6.2.0\code\themes\sunset.src.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\toastr-master\bootstrap-combined.min.css" />
+    <Content Include="Scripts\toastr-master\glimpse.js" />
+    <Content Include="Scripts\toastr-master\glimpse.toastr.js" />
+    <Content Include="Scripts\toastr-master\Gruntfile.js" />
+    <Content Include="Scripts\toastr-master\index.html" />
+    <Content Include="Scripts\toastr-master\nuget\content\content\toastr.css" />
+    <Content Include="Scripts\toastr-master\nuget\content\content\toastr.min.css" />
+    <Content Include="Scripts\toastr-master\nuget\content\scripts\toastr.js" />
+    <Content Include="Scripts\toastr-master\nuget\content\scripts\toastr.min.js" />
+    <Content Include="Scripts\toastr-master\tests\qunit\qunit.css" />
+    <Content Include="Scripts\toastr-master\tests\qunit\qunit.js" />
+    <Content Include="Scripts\toastr-master\tests\toastr-tests.html" />
+    <Content Include="Scripts\toastr-master\tests\unit\toastr-tests.js" />
+    <Content Include="Scripts\toastr-master\toastr-icon.png" />
+    <Content Include="Scripts\toastr-master\toastr.css" />
+    <Content Include="Scripts\toastr-master\toastr.js" />
+    <Content Include="Scripts\toastr-master\toastr.min.css" />
+    <Content Include="Scripts\toastr-master\toastr.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1309,6 +1328,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Authorization\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1410,6 +1430,50 @@
     <Content Include="Scripts\Highcharts-6.2.0\code\css\highcharts.scss" />
     <Content Include="Views\Statistics\RunMonitoring.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Scripts\toastr-master\nuget\content\content\toastr.less" />
+    <Content Include="Scripts\toastr-master\nuget\content\content\toastr.scss" />
+    <Content Include="Scripts\toastr-master\nuget\content\scripts\toastr.min.js.map" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.0.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.0.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.2.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.2.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.3.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.0.3.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.0.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.0.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.2.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.2.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.3.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.2.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.2.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.4.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.5.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.1.5.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.0.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.0.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.2.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.2.2.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.3.0.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.3.0.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.3.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.1.3.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.0-rc1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.0-rc1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.1.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.1.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.2.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.2.nuspec" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nupkg" />
+    <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

@@ -26,7 +26,7 @@ namespace Ga_AGV.Core
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            GetMonitor.LoadTCP();
+            //GetMonitor.LoadTCP();
         }
 
         #region 开启WebApi Session支持

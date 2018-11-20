@@ -9,7 +9,7 @@
         <div class="panel-body" style="padding:0px;">
             <div class="panel panel-default">
                 <div class="panel-heading" id="pal-text">
-                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>查询条件<a href="javascript:;" id="btn_query" style="float:right;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a>
+                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>查询条件<a href="javascript:;"  id="btn_query" style="float:right;text-decoration:none"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询</a>
                 </div>
                 <div class="panel-body">
                     <form id="formSearch" class="form-horizontal">
@@ -17,7 +17,7 @@
                             <label class="control-label col-sm-1" for="txt_search_desc">日志时间：</label>
                             <div class="col-md-3">
                                 <div class="input-group date log_datetime col-sm-12" data-link-field="dt_set_order_time_input">
-                                    <input class="form-control" id="tasklog_time" disabled type="text" value="">
+                                    <input class="form-control" id="tasklog_time" disabled type="text" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
@@ -121,7 +121,7 @@
                 pageNumber: 1,                       //初始化加载第一页，默认第一页
                 pageSize: 10,                       //每页的记录行数（*）
                 pageList: [10, 25, 50, 100, 500],        //可供选择的每页的行数（*）
-                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
                 showRefresh: true,                  //是否显示刷新按钮

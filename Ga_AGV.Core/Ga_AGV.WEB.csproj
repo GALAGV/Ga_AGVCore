@@ -330,6 +330,24 @@
     <Content Include="image\logo.png" />
     <Content Include="image\msg.png" />
     <Content Include="image\user.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\AUTHORS.txt" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\index.html" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.js" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.min.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.structure.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.theme.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\LICENSE.txt" />
     <Content Include="Scripts\AGVSystem\QR_Code.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.css" />
@@ -1474,6 +1492,7 @@
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nupkg" />
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nuspec" />
     <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
+    <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\package.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

@@ -47,6 +47,23 @@ namespace Ga_AGV.Core.API
         }
 
         /// <summary>
+        /// 批量添加
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult AddQRCode_s([FromBody] Ga_map map)
+        {
+            if (BLL.Ga_Adds(map))
+            {
+                return new JsonResult() { Message = "添加成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "添加失败", Success = false };
+            }
+        }
+
+        /// <summary>
         /// 添加
         /// </summary>
         /// <returns></returns>

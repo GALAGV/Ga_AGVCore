@@ -38,5 +38,28 @@ namespace Ga_AGV.BLL
         {
             return ga_qrcodeDAL.Ga_DelQRcode(qr);
         }
+
+        /// <summary>
+        /// 批量添加二维码
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Ga_Adds(Ga_map map)
+        {
+            List<Ga_qrcode> qr = new List<Ga_qrcode>();
+
+            int X = map.Map_x / map.Qr_x;
+            int Y = map.Map_y / map.Qr_y;
+
+            for (int i = 1; i < map.Map_x / map.Qr_x; i++)
+            {
+                for (int k = 1; k < map.Map_y / map.Qr_y; k++)
+                {
+                    qr.Add(new Ga_qrcode { qrX = i * map.Qr_x, qrY = k * map.Qr_y });
+                }
+            }
+
+            return ga_qrcodeDAL.Ga_AddsQRcode(map.Map_name, map.Map_x, map.Map_y, map.Widget_info, qr);
+        }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Commonality\SocketData.cs" />
     <Compile Include="DataModel\Ga_agv.cs" />
     <Compile Include="DataModel\Ga_agvloginfo.cs" />
+    <Compile Include="DataModel\Ga_map.cs" />
     <Compile Include="DataModel\Ga_qrcode.cs" />
     <Compile Include="DataModel\Ga_rack.cs" />
     <Compile Include="DataModel\Ga_setting.cs" />

@@ -58,7 +58,7 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="control-label" for="txt_search_desc">选择AGV</label>
-                                <select id="query_qrStatus" class="selectpicker show-tick form-control" data-live-search="false">
+                                <select id="combobox_agv" class="selectpicker show-tick form-control" data-live-search="false">
                                     <option value="1">AGV 1</option>
                                     <option value="2">AGV 2</option>
                                     <option value="3">AGV 3</option>
@@ -131,7 +131,7 @@
     var ar = new Array();
 
     $(function () {
-        $("#query_qrStatus").bind('change', function () {
+        $("#combobox_agv").bind('change', function () {
             ShowAgvInfo($(this).val(), ar, 1);
         })
         function ShowAgvInfo(agvNum, ar, coe) {

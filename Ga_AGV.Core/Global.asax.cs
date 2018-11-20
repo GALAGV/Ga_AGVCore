@@ -17,7 +17,8 @@ namespace Ga_AGV.Core
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        TCPMonitor GetMonitor = new TCPMonitor();
+        private TCPMonitor GetMonitor = new TCPMonitor();
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

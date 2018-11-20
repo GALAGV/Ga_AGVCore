@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     ViewBag.PageTitle = "AGV系统";
@@ -138,7 +137,6 @@
             });
         }
 
-
         //更新配置
         $('.saveBtn').click(function () {
             if (!Verify())
@@ -162,7 +160,6 @@
                 }
             });
         });
-
 
         setInterval(function () {
 
@@ -190,7 +187,6 @@
 
         }, 1000);
 
-
         //表单验证
         function Verify() {
             if ($('#ServerIp').val() == "" || $('#ServePort').val() == "" || $('#ServemaxConnect').val() == "") {
@@ -211,4 +207,3 @@
         }
     });
 </script>
-

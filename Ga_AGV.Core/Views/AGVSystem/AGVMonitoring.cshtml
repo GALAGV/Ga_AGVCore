@@ -64,7 +64,7 @@
                         <div class="panel-body">
                             <div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
                                 <form id="reservation">
-                                    <div id='slider'></div>
+                                    <div id='slider' style="display:none" ></div>
                                 </form>
                             </div>
                             <div class="form-group">
@@ -225,7 +225,7 @@
                 for (i; i < 10;) {
                     console.log("开始！"); console.log();
                     ShowQR(Wid, Hei, ar, coe);
-                    ctx.drawImage(img, ar[i].qrX - 20, ar[i].qrY - 20, 40, 40);
+                    ctx.drawImage(img, ar[i].qrX - 30, ar[i].qrY - 30, 60, 60);
                     break;
                 } i++;
             }

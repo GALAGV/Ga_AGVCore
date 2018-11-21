@@ -131,5 +131,8 @@ namespace Ga_AGV.Core.API
         }
 
         #endregion 监控
+
+
+        //public 
     }
 }

@@ -123,7 +123,7 @@ namespace Ga_AGV.DAL.DataAccess
             //widget_info: $("#widget_info").val()
 
             StringBuilder SQLString_map = new StringBuilder();
-            SQLString_map.Append("INSERT INTO `ga_agv`.`ga_widget`(`widgetName`, `widgetType`, `widgetLong`, `widgetHeight`, `widgetInfo`) VALUES (@widgetName, 3, @widgetLong, @widgetHeight, @widget_info)");
+            SQLString_map.Append("UPDATE `ga_agv`.`ga_widget` SET `widgetName` = @widgetName, `widgetType` = 3 , `widgetLong` = @widgetLong , `widgetHeight` = @widgetHeight , `widgetInfo` = @widget_info WHERE `widgetId` = 1");
             MySqlParameter[] cmdParms_map ={
                         new MySqlParameter("@widgetName",MySqlDbType.VarChar){ Value=map_name },
                         new MySqlParameter("@widgetLong",MySqlDbType.Int32){ Value= map_x},

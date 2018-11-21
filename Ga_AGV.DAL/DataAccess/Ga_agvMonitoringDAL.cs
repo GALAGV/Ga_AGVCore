@@ -10,7 +10,7 @@ namespace Ga_AGV.DAL.DataAccess
 {
     public class Ga_agvMonitoringDAL
     {
-        public List<Ga_qrcode> DALShowQRplace(ref int PageCount)
+        public List<Ga_qrcode> DALShowQRplace(ref int mapX, ref int mapY)
         {
             List<Ga_qrcode> ga_q = new List<Ga_qrcode>();
             string sql = "SELECT * FROM `ga_agv`.`ga_qrcode`";
@@ -28,15 +28,16 @@ namespace Ga_AGV.DAL.DataAccess
                     qrStatus = Convert.ToInt32(mySqlData["qrStatus"].ToString().Trim()),
                     qrRemark = mySqlData["qrRemark"].ToString().Trim(),
                 });
-            }
+            };
             mySqlData.Close();
 
-            string count = sql.Replace("*", "Count(*)");
+            string map = "SELECT `widgetLong`,`widgetHeight` FROM `ga_agv`.`ga_widget` where widgetId = 1";
 
-            MySqlDataReader mySql = MySqlHelper.ExecuteReader(count);
+            MySqlDataReader mySql = MySqlHelper.ExecuteReader(map);
             while (mySql.Read())
             {
-                PageCount = Convert.ToInt32(mySql[0].ToString().Trim());
+                mapX = Convert.ToInt32(mySql["widgetLong"].ToString().Trim());
+                mapY = Convert.ToInt32(mySql["widgetHeight"].ToString().Trim());
                 break;
             }
             mySql.Close();

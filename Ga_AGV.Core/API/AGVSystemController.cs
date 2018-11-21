@@ -117,13 +117,14 @@ namespace Ga_AGV.Core.API
         #region 监控
 
         [HttpPost]
-        public JsonData<Ga_qrcode> ShowPlace()
+        public JsonData_map<Ga_qrcode> ShowPlace()
         {
-            int pageCount = 0;
-            JsonData<Ga_qrcode> data = new JsonData<Ga_qrcode>
+            int mapX = 0; int mapY = 0;
+            JsonData_map<Ga_qrcode> data = new JsonData_map<Ga_qrcode>
             {
-                rows = agvMonitoring.BLLShowQRplace(ref pageCount),
-                total = pageCount
+                rows = agvMonitoring.BLLShowQRplace(ref mapX, ref mapY),
+                map_X = mapX,
+                map_Y = mapY
             };
 
             return data;

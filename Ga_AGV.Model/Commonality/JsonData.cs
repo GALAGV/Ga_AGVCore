@@ -16,4 +16,11 @@ namespace Ga_AGV.Model.Commonality
 
         public List<T> rows { get; set; } //结果集
     }
+
+    public class JsonData_map<T> where T : class
+    {
+        public int map_X { get; set; }
+        public int map_Y { get; set; }
+        public List<T> rows { get; set; } //结果集
+    }
 }

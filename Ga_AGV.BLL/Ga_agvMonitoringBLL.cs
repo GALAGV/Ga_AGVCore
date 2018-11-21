@@ -25,9 +25,9 @@ namespace Ga_AGV.BLL
             return GeagvtDAL.GetagvList(ref pageCount, limit, offset, agvNum);
         }
 
-        public List<Ga_qrcode> BLLShowQRplace(ref int pageCount)
+        public List<Ga_qrcode> BLLShowQRplace(ref int mapX, ref int mapY)
         {
-            return DAL.DALShowQRplace(ref pageCount);
+            return DAL.DALShowQRplace(ref mapX, ref mapY);
         }
     }
 }

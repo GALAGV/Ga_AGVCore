@@ -7,16 +7,15 @@
 }
 <style>
     .Top-Count {
-        width: 64.7%;
-        overflow:hidden;
-        float:left;
+        width: 69.7%;
+        overflow: hidden;
+        float: left;
     }
 
     .coun-right {
-        width:35%;
-        overflow:hidden;
-        float:right;
-        
+        width: 30%;
+        overflow: hidden;
+        float: right;
     }
 
     .tent {
@@ -27,16 +26,16 @@
         /* margin: 0px 8px; */
         margin-bottom: 15px;
         cursor: pointer;
-        margin-top:5px;
+        margin-top: 5px;
     }
 
     .fen-left {
-        width: 59.5%;
+        width: 50.5%;
         float: left;
     }
 
     .fen-Right {
-        width: 40%;
+        width: 49%;
         float: right;
     }
 
@@ -73,8 +72,9 @@
     .Shoev {
         display: none;
     }
+
     .bloct-count {
-        width: 46%;
+        width: 47.5%;
         display: inline-block;
         background-color: #f8f8f8;
         color: #999;
@@ -84,10 +84,12 @@
         height: 90px;
         cursor: pointer;
     }
+
     .bloct-cou {
         text-align: left;
         padding: 8px 5px;
     }
+
     .backlog-body {
         font-style: normal;
         font-size: 30px;
@@ -99,8 +101,25 @@
         text-align: left;
         padding: 8px 5px;
     }
+
     .menus:hover {
         background-color: #ebebeb;
+    }
+
+    .count-main-left {
+        width: 59.9%;
+        height: 500px;
+        float: left;
+        overflow: hidden;
+        margin-top: 8px;
+    }
+
+    .count-main-right {
+        width: 39.9%;
+        height: 500px;
+        float: right;
+        overflow: hidden;
+        margin-top: 3px;
     }
 </style>
 <ol class="breadcrumb">
@@ -117,36 +136,36 @@
                 <div>
                     <div class="fonyr-pou">
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-recycle"></i></dt>
+                            <dt><a href="@Url.Action("Rack","Statistics")" target="Main-Count"><i class="icon-size fa fa-server"></i></a></dt>
                             <dd>货架管理</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-cog"></i></dt>
+                            <dt><a href="@Url.Action("AGVManagement","Equipment")" target="Main-Count"><i class="icon-size fa fa-cog"></i></a></dt>
                             <dd>AGV管理</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-external-link-square"></i></dt>
-                            <dd>AGV管理</dd>
+                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-external-link-square"></i></a></dt>
+                            <dd>AGV状态</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-hourglass-2"></i></dt>
-                            <dd>货架管理</dd>
+                            <dt><a href="@Url.Action("RunningLog","Statistics")" target="Main-Count"><i class="icon-size fa fa-hourglass-2"></i></a></dt>
+                            <dd>运行日志</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-server"></i></dt>
-                            <dd>货架管理</dd>
+                            <dt><a href="@Url.Action("TaskLog","Statistics")" target="Main-Count"><i class="icon-size fa fa-paper-plane"></i></a></dt>
+                            <dd>任务日志</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-wrench"></i></dt>
-                            <dd>货架管理</dd>
+                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-desktop"></i></a></dt>
+                            <dd>运行监控</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-plus-circle"></i></dt>
-                            <dd>货架管理</dd>
+                            <dt><a href="@Url.Action("QR_Code","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-qrcode"></i></a></dt>
+                            <dd>二维码管理</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><i class="icon-size fa fa-caret-square-o-up"></i></dt>
-                            <dd>货架管理</dd>
+                            <dt><a href="@Url.Action("Index","Configuration")" target="Main-Count"><i class="icon-size fa fa-map"></i></a></dt>
+                            <dd>系统配置</dd>
                         </dl>
                         <div class="clear"></div>
                     </div>
@@ -160,30 +179,30 @@
     <div class="fen-Right">
         <div class="count-panel" style="width:100%;margin:0px auto;height:265px;padding-top:5px;">
             <div class="x_title">
-                <h2 style="font-size:16px;">代办事项</h2>
+                <h2 style="font-size:16px;">待办事项</h2>
                 <div class="clearfix"></div>
             </div>
-            <div class="clearfix">
+            <div class="clearfix" style="text-align:center">
                 <div style="padding: 5px;">
                     <dl class="bloct-count menus" style="margin-bottom: 0px;">
                         <dt class="bloct-cou ">待处理故障</dt>
-                        <dt class="backlog-body bloct-cou">0</dt>
+                        <dt class="backlog-body bloct-cou">100</dt>
                     </dl>
                     &nbsp;
                     <dl class="bloct-count menus" style="margin-bottom: 0px;">
                         <dt class="bloct-cou ">待处理故障</dt>
-                        <dt class="backlog-body bloct-cou">0</dt>
+                        <dt class="backlog-body bloct-cou">10</dt>
                     </dl>
                 </div>
                 <div style="padding: 5px;">
                     <dl class="bloct-count menus" style="margin-bottom: 0px;">
                         <dt class="bloct-cou">待处理故障</dt>
-                        <dt class="backlog-body bloct-cou">0</dt>
+                        <dt class="backlog-body bloct-cou">5</dt>
                     </dl>
                     &nbsp;
                     <dl class="bloct-count menus" style="margin-bottom: 0px;">
                         <dt class="bloct-cou ">待处理故障</dt>
-                        <dt class="backlog-body bloct-cou">0</dt>
+                        <dt class="backlog-body bloct-cou">6</dt>
                     </dl>
                 </div>
                 <div>
@@ -200,33 +219,175 @@
             <div class="clearfix"></div>
         </div>
         <div class="clearfix">
-            <div style="padding: 5px;">
-                <dl class="bloct-count menus" style="margin-bottom: 0px;">
-                    <dt class="bloct-cou ">待处理故障</dt>
-                    <dt class="backlog-body bloct-cou">0</dt>
-                </dl>
-                &nbsp;
-                <dl class="bloct-count menus" style="margin-bottom: 0px;">
-                    <dt class="bloct-cou ">待处理故障</dt>
-                    <dt class="backlog-body bloct-cou">0</dt>
-                </dl>
-            </div>
-            <div style="padding: 5px;">
-                <dl class="bloct-count menus" style="margin-bottom: 0px;">
-                    <dt class="bloct-cou">待处理故障</dt>
-                    <dt class="backlog-body bloct-cou">0</dt>
-                </dl>
-                &nbsp;
-                <dl class="bloct-count menus" style="margin-bottom: 0px;">
-                    <dt class="bloct-cou ">待处理故障</dt>
-                    <dt class="backlog-body bloct-cou">0</dt>
-                </dl>
-            </div>
-            <div>
-
-            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td width="180" style="font-size:15px;text-align:center;color:#808080">监听IP</td>
+                    <td style="font-size:16px;text-align:center;color: #0565b7" id="Address">-</td>
+                </tr>
+                <tr>
+                    <td width="180" style="font-size:15px;text-align:center;color:#808080">监听端口</td>
+                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="Port">-</td>
+                </tr>
+                <tr>
+                    <td width="180" style="font-size:15px;text-align:center;color:#808080">最大连接数</td>
+                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="maxConnect">-</td>
+                </tr>
+                <tr>
+                    <td width="180" style="font-size:15px;text-align:center;color:#808080">在线数量</td>
+                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="OnClientCount">-</td>
+                </tr>
+                <tr>
+                    <td width="180" style="font-size:15px;text-align:center;color:#808080">连接状态</td>
+                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="IsRunning">-</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
+<div class="count-main-left" id="container">
+
+</div>
+<div class="count-main-right" id="containers">
+
+</div>
+<script>
+    var chart = Highcharts.chart('container', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: '两地月平均温度'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                '七月', '八月', '九月', '十月', '十一月', '十二月']
+        },
+        yAxis: {
+            title: {
+                text: '温度'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '°';
+                }
+            }
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            }
+        },
+        series: [{
+            name: '东京',
+            marker: {
+                symbol: 'square'
+            },
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+                y: 26.5,
+                marker: {
+                    symbol: 'url(https://www.highcharts.com/demo/gfx/sun.png)'
+                }
+            }, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: '伦敦',
+            marker: {
+                symbol: 'diamond'
+            },
+            data: [{
+                y: 3.9,
+                marker: {
+                    symbol: 'url(https://www.highcharts.com/demo/gfx/snow.png)'
+                }
+            }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    });
+
+    var chart = Highcharts.chart('containers', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: '简数科技每周水果消耗量'
+        },
+        subtitle: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: '货物金额',
+            data: [
+                ['香蕉', 8],
+                ['猕猴桃', 3],
+                ['桃子', 1],
+                ['橘子', 6],
+                ['苹果', 8],
+                ['梨', 4],
+                ['柑橘', 4],
+                ['橙子', 1],
+                ['葡萄 (串)', 1]
+            ]
+        }]
+    });
+    agvinfo();
+
+    var updates = setInterval(function () {
+        agvinfo();
+    }, 800);
+
+    function agvinfo() {
+        $.ajax({
+            type: 'post',
+            url: '/api/Services/Socket',
+            contentType: 'application/json',
+            datatype: 'json',
+            success: function (res) {
+                if (res.Address != "0") {
+                    $('#Address').text(res.Address);
+                    $('#Port').text(res.Port);
+                    $('#maxConnect').text(res.maxConnect);
+                    if (res.IsRunning) {
+                        $('#IsRunning').text("监听中");
+                    }
+                    else {
+                        $('#IsRunning').text("断开");
+                    }
+                    $('#OnClientCount').text(res.OnClientCount);
+                } else {
+                    $('#Address').text('-');
+                    $('#Port').text('-');
+                    $('#maxConnect').text('-');
+                    $('#IsRunning').text('-');
+                    $('#OnClientCount').text('-');
+                }
+            },
+            error: function (e) {
+                toastr.error(e.responseText);
+                clearInterval(updates);
+            }
+        });
+    }
+
+</script>
+
 
 

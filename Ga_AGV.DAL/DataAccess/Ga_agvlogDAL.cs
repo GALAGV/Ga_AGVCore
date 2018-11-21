@@ -136,7 +136,7 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="TableName">表名</param>
         /// <param name="Db">数据库名</param>
         /// <returns></returns>
-        public string ExportagvLog(string TableName, string Db)
+        public string ExportagvLog(string TableName, string Db,bool type)
         {
             string dropSql = string.Format("DROP TABLE IF EXISTS {0}.`{1}`;", Db, TableName);
             StringBuilder sqlText = new StringBuilder(dropSql);
@@ -172,7 +172,7 @@ namespace Ga_AGV.DAL.DataAccess
                 sqlText.Append(",");
                 if (mr["COLUMN_KEY"].ToString() == "PRI")
                 {
-                    keyStr = "PRIMARY KEY(`agvlogId`)";
+                    keyStr = "PRIMARY KEY(`" + (type == true ? "agvlogId" : "tasklogId") + "`)";
                 }
                 colCount++;
             }

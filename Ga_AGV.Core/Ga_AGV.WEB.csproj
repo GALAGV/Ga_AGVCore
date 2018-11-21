@@ -330,6 +330,9 @@
     <Content Include="image\logo.png" />
     <Content Include="image\msg.png" />
     <Content Include="image\user.png" />
+    <Content Include="Scripts\AGVSystem\agv机器人红.jpg" />
+    <Content Include="Scripts\AGVSystem\agv机器人绿.jpg" />
+    <Content Include="Scripts\AGVSystem\agv机器人蓝.jpg" />
     <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\AUTHORS.txt" />
     <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\external\jquery\jquery.js" />
     <Content Include="Scripts\AGVSystem\jquery-ui-1.12.1.custom\images\ui-icons_444444_256x240.png" />

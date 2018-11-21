@@ -178,13 +178,13 @@
                         align: 'center', formatter: function (value, row, index) {
                             if (value == null) {
                                 return "全部";
-                            } else if (value == '1') {
-                                return "已完成";
-                            } else if (value == '2') {
-                                return "已取消";
-                            } else if (value == '3') {
-                                return "进行中";
-                            }
+                            } if (value == '1') {
+                                return "<span class='label label-success'>已完成</span>";
+                            } if (value == '2') {
+                                return "<span class='label label-errer'>已取消</span>";
+                            } if (value == '3') {
+                                return "<span class='label label-move'>进行中</span>";
+                            } 
                         }
                 }, {
                     field: 'TaskEndTime',

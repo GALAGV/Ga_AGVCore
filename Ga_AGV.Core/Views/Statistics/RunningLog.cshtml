@@ -252,7 +252,17 @@
                 {
                     field: 'agvTaskStatus',
                     title: '任务状态',
-                    align: 'center'
+                    align: 'center', formatter: function (value, row, index) {
+                        if (value == null) {
+                            return "全部";
+                        } if (value == '1') {
+                            return "<span class='label label-success'>已完成</span>";
+                        } if (value == '2') {
+                            return "<span class='label label-errer'>已取消</span>";
+                        } if (value == '3') {
+                            return "<span class='label label-move'>进行中</span>";
+                        }
+                    }
                 },
                 {
                     field: 'agvErrorCode',

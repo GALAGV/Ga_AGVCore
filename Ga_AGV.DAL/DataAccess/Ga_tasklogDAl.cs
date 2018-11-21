@@ -107,6 +107,7 @@ namespace Ga_AGV.DAL.DataAccess
                 pageCount = Convert.ToInt32(mySql[0].ToString().Trim());
                 break;
             }
+            mySql.Close();
             return list;
         }
     }

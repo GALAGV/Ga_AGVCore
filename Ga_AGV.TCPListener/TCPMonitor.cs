@@ -29,6 +29,7 @@ namespace Ga_AGV.TCPListener
                 {
                     if (TCPSocket.TCPServer.IsRunning)
                     {
+                        msg = "服务器正在运行！";
                         return false;
                     }
                 }

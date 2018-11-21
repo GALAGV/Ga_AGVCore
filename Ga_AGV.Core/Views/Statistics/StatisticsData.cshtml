@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "StatisticsData";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.PageTitle = "统计数据";
+    ViewBag.PageColumn = "统计报表";
+}
+<style>
+    .Top-Count {
+        width: 64.7%;
+        overflow:hidden;
+        float:left;
+    }
+
+    .coun-right {
+        width:35%;
+        overflow:hidden;
+        float:right;
+        
+    }
+
+    .tent {
+        display: inline-block;
+        width: 23%;
+        border-radius: 2px;
+        height: 84px;
+        /* margin: 0px 8px; */
+        margin-bottom: 15px;
+        cursor: pointer;
+        margin-top:5px;
+    }
+
+    .fen-left {
+        width: 59.5%;
+        float: left;
+    }
+
+    .fen-Right {
+        width: 40%;
+        float: right;
+    }
+
+    .icon-size {
+        display: inline-block;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        border-radius: 2px;
+        font-size: 30px;
+        background-color: #F8F8F8;
+        color: #333;
+    }
+
+        .icon-size:hover {
+            background-color: #ebebeb;
+        }
+
+    .coun-right dt {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .tent dd {
+        text-align: center;
+        padding: 10px 0px;
+    }
+
+    .fonyr-pou {
+        text-align: center;
+    }
+
+    .Shoev {
+        display: none;
+    }
+    .bloct-count {
+        width: 46%;
+        display: inline-block;
+        background-color: #f8f8f8;
+        color: #999;
+        border-radius: 2px;
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        height: 90px;
+        cursor: pointer;
+    }
+    .bloct-cou {
+        text-align: left;
+        padding: 8px 5px;
+    }
+    .backlog-body {
+        font-style: normal;
+        font-size: 30px;
+        font-weight: 400;
+        color: #009688;
+    }
+
+    .bloct-cou {
+        text-align: left;
+        padding: 8px 5px;
+    }
+    .menus:hover {
+        background-color: #ebebeb;
+    }
+</style>
+<ol class="breadcrumb">
+    <li><span style="color:#337ab7;">首页</span></li>
+</ol>
+<div class="Top-Count">
+    <div class="fen-left">
+        <div class="count-panel" style="width:100%;margin:0px auto;height:265px;padding-top:5px;">
+            <div class="x_title">
+                <h2 style="font-size:16px;">快捷菜单</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix">
+                <div>
+                    <div class="fonyr-pou">
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-recycle"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-cog"></i></dt>
+                            <dd>AGV管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-external-link-square"></i></dt>
+                            <dd>AGV管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-hourglass-2"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-server"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-wrench"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-plus-circle"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <dl class="tent">
+                            <dt><i class="icon-size fa fa-caret-square-o-up"></i></dt>
+                            <dd>货架管理</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fen-Right">
+        <div class="count-panel" style="width:100%;margin:0px auto;height:265px;padding-top:5px;">
+            <div class="x_title">
+                <h2 style="font-size:16px;">代办事项</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix">
+                <div style="padding: 5px;">
+                    <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                        <dt class="bloct-cou ">待处理故障</dt>
+                        <dt class="backlog-body bloct-cou">0</dt>
+                    </dl>
+                    &nbsp;
+                    <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                        <dt class="bloct-cou ">待处理故障</dt>
+                        <dt class="backlog-body bloct-cou">0</dt>
+                    </dl>
+                </div>
+                <div style="padding: 5px;">
+                    <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                        <dt class="bloct-cou">待处理故障</dt>
+                        <dt class="backlog-body bloct-cou">0</dt>
+                    </dl>
+                    &nbsp;
+                    <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                        <dt class="bloct-cou ">待处理故障</dt>
+                        <dt class="backlog-body bloct-cou">0</dt>
+                    </dl>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="coun-right">
+    <div class="count-panel" style="width:100%;margin:0px auto;height:265px;padding-top:5px;">
+        <div class="x_title">
+            <h2 style="font-size:16px;">网络状态</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix">
+            <div style="padding: 5px;">
+                <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                    <dt class="bloct-cou ">待处理故障</dt>
+                    <dt class="backlog-body bloct-cou">0</dt>
+                </dl>
+                &nbsp;
+                <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                    <dt class="bloct-cou ">待处理故障</dt>
+                    <dt class="backlog-body bloct-cou">0</dt>
+                </dl>
+            </div>
+            <div style="padding: 5px;">
+                <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                    <dt class="bloct-cou">待处理故障</dt>
+                    <dt class="backlog-body bloct-cou">0</dt>
+                </dl>
+                &nbsp;
+                <dl class="bloct-count menus" style="margin-bottom: 0px;">
+                    <dt class="bloct-cou ">待处理故障</dt>
+                    <dt class="backlog-body bloct-cou">0</dt>
+                </dl>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

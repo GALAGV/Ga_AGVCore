@@ -88,12 +88,14 @@ body {
 ::-webkit-scrollbar {
     margin-right: 2px;
     width: 10px;
+    height:10px;
 }
 
 ::-webkit-scrollbar-thumb {
     width: 10px;
     border: 0px solid #000;
     background: #cbcbcb;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track-piece {

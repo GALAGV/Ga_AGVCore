@@ -68,23 +68,23 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">监听IP</td>
-                                    <td style="font-size:16px;text-align:center;color: #0565b7" id="Address"></td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7" id="Address">-</td>
                                 </tr>
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">监听端口</td>
-                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="Port"></td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="Port">-</td>
                                 </tr>
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">最大连接数</td>
-                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="maxConnect"></td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="maxConnect">-</td>
                                 </tr>
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">在线数量</td>
-                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="OnClientCount"></td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="OnClientCount">-</td>
                                 </tr>
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">连接状态</td>
-                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="IsRunning"></td>
+                                    <td style="font-size:16px;text-align:center;color: #0565b7;" id="IsRunning">-</td>
                                 </tr>
                             </table>
                         </div>
@@ -169,16 +169,24 @@
                 contentType: 'application/json',
                 datatype: 'json',
                 success: function (res) {
-                    $('#Address').text(res.Address);
-                    $('#Port').text(res.Port);
-                    $('#maxConnect').text(res.maxConnect);
-                    if (res.IsRunning) {
-                        $('#IsRunning').text("监听中");
+                    if (res.Address != "0") {
+                        $('#Address').text(res.Address);
+                        $('#Port').text(res.Port);
+                        $('#maxConnect').text(res.maxConnect);
+                        if (res.IsRunning) {
+                            $('#IsRunning').text("监听中");
+                        }
+                        else {
+                            $('#IsRunning').text("断开");
+                        }
+                        $('#OnClientCount').text(res.OnClientCount);
+                    } else {
+                        $('#Address').text('-');
+                        $('#Port').text('-');
+                        $('#maxConnect').text('-');
+                        $('#IsRunning').text('-');
+                        $('#OnClientCount').text('-');
                     }
-                    else {
-                        $('#IsRunning').text("断开");
-                    }
-                    $('#OnClientCount').text(res.OnClientCount);
                 },
                 error: function (e) {
                     toastr.error(e.responseText);

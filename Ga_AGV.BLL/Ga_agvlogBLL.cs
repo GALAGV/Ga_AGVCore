@@ -37,9 +37,9 @@ namespace Ga_AGV.BLL
         /// <param name="TableName"></param>
         /// <param name="Db"></param>
         /// <returns></returns>
-        public string log(string TableName, string Db)
+        public string log(string TableName, string Db,bool type)
         {
-            return ga_AgvlogDAL.ExportagvLog(TableName,Db);
+            return ga_AgvlogDAL.ExportagvLog(TableName,Db, type);
         }
 
         /// <summary>

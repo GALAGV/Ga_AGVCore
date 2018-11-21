@@ -28,7 +28,7 @@ namespace Ga_AGV.Core.API
         {
             try
             {
-                string Time= (ga.agvLogTime.Equals("") ? DateTime.Now.ToString("yyyyMMdd") : Convert.ToDateTime(ga.agvLogTime).ToString("yyyyMMdd"));
+                string Time = (ga.agvLogTime.Equals("") ? DateTime.Now.ToString("yyyyMMdd") : Convert.ToDateTime(ga.agvLogTime).ToString("yyyyMMdd"));
                 string LogTableName = "ga_agvloginfo" + Time;
                 string TaskLogName = "ga_taskloginfo" + Time;
                 if (agvlogBLL.TableExistx(LogTableName))
@@ -42,10 +42,10 @@ namespace Ga_AGV.Core.API
                     {
                         Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Log"));
                     }
-                    string sqlText = agvlogBLL.log(LogTableName, "ga_agvlog");
+                    string sqlText = agvlogBLL.log(LogTableName, "ga_agvlog", true);
                     if (agvlogBLL.TableExistx(TaskLogName))
                     {
-                        sqlText += agvlogBLL.log(TaskLogName, "ga_agvlog");
+                        sqlText += agvlogBLL.log(TaskLogName, "ga_agvlog", false);
                     }
                     string fileNames = Time + "(log)" + ".zip";
                     byte[] bytes = System.Text.Encoding.Default.GetBytes(sqlText);//把字符串转成byte数组

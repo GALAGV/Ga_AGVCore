@@ -129,8 +129,8 @@
 </div>
 <script type="text/javascript">
 
-    var Wid = 0; var Hei = 0;
-    var ar = new Array(); var id = new Array();
+    var Wid = 0; var Hei = 0; var id = 0;
+    var ar = new Array();
 
     $(function () {
         $.ajax({
@@ -143,15 +143,14 @@
                 for (var i = 0; i < data.rows.length; i++) {
                     ar.push(data.rows[i])
                 }
-                var AgvInfo = setInterval(function () {
-                    ShowAGV(ar, 6);
-                }, 1000);
                 //console.log(ar);
             }
         });
 
         $("#combobox_agv").bind('change', function () {
-
+            var AgvInfo = setInterval(function () {
+                ShowAGV(ar, 6);
+            }, 1000);
         })
 
         function ShowAgvInfo(agvQR) {
@@ -230,6 +229,7 @@
                 }
             }
         }
+
         //测试用
         //function ShowAGV(ar, agvQR) {
         //    var canvas = document.getElementById('canvas');

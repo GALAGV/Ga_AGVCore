@@ -139,16 +139,25 @@
             contentType: 'application/json',
             success: function (data) {
                 Wid = data.map_X; Hei = data.map_Y;
-                ShowQR(Wid, Hei, data.rows);
+                ShowAGV(data.rows);
                 for (var i = 0; i < data.rows.length; i++) {
                     ar.push(data.rows[i])
                 }
-                console.log(data.rows);
+                //console.log(data.rows);
             }
         });
 
         $("#combobox_agv").bind('change', function () {
-            ShowAgvInfo($(this).val(), ar);
+            $.ajax({
+                url: '/api/AGVSystem/AGVlocation',
+                type: "post",
+                data: JSON.stringify({ "agvNum": $(this).val() }),
+                contentType: 'application/json',
+                success: function (data) {
+                    //console.log(data);
+                }
+            });
+            //ShowAgvInfo($(this).val(), ar);
         })
 
         function ShowAgvInfo(agvNum, ar) {
@@ -178,13 +187,19 @@
             var img = new Image()
             img.src = "../Scripts/AGVSystem/agv机器人绿.jpg"
             var i = 0;
-            var T1 = window.setInterval(agv, 1000);
+            var T1 = window.setInterval(agv, 500);
             function agv() {
-                for (i; i < 10;) {
-                    console.log(i);
+                for (i; i < 225;) {
+                    //console.log(i);
                     ShowQR(Wid, Hei, ar);
                     img.src = "../Scripts/AGVSystem/agv机器人绿.jpg"
-                    ctx.drawImage(img, ar[i].qrX - 30, ar[i].qrY - 30, 60, 60);
+                    ctx.drawImage(img, ar[i].qrX - 25, ar[i].qrY - 25, 50, 50);
+                    ctx.drawImage(img, ar[i + 10].qrX - 25, ar[i + 10].qrY - 25, 50, 50);
+                    ctx.drawImage(img, ar[i + 20].qrX - 25, ar[i + 20].qrY - 25, 50, 50);
+                    ctx.drawImage(img, ar[i + 30].qrX - 25, ar[i + 30].qrY - 25, 50, 50);
+                    ctx.drawImage(img, ar[i + 40].qrX - 25, ar[i + 40].qrY - 25, 50, 50);
+                    ctx.drawImage(img, ar[i + 50].qrX - 25, ar[i + 50].qrY - 25, 50, 50);
+
                     break;
                 } i++;
             }
@@ -215,7 +230,7 @@
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     ctx.fillText(ar[i].qrInfo, ar[i].qrX, ar[i].qrY);
-                    console.log(ar[i].qrInfo);
+                    //console.log(ar[i].qrInfo);
 
                 }
             }

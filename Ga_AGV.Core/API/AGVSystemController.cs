@@ -130,16 +130,12 @@ namespace Ga_AGV.Core.API
             return data;
         }
 
-
         [HttpPost]
         public Jsontaskinfo AGVlocation([FromBody] Ga_agv agvdata)
         {
-            return new Jsontaskinfo() { agvNum = agvdata.agvNum, agvIsRunning = "在线",qrcode="002",PBS="区域3", agvHolder="下降", Message="障碍物检测", agvX="10",agvY="10",Task="运输", taskStartX="20",taskStartY="50",taskEndX="50",taskEndY="50"};
+            return new Jsontaskinfo() { agvNum = agvdata.agvNum, agvIsRunning = "在线", qrcode = "2", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvX = "10", agvY = "10", Task = "运输", taskStartX = "20", taskStartY = "50", taskEndX = "50", taskEndY = "50" };
         }
 
         #endregion 监控
-
-
-
     }
 }

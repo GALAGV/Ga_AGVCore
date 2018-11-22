@@ -48,10 +48,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
-        canvas {
-            border: red solid 1px;
-        }
     </style>
 
     <div class="count-panel" style="width:100%;min-width:1600px;margin:0px auto;">
@@ -64,7 +60,7 @@
                         <div class="panel-body">
                             <div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
                                 <form id="reservation">
-                                    <div id='slider' style="display:none" ></div>
+                                    <div id='slider' style="display:none"></div>
                                 </form>
                             </div>
                             <div class="form-group">
@@ -134,7 +130,7 @@
 </div>
 <script type="text/javascript">
 
-    var Wid = 1000; var Hei = 800; var coe = 1;
+    var Wid = 0; var Hei = 0;
     var ar = new Array();
 
     $(function () {
@@ -145,51 +141,15 @@
             contentType: 'application/json',
             success: function (data) {
                 Wid = data.map_X; Hei = data.map_Y;
-                console.log(Wid); console.log(Hei);
                 for (var i = 0; i < data.rows.length; i++) {
                     ar.push(data.rows[i])
                 }
-                ShowAGV(Wid, Hei, ar, 1); console.log(ar);
+                ShowAGV(Wid, Hei, ar); console.log(ar);
             }
         });
-
-        //比例尺
-        var select = $("#minbeds");
-        var slider = $("#slider").slider({
-            min: -5,
-            max: 5,
-            range: "min",
-            slide: function (event, ui) {
-                var w; var h;
-                if (ui.value == 0) {
-                    w = Wid * 1; h = Hei * 1; ShowAGV(w, h, ar, 1); coe = 1;
-                } else if (ui.value == -1) {
-                    w = Wid * 0.8; h = Hei * 0.8; ShowAGV(w, h, ar, 0.8); coe = 0.8;
-                } else if (ui.value == -2) {
-                    w = Wid * 0.6; h = Hei * 0.6; ShowAGV(w, h, ar, 0.6); coe = 0.6;
-                } else if (ui.value == -3) {
-                    w = Wid * 0.4; h = Hei * 0.4; ShowAGV(w, h, ar, 0.4); coe = 0.4;
-                } else if (ui.value == -4) {
-                    w = Wid * 0.2; h = Hei * 0.2; ShowAGV(w, h, ar, 0.2); coe = 0.2;
-                } else if (ui.value == -5) {
-                    w = Wid * 0.1; h = Hei * 0.1; ShowAGV(w, h, ar, 0.1); coe = 0.1;
-                } else if (ui.value == 1) {
-                    w = Wid * 1.2; h = Hei * 1.2; ShowAGV(w, h, ar, 1.2); coe = 1.2;
-                } else if (ui.value == 2) {
-                    w = Wid * 1.4; h = Hei * 1.4; ShowAGV(w, h, ar, 1.4); coe = 1.4;
-                } else if (ui.value == 3) {
-                    w = Wid * 1.6; h = Hei * 1.6; ShowAGV(w, h, ar, 1.6); coe = 1.6;
-                } else if (ui.value == 4) {
-                    w = Wid * 1.7; h = Hei * 1.7; ShowAGV(w, h, ar, 1.7); coe = 1.7;
-                } else if (ui.value == 5) {
-                    w = Wid * 1.8; h = Hei * 1.8; ShowAGV(w, h, ar, 1.8); coe = 1.8;
-                }
-            }
-        });
-        //比例尺
 
         $("#combobox_agv").bind('change', function () {
-            ShowAgvInfo($(this).val(), ar, coe);
+            ShowAgvInfo($(this).val(), ar);
         })
 
         function ShowAgvInfo(agvNum, ar, coe) {
@@ -198,7 +158,6 @@
             $("#current_position").text("x15y02");
             $("#place_of_departure").text("x04y07");
             $("#destination").text("x13y14");
-
             //////横线
             //ctx.lineWidth = (Wid / 100);
             //ctx.strokeStyle = "red";
@@ -224,14 +183,14 @@
                 img.src = "../Scripts/AGVSystem/agv机器人红.jpg"
                 for (i; i < 10;) {
                     console.log("开始！"); console.log();
-                    ShowQR(Wid, Hei, ar, coe);
+                    ShowQR(Wid, Hei, ar);
                     ctx.drawImage(img, ar[i].qrX - 30, ar[i].qrY - 30, 60, 60);
                     break;
                 } i++;
             }
         };
 
-        function ShowQR(Wid, Hei, ar, con) {
+        function ShowQR(Wid, Hei, ar) {
 
             var canvas = document.getElementById('canvas');
             canvas.width = Wid;
@@ -240,17 +199,10 @@
                 var ctx = canvas.getContext("2d"),
                     width = canvas.width,
                     height = canvas.height;
-
-                //for (var k = 0; k < Wid / ar[0].qrX; k++) {
-                //    ctx.textBaseline = 'middle';
-                //    ctx.fillText('x' + k + 1, ar[i].qrX, 0);
-                //    console.log('x' + k + 1);
-                //}
-
-                //点
+                //QR
                 for (var i = 0; i < ar.length; i++) {
                     ctx.beginPath();
-                    ctx.arc(ar[i].qrX * con, ar[i].qrY * con, (Wid / 150), 0, 2 * Math.PI, false);
+                    ctx.arc(ar[i].qrX, ar[i].qrY, (Wid / 150), 0, 2 * Math.PI, false);
                     ctx.closePath(); //关闭路径
                     if (ar[i].qrStatus == 1) {
                         ctx.fillStyle = "#778899";
@@ -262,5 +214,39 @@
             }
         }
 
+        ////比例尺
+        //var select = $("#minbeds");
+        //var slider = $("#slider").slider({
+        //    min: -5,
+        //    max: 5,
+        //    range: "min",
+        //    slide: function (event, ui) {
+        //        var w; var h;
+        //        if (ui.value == 0) {
+        //            w = Wid * 1; h = Hei * 1; ShowAGV(w, h, ar, 1); coe = 1;
+        //        } else if (ui.value == -1) {
+        //            w = Wid * 0.8; h = Hei * 0.8; ShowAGV(w, h, ar, 0.8); coe = 0.8;
+        //        } else if (ui.value == -2) {
+        //            w = Wid * 0.6; h = Hei * 0.6; ShowAGV(w, h, ar, 0.6); coe = 0.6;
+        //        } else if (ui.value == -3) {
+        //            w = Wid * 0.4; h = Hei * 0.4; ShowAGV(w, h, ar, 0.4); coe = 0.4;
+        //        } else if (ui.value == -4) {
+        //            w = Wid * 0.2; h = Hei * 0.2; ShowAGV(w, h, ar, 0.2); coe = 0.2;
+        //        } else if (ui.value == -5) {
+        //            w = Wid * 0.1; h = Hei * 0.1; ShowAGV(w, h, ar, 0.1); coe = 0.1;
+        //        } else if (ui.value == 1) {
+        //            w = Wid * 1.2; h = Hei * 1.2; ShowAGV(w, h, ar, 1.2); coe = 1.2;
+        //        } else if (ui.value == 2) {
+        //            w = Wid * 1.4; h = Hei * 1.4; ShowAGV(w, h, ar, 1.4); coe = 1.4;
+        //        } else if (ui.value == 3) {
+        //            w = Wid * 1.6; h = Hei * 1.6; ShowAGV(w, h, ar, 1.6); coe = 1.6;
+        //        } else if (ui.value == 4) {
+        //            w = Wid * 1.7; h = Hei * 1.7; ShowAGV(w, h, ar, 1.7); coe = 1.7;
+        //        } else if (ui.value == 5) {
+        //            w = Wid * 1.8; h = Hei * 1.8; ShowAGV(w, h, ar, 1.8); coe = 1.8;
+        //        }
+        //    }
+        //});
+        ////比例尺
     })
 </script>

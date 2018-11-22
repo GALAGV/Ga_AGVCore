@@ -105,22 +105,29 @@
     .menus:hover {
         background-color: #ebebeb;
     }
-
     .count-main-left {
-        width: 59.9%;
+        width: 100%;
         height: 500px;
         float: left;
         overflow: hidden;
         margin-top: 8px;
     }
 
-    .count-main-right {
+    /*.count-main-left {
+        width: 59.9%;
+        height: 500px;
+        float: left;
+        overflow: hidden;
+        margin-top: 8px;
+    }*/
+
+    /*.count-main-right {
         width: 39.9%;
         height: 500px;
         float: right;
         overflow: hidden;
         margin-top: 3px;
-    }
+    }*/
 </style>
 <ol class="breadcrumb">
     <li><span style="color:#337ab7;">首页</span></li>
@@ -247,16 +254,16 @@
 <div class="count-main-left" id="container">
 
 </div>
-<div class="count-main-right" id="containers">
+@*<div class="count-main-right" id="containers">
 
-</div>
+</div>*@
 <script>
     var chart = Highcharts.chart('container', {
         chart: {
             type: 'spline'
         },
         title: {
-            text: '两地月平均温度'
+            text: '运行统计'
         },
         subtitle: {
             text: ''
@@ -267,11 +274,11 @@
         },
         yAxis: {
             title: {
-                text: '温度'
+                text: '任务数/距离'
             },
             labels: {
                 formatter: function () {
-                    return this.value + '°';
+                    return this.value;
                 }
             }
         },
@@ -289,65 +296,55 @@
             }
         },
         series: [{
-            name: '东京',
+            name: 'AGV执行任务数',
             marker: {
                 symbol: 'square'
             },
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
-                y: 26.5,
-                marker: {
-                    symbol: 'url(https://www.highcharts.com/demo/gfx/sun.png)'
-                }
-            }, 23.3, 18.3, 13.9, 9.6]
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,20, 23.3, 18.3, 13.9, 9.6]
         }, {
-            name: '伦敦',
+            name: 'AGV运行距离',
             marker: {
                 symbol: 'diamond'
             },
-            data: [{
-                y: 3.9,
-                marker: {
-                    symbol: 'url(https://www.highcharts.com/demo/gfx/snow.png)'
-                }
-            }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            data: [50, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
         }]
     });
 
-    var chart = Highcharts.chart('containers', {
-        chart: {
-            type: 'pie',
-            options3d: {
-                enabled: true,
-                alpha: 45
-            }
-        },
-        title: {
-            text: '简数科技每周水果消耗量'
-        },
-        subtitle: {
-            text: ''
-        },
-        plotOptions: {
-            pie: {
-                innerSize: 100,
-                depth: 45
-            }
-        },
-        series: [{
-            name: '货物金额',
-            data: [
-                ['香蕉', 8],
-                ['猕猴桃', 3],
-                ['桃子', 1],
-                ['橘子', 6],
-                ['苹果', 8],
-                ['梨', 4],
-                ['柑橘', 4],
-                ['橙子', 1],
-                ['葡萄 (串)', 1]
-            ]
-        }]
-    });
+    //var chart = Highcharts.chart('containers', {
+    //    chart: {
+    //        type: 'pie',
+    //        options3d: {
+    //            enabled: true,
+    //            alpha: 45
+    //        }
+    //    },
+    //    title: {
+    //        text: '简数科技每周水果消耗量'
+    //    },
+    //    subtitle: {
+    //        text: ''
+    //    },
+    //    plotOptions: {
+    //        pie: {
+    //            innerSize: 100,
+    //            depth: 45
+    //        }
+    //    },
+    //    series: [{
+    //        name: '货物金额',
+    //        data: [
+    //            ['香蕉', 8],
+    //            ['猕猴桃', 3],
+    //            ['桃子', 1],
+    //            ['橘子', 6],
+    //            ['苹果', 8],
+    //            ['梨', 4],
+    //            ['柑橘', 4],
+    //            ['橙子', 1],
+    //            ['葡萄 (串)', 1]
+    //        ]
+    //    }]
+    //});
     agvinfo();
 
     var updates = setInterval(function () {
@@ -378,6 +375,7 @@
                     $('#maxConnect').text('-');
                     $('#IsRunning').text('-');
                     $('#OnClientCount').text('-');
+                    clearInterval(updates);
                 }
             },
             error: function (e) {

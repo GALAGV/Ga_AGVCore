@@ -57,7 +57,48 @@ namespace Ga_AGV.Model.Commonality
         public double voltage { get; set; }
 
 
+
         public bool Success { get; set; }
 
     }
+
+    public class Jsontaskinfo : JsonagvInfo
+    {
+        /// <summary>
+        /// 所在X轴
+        /// </summary>
+        public string agvX { get; set; }
+
+        /// <summary>
+        /// 所在Y轴
+        /// </summary>
+        public string agvY { get; set; }
+
+        /// <summary>
+        /// 当前任务
+        /// </summary>
+        public string Task { get; set; }
+
+        /// <summary>
+        /// 任务开始X轴距离
+        /// </summary>
+        public string taskStartX { get; set; }
+
+        /// <summary>
+        /// 任务开始Y轴距离
+        /// </summary>
+        public string taskStartY { get; set; }
+
+
+        /// <summary>
+        /// 任务结束X轴距离
+        /// </summary>
+        public string taskEndX { get; set; }
+
+        /// <summary>
+        /// 任务结束Y轴距离
+        /// </summary>
+        public string taskEndY { get; set; }
+    }
+
 }

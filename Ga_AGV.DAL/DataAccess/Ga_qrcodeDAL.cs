@@ -133,9 +133,11 @@ namespace Ga_AGV.DAL.DataAccess
             bool is_map = MySqlHelper.ExecuteNonQuery(SQLString_map.ToString(), cmdParms_map) > 0 ? true : false;
 
             List<string> sql = new List<string>();
+            int i = 1;
             foreach (Ga_qrcode item in qr)
             {
-                sql.Add("INSERT INTO `ga_agv`.`ga_qrcode`(`qrX`, `qrY`, `qrStatus`) VALUES (" + item.qrX + ", " + item.qrY + ", 1)");
+                sql.Add("INSERT INTO `ga_agv`.`ga_qrcode`(`qrInfo`, `qrX`, `qrY`, `qrStatus`, `qrRemark`) VALUES (" + i + ", " + item.qrX + ", " + item.qrY + ", 1, " + i + ")");
+                i++;
             }
             bool is_qr = MySqlHelper.ExecuteSqlTran(sql);
 

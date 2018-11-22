@@ -25,7 +25,7 @@ namespace Ga_AGV.Core.Controllers
         [Authorize]
         public ActionResult Main()
         {
-             return View();
+           return View();
         }
     }
 }

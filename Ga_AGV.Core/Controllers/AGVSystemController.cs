@@ -16,12 +16,27 @@ namespace Ga_AGV.Core.Controllers
         [Authorize]
         public ActionResult QR_Code()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
+        [Authorize]
         public ActionResult AGVMonitoring()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

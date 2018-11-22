@@ -12,18 +12,39 @@ namespace Ga_AGV.Core.Controllers
         [Authorize]
         public ActionResult RunningLog()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [Authorize]
         public ActionResult TaskLog()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
         [Authorize]
         public ActionResult Rack()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         /// <summary>
@@ -33,20 +54,41 @@ namespace Ga_AGV.Core.Controllers
          [Authorize]
         public ActionResult AGVState()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
         [Authorize]
         public ActionResult RunMonitoring()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [Authorize]
         public ActionResult StatisticsData()
         {
-            return View();
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

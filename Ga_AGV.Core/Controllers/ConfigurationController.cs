@@ -19,8 +19,15 @@ namespace Ga_AGV.Core.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            List<Ga_setting> ga_s = ga_Setting.Ga_Settings();
-            return View(ga_s);
+            if (Request.ServerVariables["HTTP_REFERER"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                List<Ga_setting> ga_s = ga_Setting.Ga_Settings();
+                return View(ga_s);
+            }
         }
     }
 }

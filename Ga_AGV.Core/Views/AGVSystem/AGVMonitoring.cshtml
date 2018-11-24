@@ -9,53 +9,12 @@
 <script src="~/Scripts/AGVSystem/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 
 <div>
-    <style>
-        .Control-li li {
-            width: 24%;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            display: inline-block;
-            margin-top: 50px;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 103%;
-            left: 0;
-            z-index: 1000;
-            display: none;
-            float: left;
-            list-style: none;
-            text-shadow: none;
-            max-height: 180px;
-            margin: 0px;
-            font-size: 14px;
-            font-family: "Segoe UI",Helvetica, Arial, sans-serif;
-            border: 1px solid #ddd;
-        }
-
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 34px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-    </style>
-
-    <div class="count-panel" style="width:100%;min-width:1600px;margin:0px auto;">
+    <div class="count-panel" style="width:100%;margin:0px auto;">
         <div class="panel panel-default">
             <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>&nbsp;AGV监控</div>
             <div class="panel-body" style="overflow:hidden;display:block;">
                 <div class="form-group">
-                    <div style="float:left;display:block;width:30%;height:780px;">
+                     <div class="Control-lefts">
                         <div class="panel-body">
                             @*<div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
                                     <form id="reservation">
@@ -74,51 +33,50 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="count-panel" style="width:100%;margin:0px auto;height:620px">
+                        <div class="count-panel" style="width:100%;margin:0px auto;height:670px">
                             <div class="x_title">
                                 <h2 style="font-size:18px;margin-top:20px;">基本信息</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix">
                                 <div style="width:100%;">
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:20px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">AGV编号</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="agvNum">1号</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">状态</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;color:#139656" id="agvIsRunning">在线</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">AGV编号</li>
+                                        <li class="clearfix-count" id="agvNum">1号</li>
+                                        <li class="clearfix-li">状态</li>
+                                        <li class="clearfix-count" id="agvIsRunning">在线</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">二维码</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;width:74%;" id="qrcode">1</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">二维码</li>
+                                        <li class="clearfix-count clearfix-width" id="qrcode" style="width:74%">1</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">PBS</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="PBS">区域1</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">云台</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="agvHolder">上升</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">PBS</li>
+                                        <li class="clearfix-count" id="PBS">区域1</li>
+                                        <li class="clearfix-li">云台</li>
+                                        <li class="clearfix-count" id="agvHolder">上升</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">报警信息</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;width:74%;color:#139656" id="Message">正常</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">报警信息</li>
+                                        <li class="clearfix-count clearfix-width" id="Message" style="width:74%">正常</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">当前位置</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="agvQR">1</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">当前任务</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="Task">运输</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">当前位置</li>
+                                        <li class="clearfix-count" id="agvQR">1</li>
+                                        <li class="clearfix-li">当前任务</li>
+                                        <li class="clearfix-count" id="Task">运输</li>
                                     </ul>
-                                    <ul class="Control-li" style="display:block;height:50px;margin-top:30px;">
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">出发地</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="taskStartQR">1</li>
-                                        <li style="background-color: #00CDCD;color:white;font-size:18px;border-radius:2%">目的地</li>
-                                        <li style="font-size:18px;font-weight:bold;background: Linen;" id="taskEndQR">1</li>
+                                    <ul class="Control-li clearfix-ul">
+                                        <li class="clearfix-li">出发地</li>
+                                        <li class="clearfix-count" id="taskStartQR">1</li>
+                                        <li class="clearfix-li">目的地</li>
+                                        <li class="clearfix-count" id="taskEndQR">1</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div style="width:1000px;height:750px;overflow:scroll;float:left;margin-left:60px;display:block;border:#ccc solid 2px;padding:10px 15px 5px 10px;">
+                    <div class="Control-right">
 
                         <canvas id="canvas" style="border:#EDEDED solid 1px">您当前的浏览器版本不支持此功能</canvas>
                     </div>

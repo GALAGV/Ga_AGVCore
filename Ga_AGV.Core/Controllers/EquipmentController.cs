@@ -12,14 +12,14 @@ namespace Ga_AGV.Core.Controllers
         [Authorize]
         public ActionResult AGVManagement()
         {
-            if (Request.ServerVariables["HTTP_REFERER"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
+            //if (Request.ServerVariables["HTTP_REFERER"] == null)
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            //else
+            //{
                 return View();
-            }
+            //}
         }
     }
 }

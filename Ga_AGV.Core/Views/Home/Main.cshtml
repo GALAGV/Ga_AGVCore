@@ -7,12 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <link href="~/Scripts/toastr-master/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Main.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/toastr-master/toastr.min.js"></script>
@@ -94,14 +95,17 @@
             </div>
         </div>
         <!-- 侧边菜单end -->
+
+        <style>
+
+        </style>
         <!-- 头部菜单 -->
         <div class="main-top-nav">
-
-            <ul class="nav navbar-nav" id="nac-tab">
-                <li class="active nav-li" id="mesg-img"><a href="#" id="nav-a" style="width:80px;"><img class="msg" src="~/image/msg.png" /></a></li>
-                <li class="dropdown  nav-li" id="Management">
-                    <a href="#" class="dropdown-toggle " id="nav-a" data-toggle="dropdown"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
-                    <ul class="dropdown-menu" style="position:absolute;right:0px;top:80px;">
+            <a class="menu_toggle"><i class="fa fa-navicon" style="font-size:35px;font-weight:bold"></i></a>
+            <ul class="nav-ren">
+                <li style="position:relative;width:170px;float:right;display:block;">
+                   <a href="javascript:;" style="text-decoration:none"  data-toggle="dropdown" class="dropdown-toggle nav-left-top nav-left-top-text"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="position:absolute;top:80px;left:0px;margin:0px;width:170px;">
                         <li><a href="@Url.Action("Index","Configuration")" target="Main-Count">系统配置</a></li>
                         <li class="divider"></li>
                         <li id="UpdatePwd"><a href="javascript:;">修改密码</a></li>
@@ -113,12 +117,13 @@
                         </li>
                     </ul>
                 </li>
+                <li style="position:relative;width:80px;float:right;display:block;"><a href="#" class="nav-right-top"><img class="msg" src="~/image/msg.png" /></a></li>
             </ul>
             <div id="software-Name">GALAXIS AGV智能调度系统</div>
         </div>
         <!-- 头部菜单end -->
         <!-- 内容 -->
-        <div class="main-counts" style="overflow:hidden;overflow-x:hidden; min-width:900px;">
+        <div class="main-counts" style="overflow:hidden;overflow-x:hidden;min-width:320px;">
             <iframe src="@Url.Action("StatisticsData","Statistics")" frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
         </div>
         <!-- 内容end -->
@@ -208,6 +213,29 @@
             });
         }
         $(function () {
+            $('#menu-nav').click(function () {
+                $('.dropdown-menu').toggleClass('menu-open');
+            });
+            var sizetype = true;
+            window.onresize = function () {
+                if ($(window).width() < 768) {
+                    if (sizetype) {
+                        $('.menu_toggle').toggleClass('menu_toggles');
+                        $('.main-nav').toggleClass('main-navs');
+                        $('.main-counts').toggleClass('main-counts-text');
+                        sizetype = false;
+                    }
+                }
+                if ($(window).width() > 768) {
+                    sizetype = true;
+                }
+            }
+
+            $('.menu_toggle').click(function () {
+                $('.menu_toggle').toggleClass('menu_toggles');
+                $('.main-nav').toggleClass('main-navs');
+                $('.main-counts').toggleClass('main-counts-text');
+            });
 
             //$("#external-frame").height($(window).height() - 90);
             $("[data-toggle='tooltip']").tooltip();

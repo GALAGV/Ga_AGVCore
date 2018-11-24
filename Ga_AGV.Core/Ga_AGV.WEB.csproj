@@ -316,6 +316,7 @@
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Main.css" />
+    <Content Include="Content\StatisticsData.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -3,12 +3,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>@ViewBag.Title</title>
     <!-- bootstrap样式文件 -->
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <!-- bootstrap默认主题 -->
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/Content/commonality.css" rel="stylesheet" />
+
     <!--animate动画文件 -->
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <!-- table表格组件样式 -->
@@ -21,6 +22,8 @@
     <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!--提示框组件样式 -->
     <link href="~/Scripts/toastr-master/toastr.min.css" rel="stylesheet" />
+
+    <link href="~/Content/commonality.css" rel="stylesheet" />
     <!--jquery库 -->
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <!--bootstrap库 -->
@@ -49,7 +52,7 @@
 <body>
     <div>
         <ol class="breadcrumb Shoev">
-            <li><span style="color:#337ab7;" >@ViewBag.PageTitle</span></li>
+            <li><span style="color:#337ab7;">@ViewBag.PageTitle</span></li>
             <li class="active">@ViewBag.PageColumn</li>
         </ol>
         @RenderBody()

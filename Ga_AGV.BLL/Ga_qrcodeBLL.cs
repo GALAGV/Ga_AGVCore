@@ -58,7 +58,6 @@ namespace Ga_AGV.BLL
                     qr.Add(new Ga_qrcode { qrX = i * map.Qr_x, qrY = k * map.Qr_y });
                 }
             }
-
             return ga_qrcodeDAL.Ga_AddsQRcode(map.Map_name, map.Map_x, map.Map_y, map.Widget_info, qr);
         }
     }

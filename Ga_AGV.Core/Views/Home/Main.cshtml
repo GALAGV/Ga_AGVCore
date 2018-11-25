@@ -96,35 +96,84 @@
         </div>
         <!-- 侧边菜单end -->
 
-        <style>
-
-        </style>
-        <!-- 头部菜单 -->
-        <div class="main-top-nav">
-            <a class="menu_toggle"><i class="fa fa-navicon" style="font-size:35px;font-weight:bold"></i></a>
-            <ul class="nav-ren">
-                <li style="position:relative;width:170px;float:right;display:block;">
-                   <a href="javascript:;" style="text-decoration:none"  data-toggle="dropdown" class="dropdown-toggle nav-left-top nav-left-top-text"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
-                    <ul class="dropdown-menu" style="position:absolute;top:80px;left:0px;margin:0px;width:170px;">
-                        <li><a href="@Url.Action("Index","Configuration")" target="Main-Count">系统配置</a></li>
-                        <li class="divider"></li>
-                        <li id="UpdatePwd"><a href="javascript:;">修改密码</a></li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/api/agvlogin/exit">
-                                退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
-                            </a>
-                        </li>
+        <div style="position:fixed;top:80px;left:0px;width:100%;background-color:white;" id="nav-top-phone" class="nav-phone">
+            <ul class="sidebar-nav" style="margin-bottom:0px;">
+                <li class="sidebar-item">
+                    <a href="@Url.Action("StatisticsData","Statistics")" style="background-color:white;color:black;    border-bottom: 1px solid #D9DEE4;" target="Main-Count" class="sidebar-link collapsed">
+                        <span class="align-middle" style="color:black">首页</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#ui5" data-toggle="collapse" class="sidebar-link collapsed" style="background-color:white;color:black;    border-bottom: 1px solid #D9DEE4;">
+                       <span class="align-middle" style="color:black">仓库管理</span>
+                    </a>
+                    <ul id="ui5" class="sidebar-dropdown list-unstyled collapse ">
+                        <li class="sidebar-item"><a class="sidebar-link" style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" href="@Url.Action("Rack","Statistics")" target="Main-Count">货架管理</a></li>
                     </ul>
                 </li>
-                <li style="position:relative;width:80px;float:right;display:block;"><a href="#" class="nav-right-top"><img class="msg" src="~/image/msg.png" /></a></li>
+                <li class="sidebar-item">
+                    <a href="#ui6" data-toggle="collapse" class="sidebar-link collapsed" style="background-color:white;color:black;    border-bottom: 1px solid #D9DEE4;">
+                  <span class="align-middle" style="color:black">设备操作</span>
+                    </a>
+                    <ul id="ui6" class="sidebar-dropdown list-unstyled collapse ">
+                        <li class="sidebar-item"><a style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("AGVManagement","Equipment")" target="Main-Count">AGV管理</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#ui7" data-toggle="collapse" class="sidebar-link collapsed" style="background-color:white;color:black;border-bottom: 1px solid #D9DEE4;">
+                   <span class="align-middle" style="color:black;">统计数据</span>
+                    </a>
+                    <ul id="ui7" class="sidebar-dropdown list-unstyled collapse ">
+                        <li class="sidebar-item"><a style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("StatisticsData","Statistics")" target="Main-Count">运行统计</a></li>
+                        <li class="sidebar-item"><a style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("RunningLog","Statistics")" target="Main-Count">运行日志</a></li>
+                        <li class="sidebar-item"><a style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("TaskLog","Statistics")" target="Main-Count">任务日志</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#ui8" data-toggle="collapse" class="sidebar-link collapsed" style="background-color:white;color:black;border-bottom: 1px solid #D9DEE4;">
+                        <span class="align-middle" style="color:black">AGV系统</span>
+                    </a>
+                    <ul id="ui8" class="sidebar-dropdown list-unstyled collapse ">
+                        <li class="sidebar-item"><a  style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count">运行监控</a></li>
+                        <li class="sidebar-item"><a style="background-color:#f8f8f8;color:black;border-bottom: 1px solid #D9DEE4;" class="sidebar-link" href="@Url.Action("QR_Code","AGVSystem")" target="Main-Count">二维码管理</a></li>
+                    </ul>
+                </li>
             </ul>
-            <div id="software-Name">GALAXIS AGV智能调度系统</div>
+        </div>
+
+
+
+
+        <!-- 头部菜单 -->
+        <div class="nav-bodys">
+            <div class="main-top-nav" >
+                <a class="menu_toggle"><i class="fa fa-navicon" style="font-size:35px;font-weight:bold"></i></a>
+                <ul class="nav-ren">
+                    <li style="position:relative;width:170px;float:right;display:block;">
+                        <a href="javascript:;" style="text-decoration:none" data-toggle="dropdown" class="dropdown-toggle nav-left-top nav-left-top-text"><img class="main-user" src="~/image/user.png" />&nbsp;&nbsp;admin<b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="position:absolute;top:80px;left:0px;margin:0px;width:170px;">
+                            <li><a href="@Url.Action("Index","Configuration")" target="Main-Count">系统配置</a></li>
+                            <li class="divider"></li>
+                            <li id="UpdatePwd"><a href="javascript:;">修改密码</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/api/agvlogin/exit">
+                                    退出系统<img style="float:right;width:14px;height:14px;margin-top:4px;" src="~/image/close.png" />
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="position:relative;width:80px;float:right;display:block;"><a href="#" class="nav-right-top"><img class="msg" src="~/image/msg.png" /></a></li>
+                </ul>
+                <div id="software-Name">GALAXIS AGV智能调度系统</div>
+            </div>
         </div>
         <!-- 头部菜单end -->
         <!-- 内容 -->
-        <div class="main-counts" style="overflow:hidden;overflow-x:hidden;min-width:320px;">
-            <iframe src="@Url.Action("StatisticsData","Statistics")" frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
+        <div class="nav-bodys" style="min-width:230px;">
+            @*<div class="main-counts" style="min-width:320px;">*@
+                <iframe src="@Url.Action("StatisticsData","Statistics")" frameBorder=0 height="100%" width="100%" name="Main-Count" id="external-frame"></iframe>
+            @*</div>*@
         </div>
         <!-- 内容end -->
     </div>
@@ -217,27 +266,46 @@
                 $('.dropdown-menu').toggleClass('menu-open');
             });
             var sizetype = true;
+            var sizetype1 = true;
             window.onresize = function () {
-                if ($(window).width() < 768) {
-                    if (sizetype) {
-                        $('.menu_toggle').toggleClass('menu_toggles');
-                        $('.main-nav').toggleClass('main-navs');
-                        $('.main-counts').toggleClass('main-counts-text');
-                        sizetype = false;
-                    }
-                }
-                if ($(window).width() > 768) {
-                    sizetype = true;
-                }
+                $("#external-frame").height($(window).height() - 85);
             }
+          
+            //function mainSize()
+            //{
+            //    if ($(window).width() < 768) {
+            //        if (sizetype) {
+            //            $('.nav-bodys').toggleClass('nav-bodye');
+            //            $('.main-nav').toggleClass('main-navs');
+            //            sizetype = false;
+            //        }
+            //        sizetype1 = true;
+            //    }
+            //    if ($(window).width() > 768) {
+            //        sizetype = true;
+            //        if (sizetype1) {
+            //            $('.nav-bodys').toggleClass('nav-bodye');
+            //            $('.main-nav').toggleClass('main-navs');
+            //            sizetype1 = false;
+            //        }
+
+            //    }
+            //}
 
             $('.menu_toggle').click(function () {
-                $('.menu_toggle').toggleClass('menu_toggles');
-                $('.main-nav').toggleClass('main-navs');
-                $('.main-counts').toggleClass('main-counts-text');
+
+                if ($(window).width() < 768) {
+                    $('#nav-top-phone').slideToggle('fast');
+                } else {
+                    $('.nav-bodys').toggleClass('nav-bodye');
+                    $('.main-nav').toggleClass('main-navs');
+                }
+
+
+               
             });
 
-            //$("#external-frame").height($(window).height() - 90);
+            $("#external-frame").height($(window).height() - 85);
             $("[data-toggle='tooltip']").tooltip();
 
             CirculationTimes();
@@ -280,6 +348,8 @@
                 $('#myModal').modal('toggle'); //关闭Modal窗口
 
             });
+
+
         });
     </script>
 </body>

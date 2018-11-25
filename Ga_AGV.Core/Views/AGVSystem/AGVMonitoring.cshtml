@@ -4,23 +4,13 @@
     ViewBag.PageTitle = "AGV系统";
     ViewBag.PageColumn = "运行监控";
 }
-
-<link href="~/Scripts/AGVSystem/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet" />
-<script src="~/Scripts/AGVSystem/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-
+<link href="~/Content/AGVMonitoring.css" rel="stylesheet" />
 <div>
     <div class="count-panel" style="width:100%;margin:0px auto;">
         <div class="panel panel-default">
             <div class="panel-heading " id="pal-text"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>&nbsp;AGV监控</div>
-            <div class="panel-body" style="overflow:hidden;display:block;">
-                <div class="form-group">
+            <div class="panel-body">
                      <div class="Control-lefts">
-                        <div class="panel-body">
-                            @*<div style="width:200px;height:20px;margin:10px 0px 10px 100px;">
-                                    <form id="reservation">
-                                        <div id='slider' style="display:none"></div>
-                                    </form>
-                                </div>*@
                             <div class="form-group">
                                 <select id="combobox_agv" class="selectpicker show-tick form-control" data-live-search="false">
                                     <option value="-1">请选择 AGV</option>
@@ -32,23 +22,22 @@
                                     <option value="6">AGV 6</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="count-panel" style="width:100%;margin:0px auto;height:670px">
+                        <div class="count-panel" style="padding:3px;text-align:center;">
                             <div class="x_title">
-                                <h2 style="font-size:18px;margin-top:20px;">基本信息</h2>
+                                <h2 style="font-size:18px;margin-top:10px;">基本信息</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix">
                                 <div style="width:100%;">
                                     <ul class="Control-li clearfix-ul">
-                                        <li class="clearfix-li">AGV编号</li>
+                                        <li class="clearfix-li">编号</li>
                                         <li class="clearfix-count" id="agvNum">1号</li>
                                         <li class="clearfix-li">状态</li>
                                         <li class="clearfix-count" id="agvIsRunning">在线</li>
                                     </ul>
                                     <ul class="Control-li clearfix-ul">
                                         <li class="clearfix-li">二维码</li>
-                                        <li class="clearfix-count clearfix-width" id="qrcode" style="width:74%">1</li>
+                                        <li class="clearfix-count clearfix-width info-width" id="qrcode">1</li>
                                     </ul>
                                     <ul class="Control-li clearfix-ul">
                                         <li class="clearfix-li">PBS</li>
@@ -58,7 +47,7 @@
                                     </ul>
                                     <ul class="Control-li clearfix-ul">
                                         <li class="clearfix-li">报警信息</li>
-                                        <li class="clearfix-count clearfix-width" id="Message" style="width:74%">正常</li>
+                                        <li class="clearfix-count clearfix-width info-width" id="Message">正常</li>
                                     </ul>
                                     <ul class="Control-li clearfix-ul">
                                         <li class="clearfix-li">当前位置</li>
@@ -77,10 +66,8 @@
                         </div>
                     </div>
                     <div class="Control-right">
-
                         <canvas id="canvas" style="border:#EDEDED solid 1px">您当前的浏览器版本不支持此功能</canvas>
                     </div>
-                </div>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@
     z-index: 1;
     height: 100%;
     display: block;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .main-navs {
@@ -30,6 +30,7 @@
     height: 100%;
     display: block;
 }
+
 
 .sidebar-link, a.sidebar-link {
     display: block;
@@ -123,6 +124,7 @@ li {
     border-bottom: 1px solid #D9DEE4;*/
     background: #fff !important;
     border-bottom: 1px solid #D9DEE4;
+    position:relative;
 }
 
 .main-bottom-time {
@@ -152,31 +154,12 @@ li {
 }
 
 .main-counts {
-    position: absolute;
-    top: 80px;
-    left: 220px;
-    right: 0px;
-    bottom: 0px;
     /*padding-left: 220px;*/
     /*height:100%;*/
     /*background: #F7F7F7;*/
     background: #EDEDED;
     display: block;
     transition: all 0.5s;
-}
-
-
-.main-counts-text {
-    position: absolute;
-    top: 80px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    /*padding-left: 220px;*/
-    /*height:100%;*/
-    /*background: #F7F7F7;*/
-    background: #EDEDED;
-    display: block;
 }
 
 
@@ -243,12 +226,11 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
     position: absolute;
     top: 24.88px;
     display: block;
-    left: 242px;
+    left: 10px;
     width: 30.48px;
     height: 30.24px;
     cursor: pointer;
     color: #73879C;
-    transition: all 0.5s;
     z-index:999;
 }
 
@@ -298,65 +280,46 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
 .menu-open {
     display: block;
 }
-.menu_toggles {
-    position: absolute;
-    top: 24.88px;
-    display: block;
-    left: 10px;
-    width: 30.48px;
-    height: 30.24px;
-    cursor: pointer;
-    color: #73879C;
+.nav-bodys {
+    margin-left: 220px;
+    transition: all 0.3s;
 }
 
-
+.nav-bodye {
+    margin-left: 0px;
+}
+.nav-phone {
+    display:none;
+}
 /* 小屏幕 */
 @media all and (max-width: 1200px) {
-
-}
-
-/* 平板 */
-@media all and (max-width: 1024px) {
     #software-Name {
         display: none
     }
 }
 
+/* 平板 */
+@media all and (max-width: 1024px) {
+
+}
+
 /* 手机 */
 @media all and (max-width: 768px) {
-    /*.menu_toggle {
-        position: absolute;
-        top: 24.88px;
-        display: block;
-        left: 10px;
-        width: 30.48px;
-        height: 30.24px;
-        cursor: pointer;
-        color: #73879C;
-    }
+
     .main-nav {
-        width: 220px;
-        background-color: rgb(46, 62, 78);
-        position: absolute;
         left: -220px;
-        top: 0px;
-        bottom: 0px;
-        z-index: 1;
-        height: 100%;
-        display: block;
     }
-    .main-counts {
-        position: absolute;
-        top: 80px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        background: #EDEDED;
-        display: block;
-    }*/
+    .nav-bodys {
+        margin-left:0px;
+    }
+    .brand {
+        z-index:-999;
+    }
 }
 
 /* 超小屏幕（苹果SE） */
 @media all and (max-width: 340px) {
+
+
 
 }

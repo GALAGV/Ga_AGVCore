@@ -5,12 +5,8 @@
     ViewBag.PageColumn = "系统配置";
 }
 @model List<Ga_AGV.Model.DataModel.Ga_setting>
-<style>
-    .tab-content {
-        margin-top: 20px;
-    }
-</style>
-<div class="count-panel" style="width:100%;min-width:500px;margin:0px auto;">
+<link href="~/Content/Configuration.css" rel="stylesheet" />
+<div class="count-panel" style="width:100%;margin:0px auto;">
     <div class="x_title">
         <h2 style="font-size:18px;">系统配置</h2>
         <div class="clearfix"></div>
@@ -64,7 +60,7 @@
                         </form>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tab_networkStatic" aria-labelledby="seo-tab">
-                        <div style="width:50%;margin:0px auto;">
+                        <div style="margin:0px auto;" class="Configuration-count">
                             <table class="table table-bordered">
                                 <tr>
                                     <td width="140" style="font-size:15px;text-align:center;font-weight:bold">监听IP</td>
@@ -88,7 +84,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div style="width:50%;margin:0px auto;height:60px;">
+                        <div style="margin:0px auto;height:60px;" class="Configuration-count">
                             <ul>
                                 <li style="float:left">
                                     <button type="button" class="btn btn-primary" id="monitor">监听</button>

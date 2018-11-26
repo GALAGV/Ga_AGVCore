@@ -1,0 +1,105 @@
+﻿.Control-li li {
+    width: 24%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.Contro-counts {
+    background-color: #1ABC9C;
+    color: white;
+    font-size: 18px;
+    border-radius: 2%
+}
+
+.Contro-info {
+    font-size: 18px;
+    font-weight: bold;
+    background: #EDEDED;
+}
+
+#Message {
+    width: 74%;
+}
+
+.count-Left {
+    display: block;
+    float: left;
+    width: 49.8%;
+}
+
+.count-right {
+    display: block;
+    float: right;
+    width: 49.8%
+}
+
+.agv-infos-left {
+    width: 50%;
+    float: left;
+    position: relative;
+    max-width: 290px;
+}
+
+.agv-infos-Right {
+    float: right;
+    width: 49%;
+    height: 250px;
+}
+.modal-text {
+    max-width: 1400px
+}
+@media all and (max-width: 1411px) {
+    .agv-infos-Right {
+        display: block;
+        float: right;
+        width: 40%;
+        height: 180px;
+    }
+}
+
+/* 小屏幕 */
+@media all and (max-width: 1200px) {
+    .count-Left {
+        display: block;
+        float: none;
+        width: 99.8%;
+    }
+    .count-right {
+        display: block;
+        float: none;
+        width: 99.8%;
+    }
+}
+
+/* 平板 */
+@media all and (max-width: 1024px) {
+
+
+
+}
+
+/* 手机 */
+@media all and (max-width: 768px) {
+    .agv-infos-left {
+        display: block;
+        width: 100%;
+        float: none;
+        text-align: center;
+        max-width: initial;
+    }
+    .agv-infos-Right {
+        display:block;
+        float: none;
+        width: 100%;
+        height: 180px;
+    }
+}
+
+/* 超小屏幕（苹果SE） */
+@media all and (max-width: 340px) {
+
+
+
+}

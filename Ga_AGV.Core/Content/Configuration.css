@@ -1,0 +1,14 @@
+﻿.tab-content {
+    margin-top: 20px;
+}
+
+.Configuration-count {
+    width: 50%;
+}
+/* 手机 */
+@media all and (max-width: 768px) {
+    .Configuration-count {
+        width: 85%;
+    }
+
+}

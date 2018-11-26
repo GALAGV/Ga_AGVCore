@@ -140,10 +140,6 @@
                 </li>
             </ul>
         </div>
-
-
-
-
         <!-- 头部菜单 -->
         <div class="nav-bodys">
             <div class="main-top-nav" >
@@ -294,7 +290,7 @@
 
             $('.menu_toggle').click(function () {
 
-                if ($(window).width() < 768) {
+                if ($(window).width() <= 768) {
                     $('#nav-top-phone').slideToggle('fast');
                 } else {
                     $('.nav-bodys').toggleClass('nav-bodye');

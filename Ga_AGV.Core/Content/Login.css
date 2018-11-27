@@ -61,6 +61,8 @@
     -moz-box-shadow: 3px 3px 8px #333333;
     -webkit-box-shadow: 3px 3px 8px #333333;
     box-shadow: 3px 3px 8px #333333;
+    padding-top:55px;
+
 }
 
 .main-centre-count ul {
@@ -97,7 +99,7 @@
     width: 80%;
     margin: 0px auto;
     height: 80px;
-    line-height: 400px;
+    line-height: 80px;
 }
 
 .main-form {
@@ -132,7 +134,7 @@
 @media all and (max-width: 1200px) {
 
     .main-count {
-        width: 60%;
+        width: 57%;
         height: 70%;
     }
 }
@@ -141,7 +143,7 @@
 @media all and (max-width: 1024px) {
 
     .main-count {
-        width: 75%;
+        width: 62%;
         height: 70%;
     }
     .main-middle {
@@ -166,7 +168,7 @@
 @media all and (max-width: 768px) {
     .main-count {
         width: 90%;
-        height: 90%;
+        height: 70%;
     }
     .main-middle {
         width: 100%;
@@ -192,6 +194,15 @@
         /*margin-top: 40px;*/
         line-height: 80px;
         text-align: center;
+    }
+
+    .main-centre-count {
+        height: 260px;
+        padding-top: 52px;
+    }
+    .main-group {
+        height:65px;
+        line-height: 65px;
     }
 }
 

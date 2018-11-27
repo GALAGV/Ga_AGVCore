@@ -47,6 +47,23 @@ namespace Ga_AGV.Core.API
         }
 
         /// <summary>
+        /// 清空
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult EmptyQRCode()
+        {
+            if (BLL.Ga_EmptyQRcodeBLL())
+            {
+                return new JsonResult() { Message = "成功", Success = true };
+            }
+            else
+            {
+                return new JsonResult() { Message = "失败", Success = false };
+            }
+        }
+
+        /// <summary>
         /// 批量添加
         /// </summary>
         /// <returns></returns>
@@ -131,9 +148,18 @@ namespace Ga_AGV.Core.API
         }
 
         [HttpPost]
-        public Jsontaskinfo AGVlocation([FromBody] Ga_agv agvdata)
+        public List<Jsontaskinfo> AGVlocation([FromBody] Ga_agv agvdata)
         {
-            return new Jsontaskinfo() { agvNum = agvdata.agvNum, agvIsRunning = "在线", qrcode = "2", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "10", Task = "运输", taskStartQR = "20", taskEndQR = "50" };
+            List<Jsontaskinfo> list = new List<Jsontaskinfo>
+            {
+                new Jsontaskinfo() { agvNum = 1, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "56", Task = "运输", taskStartQR = "20", taskEndQR = "50" },
+                new Jsontaskinfo() { agvNum = 2, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "156", Task = "运输", taskStartQR = "20", taskEndQR = "50" },
+                new Jsontaskinfo() { agvNum = 3, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "100", Task = "运输", taskStartQR = "20", taskEndQR = "50" },
+                new Jsontaskinfo() { agvNum = 4, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "78", Task = "运输", taskStartQR = "20", taskEndQR = "50" },
+                new Jsontaskinfo() { agvNum = 5, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "20", Task = "运输", taskStartQR = "20", taskEndQR = "50" },
+                new Jsontaskinfo() { agvNum = 6, agvIsRunning = "在线", qrcode = "11", PBS = "区域3", agvHolder = "下降", Message = "障碍物检测", agvQR = "134", Task = "运输", taskStartQR = "20", taskEndQR = "50" }
+            };
+            return list;
         }
 
         #endregion 监控

@@ -19,14 +19,14 @@ namespace Ga_AGV.DAL.DataAccess
         /// <param name="limit">页面大小</param>
         /// <param name="offset">当前页</param>
         /// <returns></returns>
-        public List<Ga_agv> GetagvList(ref int pageCount, int limit, int offset,int agvNum)
+        public List<Ga_agv> GetagvList(ref int pageCount, int limit, int offset, int agvNum)
         {
             List<Ga_agv> list = new List<Ga_agv>();
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT * FROM `ga_agv`.`ga_agv`  ");
             if (agvNum != 0)
             {
-                sql.Append("  WHERE agvNum="+ agvNum + "");
+                sql.Append("  WHERE agvNum=" + agvNum + "");
             }
             sql.Append(" LIMIT @offset,@limit ");
             MySqlParameter[] par ={
@@ -57,13 +57,30 @@ namespace Ga_AGV.DAL.DataAccess
             var s = "SELECT COUNT(*) FROM `ga_agv`.`ga_agv`";
             if (agvNum != 0)
             {
-               s+= "WHERE agvNum = "+ agvNum + "";
+                s += "WHERE agvNum = " + agvNum + "";
             }
             DataTable f = MySqlHelper.ExecuteDataTable(s);
             foreach (DataRow item in f.Rows)
             {
                 pageCount = int.Parse(item[0].ToString().Trim());
             }
+            return list;
+        }
+
+        public List<Ga_agv> GetagvList()
+        {
+            List<Ga_agv> list = new List<Ga_agv>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT `agvNum` FROM `ga_agv`.`ga_agv`  ");
+            MySqlDataReader dd = MySqlHelper.ExecuteReader(sql.ToString());
+            while (dd.Read())
+            {
+                list.Add(new Ga_agv()
+                {
+                    agvNum = Convert.ToInt32(dd["agvNum"].ToString().Trim())
+                });
+            }
+            dd.Close();
             return list;
         }
 
@@ -90,7 +107,6 @@ namespace Ga_AGV.DAL.DataAccess
             return MySqlHelper.ExecuteNonQuery(sql.ToString(), par) > 0 ? true : false;
         }
 
-
         /// <summary>
         /// 删除AGV
         /// </summary>
@@ -100,7 +116,6 @@ namespace Ga_AGV.DAL.DataAccess
         {
             return MySqlHelper.ExecuteNonQuery("DELETE  FROM `ga_agv`.`ga_agv` WHERE agvId=@agvId", new MySqlParameter[] { (new MySqlParameter("@agvId", MySqlDbType.Int32, 1000) { Value = agv.agvId }) }) > 0 ? true : false;
         }
-
 
         /// <summary>
         /// agv批量删除

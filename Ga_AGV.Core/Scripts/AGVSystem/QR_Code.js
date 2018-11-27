@@ -26,6 +26,44 @@
         $("#tb_report").bootstrapTable('refresh');
     });
 
+    //清空QR
+    $("#btn_empty").click(function () {
+        bootbox.confirm({
+            message: "确认清空二维码信息吗？",
+            buttons: {
+                confirm: {
+                    label: '确认',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: '/api/AGVSystem/EmptyQRCode',
+                        type: "post",
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.Success) {
+                                $("#tb_report").bootstrapTable('refresh');
+                                toastr.success(data.Message);
+                            }
+                            else {
+                                toastr.error(data.Message);
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error(e.Message);
+                        }
+                    });
+                }
+            }
+        });
+    });
+
     //批量新增s
     $("#btn_add_s").click(function () {
         $("#myModal_s").find(".form-control").val("");  //清空
@@ -47,9 +85,10 @@
         submit("/api/AGVSystem/AddQRCode_s", data);
         $('#myModal_s').modal('toggle'); //关闭Modal窗口
     });
+
     //验证_s
     function Verify_s() {
-        if ($('#map_name').val() == "" || $('#map_x').val() == "" || $('#qr_x').val() == "" || $('#map_y').val() == "" || $('#qr_y').val() == "") {
+        if ($('#map_name').val() === "" || $('#map_x').val() === "" || $('#qr_x').val() === "" || $('#map_y').val() === "" || $('#qr_y').val() === "") {
             toastr.error('不能为空！！！');
             return false;
         }
@@ -72,7 +111,7 @@
     //修改
     $("#btn_edit").click(function () {
         var row = $("#tb_report").bootstrapTable('getSelections');
-        if (row.length == 1) {
+        if (row.length === 1) {
             $("#myModalLabel").text("修改");
             $("#txt_qrId").val(row[0].qrId);
             $("#txt_qrInfo").val(row[0].qrInfo);
@@ -104,8 +143,10 @@
                         className: 'btn-default'
                     }
                 },
-                callback: function () {
-                    submit("/api/AGVSystem/DelQRCode", data);
+                callback: function (result) {
+                    if (result) {
+                        submit("/api/AGVSystem/DelQRCode", data);
+                    }
                 }
             });
         } else {
@@ -125,12 +166,12 @@
         };
         var title = $("#myModalLabel").text();
         console.log("QR_Code" + title);
-        if (title == "新增") {
+        if (title === "新增") {
             if (!Verify())
                 return;
             submit("/api/AGVSystem/AddQRCode", data);
             $('#myModal').modal('toggle'); //关闭Modal窗口
-        } else if (title == "修改") {
+        } else if (title === "修改") {
             if (!Verify())
                 return;
             submit("/api/AGVSystem/UpQRCode", data);
@@ -163,7 +204,7 @@
 
     //验证
     function Verify() {
-        if ($('#txt_qrInfo').val() == "" || $('#txt_qrX').val() == "" || $('#txt_qrY').val() == "" || $('#txt_qrStatus').val() == "") {
+        if ($('#txt_qrInfo').val() === "" || $('#txt_qrX').val() === "" || $('#txt_qrY').val() === "" || $('#txt_qrStatus').val() === "") {
             toastr.error('不能为空！！！');
             return false;
         }
@@ -218,7 +259,7 @@ window.operateEvents = {
                         success: function (data) {
                             if (data.Success) {
                                 $("#tb_report").bootstrapTable('refresh');
-                                toastr.success(data.Message)
+                                toastr.success(data.Message);
                             }
                             else {
                                 $("#tb_report").bootstrapTable('refresh');
@@ -287,9 +328,9 @@ var TableInit = function () {
                 field: 'qrStatus',
                 title: '状态',
                 align: 'center', formatter: function (value, row, index) {
-                    if (value == '1') {
+                    if (value === '1') {
                         return "<span class='label label-success'>使用中</span>";
-                    } if (value == '2') {
+                    } if (value === '2') {
                         return "<span class='label label-errer'>禁用</span>";
                     }
                 }

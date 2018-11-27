@@ -43,7 +43,7 @@ namespace Ga_AGV.DAL
 
         #region ExecuteNonQuery
 
-        //执行SQL语句，返回影响的记录数
+        /// 执行SQL语句，返回影响的记录数
         /// <summary>
         /// 执行SQL语句，返回影响的记录数
         /// </summary>
@@ -65,6 +65,32 @@ namespace Ga_AGV.DAL
                     {
                         connection.Close();
                         return 0;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
+        public static int ExecuteSql(string SQLString)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(SQLString, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows;
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException)
+                    {
+                        connection.Close();
+                        throw;
                     }
                 }
             }
@@ -451,6 +477,7 @@ namespace Ga_AGV.DAL
                 return ds.Tables[0];
             }
         }
+
         #endregion ExecuteDataTable
 
         /// <summary>

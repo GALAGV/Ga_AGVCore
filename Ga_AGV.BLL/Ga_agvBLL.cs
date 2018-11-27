@@ -10,7 +10,7 @@ namespace Ga_AGV.BLL
 {
     public class Ga_agvBLL
     {
-        Ga_agvDAL GeagvtDAL = new Ga_agvDAL();
+        private Ga_agvDAL GeagvtDAL = new Ga_agvDAL();
 
         /// <summary>
         /// 获取所有AGV数据
@@ -19,9 +19,14 @@ namespace Ga_AGV.BLL
         /// <param name="limit"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public List<Ga_agv> GetagvData(ref int pageCount, int limit, int offset,int agvNum)
+        public List<Ga_agv> GetagvData(ref int pageCount, int limit, int offset, int agvNum)
         {
             return GeagvtDAL.GetagvList(ref pageCount, limit, offset, agvNum);
+        }
+
+        public List<Ga_agv> GetagvData()
+        {
+            return GeagvtDAL.GetagvList();
         }
 
         /// <summary>
@@ -30,7 +35,7 @@ namespace Ga_AGV.BLL
         /// <returns></returns>
         public bool agvadd(Ga_agv agv)
         {
-           return GeagvtDAL.Addagv(agv);
+            return GeagvtDAL.Addagv(agv);
         }
 
         /// <summary>
@@ -42,7 +47,6 @@ namespace Ga_AGV.BLL
         {
             return GeagvtDAL.agvdelete(agv);
         }
-
 
         /// <summary>
         /// agv批量删除

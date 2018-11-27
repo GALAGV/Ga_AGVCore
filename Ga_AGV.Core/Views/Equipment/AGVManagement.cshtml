@@ -158,13 +158,13 @@
                             <div class="clearfix">
                                 <div style="height:50%;overflow:hidden;">
                                     <div style="width:50%;float:left;position:relative;max-width:290px;">
-                                        <img src="~/image/agv-on.gif" style="max-width:290px;width:100%;height:250px; "  id="agvimg"/>
+                                        <img src="~/image/agv-on.gif" style="max-width:290px;width:100%;height:250px; " id="agvimg" />
                                         <span style="position:absolute;top:40px;left:0%;text-align:center;width:100%;"><span style="font-size:20px;color:white;font-weight:bold;font-family:'微软雅黑';padding:0px 8px;border:1px solid white;border-radius:5%" id="agvNums"></span></span>
                                         <span style="position:absolute;top:190px;left:0%;text-align:center;width:100%;"><span style="font-size:20px;color:white;font-weight:bold;font-family:'微软雅黑';" id="agvsNumer"></span></span>
                                     </div>
                                     <div style="float:right;width:49%;height:250px;">
                                         <ul style="margin-top:60px;">
-                                            <li style="text-align:center"><button type="button" onclick="agvstarts()" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;" >启动</button></li>
+                                            <li style="text-align:center"><button type="button" onclick="agvstarts()" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;">启动</button></li>
                                             <li style="margin-top:50px;text-align:center"><button type="button" class="btn btn-primary" style="width:100%;height:45px;max-width:250px;" onclick="agvstop()">停止</button></li>
                                         </ul>
                                     </div>
@@ -202,7 +202,7 @@
                                             </div>
                                         </li>
                                         <li style="margin-top:50px;text-align:center;overflow:hidden;">
-                                            <button type="button" class="btn btn-primary" style="width:49%;height:45px;float:left"  onclick="DeckRise()">云台上升</button>
+                                            <button type="button" class="btn btn-primary" style="width:49%;height:45px;float:left" onclick="DeckRise()">云台上升</button>
                                             <button type="button" class="btn btn-primary" style="width:49%;height:45px;float:right" onclick="DeckDecline()">云台下降</button>
                                         </li>
                                         <li style="margin-top:50px;text-align:center;overflow:hidden">
@@ -244,126 +244,3 @@
     </div>
 </div>
 <script src="~/Scripts/Equipment/AGVManagement.js"></script>
-<script>
-
-
-    //// 公共配置
-    //Highcharts.setOptions({
-    //    chart: {
-    //        type: 'solidgauge'
-    //    },
-    //    title: null,
-    //    pane: {
-    //        center: ['50%', '85%'],
-    //        size: '140%',
-    //        startAngle: -90,
-    //        endAngle: 90,
-    //        background: {
-    //            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-    //            innerRadius: '60%',
-    //            outerRadius: '100%',
-    //            shape: 'arc'
-    //        }
-    //    },
-    //    tooltip: {
-    //        enabled: false
-    //    },
-    //    yAxis: {
-    //        stops: [
-    //            [0.1, '#55BF3B'], // green
-    //            [0.5, '#DDDF0D'], // yellow
-    //            [0.9, '#DF5353'] // red
-    //        ],
-    //        lineWidth: 0,
-    //        minorTickInterval: null,
-    //        tickPixelInterval: 400,
-    //        tickWidth: 0,
-    //        title: {
-    //            y: -70
-    //        },
-    //        labels: {
-    //            y: 16
-    //        }
-    //    },
-    //    plotOptions: {
-    //        solidgauge: {
-    //            dataLabels: {
-    //                y: 5,
-    //                borderWidth: 0,
-    //                useHTML: true
-    //            }
-    //        }
-    //    }
-    //});
-    //// 速度仪表
-    //var chart1 = Highcharts.chart('container-speed', {
-    //    yAxis: {
-    //        min: 0,
-    //        max: 200,
-    //        title: {
-    //            text: '速度'
-    //        }
-    //    },
-    //    credits: {
-    //        enabled: false
-    //    },
-    //    series: [{
-    //        name: '速度',
-    //        data: [80],
-    //        dataLabels: {
-    //            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-    //                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-    //                '<span style="font-size:12px;color:silver">m/min</span></div>'
-    //        },
-    //        tooltip: {
-    //            valueSuffix: ' km/h'
-    //        }
-    //    }]
-    //});
-    //// 电量仪表
-    //var chart2 = Highcharts.chart('container-rpm', {
-    //    yAxis: {
-    //        min: 0,
-    //        max: 100,
-    //        title: {
-    //            text: '电压'
-    //        }
-    //    },
-    //    series: [{
-    //        name: '电压',
-    //        data: [1],
-    //        dataLabels: {
-    //            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-    //                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-    //                '<span style="font-size:12px;color:silver">v</span></div>'
-    //        },
-    //        tooltip: {
-    //            valueSuffix: ' revolutions/min'
-    //        }
-    //    }]
-    //});
-    //// 定时刷新数据
-    //setInterval(function () {
-    //    var point,
-    //        newVal,
-    //        inc;
-    //    if (chart1) {
-    //        point = chart1.series[0].points[0];
-    //        inc = Math.round((Math.random() - 0.5) * 100);
-    //        newVal = point.y + inc;
-    //        if (newVal < 0 || newVal > 200) {
-    //            newVal = point.y - inc;
-    //        }
-    //        point.update(newVal);
-    //    }
-    //    if (chart2) {
-    //        point = chart2.series[0].points[0];
-    //        inc = Math.random() - 0.5;
-    //        newVal = point.y + inc;
-    //        if (newVal < 0 || newVal > 5) {
-    //            newVal = point.y - inc;
-    //        }
-    //        point.update(newVal);
-    //    }
-    //}, 2000);
-</script>

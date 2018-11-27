@@ -16,7 +16,7 @@ namespace Ga_AGV.TCPListener
     /// </summary>
     public class TCPMonitor
     {
-        Ga_settingBLL ga_Setting = new Ga_settingBLL();
+        private Ga_settingBLL ga_Setting = new Ga_settingBLL();
 
         /// <summary>
         /// 开启 Server 线程
@@ -76,20 +76,18 @@ namespace Ga_AGV.TCPListener
             TCPSocket.TCPServer = new AsyncTCPServer(IPAddress.Parse(Address), Port, TCPSocket.maxConnect);
             TCPSocket.TCPServer.ClientConnected += TCPServer_ClientConnected;
             TCPSocket.TCPServer.DataReceived += TCPServer_DataReceived;
-            //TCPSocket.TCPServer.DataReceived += TCPServer_DataReceived;
             TCPSocket.TCPServer.Start();
         }
 
         private void TCPServer_ClientConnected(object sender, AsyncEventArgs e)
         {
-            
+            object s = sender;
         }
 
         private void TCPServer_DataReceived(object sender, AsyncEventArgs e)
         {
- 
+            object s = sender;
         }
-
 
         private void GetMessageList(byte[] byteStr, ref List<byte[]> MessageList)
         {
@@ -113,10 +111,5 @@ namespace Ga_AGV.TCPListener
                 }
             }
         }
-
-
-
-
-
     }
 }

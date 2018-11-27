@@ -14,7 +14,6 @@
 }
 
 .Control-li li {
-
     height: 50px;
     text-align: center;
     line-height: 50px;
@@ -28,7 +27,7 @@
 
 .clearfix-li {
     width: 24%;
-    background-color: #1ABC9C;
+    background-color: #FF8C00;
     color: white;
     font-size: 18px;
     border-radius: 2%
@@ -44,8 +43,9 @@
 .clearfix-width {
     color: #139656;
 }
+
 .info-width {
-    width:74%;
+    width: 74%;
 }
 /* 小屏幕 */
 @media all and (max-width: 1200px) {
@@ -63,9 +63,11 @@
     .clearfix-li {
         font-size: 15px;
     }
+
     .clearfix-count {
         font-size: 15px;
     }
+
     .Control-lefts {
         width: 55%;
     }
@@ -81,7 +83,7 @@
         float: none;
         display: block;
         width: 100%;
-        overflow:hidden;
+        overflow: hidden;
     }
 
     .Control-right {
@@ -92,6 +94,7 @@
         display: block;
         border: #ccc solid 2px;
     }
+
     .clearfix-li {
         width: 49%;
         font-size: 14px;
@@ -101,7 +104,6 @@
         width: 49%;
         font-size: 14px;
     }
-
 }
 
 @media all and (max-width: 340px) {

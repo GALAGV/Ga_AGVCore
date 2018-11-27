@@ -15,7 +15,7 @@ namespace Ga_AGV.Core.API
     /// </summary>
     public class agvlistController : ApiController
     {
-        Ga_agvBLL Ga_Agv = new Ga_agvBLL();
+        private Ga_agvBLL Ga_Agv = new Ga_agvBLL();
 
         /// <summary>
         /// 获取所有AGV数据
@@ -30,6 +30,14 @@ namespace Ga_AGV.Core.API
             JsonData<Ga_agv> data = new JsonData<Ga_agv>();
             data.rows = Ga_Agv.GetagvData(ref pageCount, limit, offset, agvNum == "" ? 0 : Convert.ToInt32(agvNum));
             data.total = pageCount;
+            return data;
+        }
+
+        [HttpPost]
+        public List<Ga_agv> agv()
+        {
+            List<Ga_agv> data = new List<Ga_agv>();
+            data = Ga_Agv.GetagvData();
             return data;
         }
 
@@ -211,17 +219,17 @@ namespace Ga_AGV.Core.API
         /// <returns></returns>
         public JsonResult Restoration([FromBody] Ga_agv agvdata)
         {
-            return new JsonResult() { Message="模拟测试" };
+            return new JsonResult() { Message = "模拟测试" };
         }
 
-        static int a = 0;
+        private static int a = 0;
+
         /// <summary>
         /// AGV状态回读
         /// </summary>
         /// <returns></returns>
         public JsonagvInfo agvState([FromBody] Ga_agv agvdata)
         {
-
             if (a > 10)
             {
                 a = 0;
@@ -229,10 +237,5 @@ namespace Ga_AGV.Core.API
             a++;
             return new JsonagvInfo() { Success = true, agvNum = 1, agvFirmware = "V1.02.3" + a, agvHolder = a > 5 ? "上升" : "下降", agvIsRunning = a > 5 ? "离线" : "在线", Message = a > 5 ? "正常" : "障碍物检测中", qrcode = "003", PBS = "区域" + a, agvspeed = a * 2, voltage = a * 6 };
         }
-
-
-
-
-
     }
 }

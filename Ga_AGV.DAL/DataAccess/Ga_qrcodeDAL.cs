@@ -108,6 +108,18 @@ namespace Ga_AGV.DAL.DataAccess
         #endregion 增删查改 二维码管理
 
         /// <summary>
+        /// 清空
+        /// </summary>
+        /// <returns></returns>
+        public bool Ga_EmptyQRcode()
+        {
+            List<string> sql = new List<string>();
+            sql.Add("DROP TABLE IF EXISTS `ga_agv`.`ga_qrcode`; CREATE TABLE `ga_agv`.`ga_qrcode` ( `qrId` int(10) NOT NULL AUTO_INCREMENT COMMENT '二维码ID', `qrInfo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '二维码信息', `qrX` bigint(20) NOT NULL COMMENT '二维码X值', `qrY` bigint(20) NOT NULL COMMENT '二维码Y值', `qrStatus` int(50) NULL DEFAULT NULL COMMENT '二维码状态（1使用中，2禁用）', `qrRemark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '二维码备注', PRIMARY KEY (`qrId`) USING BTREE ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact; SET FOREIGN_KEY_CHECKS = 1;");
+
+            return MySqlHelper.ExecuteSqlTran(sql);
+        }
+
+        /// <summary>
         /// 批量添加二维码 and 添加地图尺寸
         /// </summary>
         /// <param name="map"></param>

@@ -1481,6 +1481,7 @@
     <Content Include="Scripts\toastr-master\nuget\toastr.2.0.3.nuspec" />
     <Content Include="Views\AGVSystem\AGVMonitoring.cshtml" />
     <Content Include="Views\Statistics\StatisticsData.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commonality\Commonality.csproj">

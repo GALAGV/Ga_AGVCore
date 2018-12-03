@@ -90,5 +90,10 @@ namespace Ga_AGV.Core.Controllers
                 return View();
             }
         }
+
+        public ActionResult Statisti()
+        {
+            return View();
+        }
     }
 }

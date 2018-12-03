@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "StatisticsData";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
     ViewBag.PageTitle = "统计数据";
     ViewBag.PageColumn = "统计报表";
 }
@@ -20,35 +20,35 @@
                 <div>
                     <div class="fonyr-pou">
                         <dl class="tent"  style="margin-top:2px;">
-                            <dt><a href="@Url.Action("Rack","Statistics")" target="Main-Count"><i class="icon-size fa fa-server"></i></a></dt>
+                            <dt><a href="@Url.Action("Rack","Statistics")#nav1"><i class="icon-size fa fa-server"></i></a></dt>
                             <dd>货架管理</dd>
                         </dl>
                         <dl class="tent"  style="margin-top:2px;">
-                            <dt><a href="@Url.Action("AGVManagement","Equipment")" target="Main-Count"><i class="icon-size fa fa-cog"></i></a></dt>
+                            <dt><a href="@Url.Action("AGVManagement","Equipment")#nav2"><i class="icon-size fa fa-cog"></i></a></dt>
                             <dd>AGV管理</dd>
                         </dl>
                         <dl class="tent tent-right"  style="margin-top:2px;">
-                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-external-link-square"></i></a></dt>
+                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")#nav4"><i class="icon-size fa fa-external-link-square"></i></a></dt>
                             <dd>AGV状态</dd>
                         </dl>
                         <dl class="tent tent-right"  style="margin-top:2px;">
-                            <dt><a href="@Url.Action("RunningLog","Statistics")" target="Main-Count"><i class="icon-size fa fa-hourglass-2"></i></a></dt>
+                            <dt><a href="@Url.Action("RunningLog","Statistics")#nav3"><i class="icon-size fa fa-hourglass-2"></i></a></dt>
                             <dd>运行日志</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><a href="@Url.Action("TaskLog","Statistics")" target="Main-Count"><i class="icon-size fa fa-paper-plane"></i></a></dt>
+                            <dt><a href="@Url.Action("TaskLog","Statistics")#nav3"><i class="icon-size fa fa-paper-plane"></i></a></dt>
                             <dd>任务日志</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-desktop"></i></a></dt>
+                            <dt><a href="@Url.Action("AGVMonitoring","AGVSystem")#nav4"><i class="icon-size fa fa-desktop"></i></a></dt>
                             <dd>运行监控</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><a href="@Url.Action("QR_Code","AGVSystem")" target="Main-Count"><i class="icon-size fa fa-qrcode"></i></a></dt>
+                            <dt><a href="@Url.Action("QR_Code","AGVSystem")#nav4"><i class="icon-size fa fa-qrcode"></i></a></dt>
                             <dd>二维码</dd>
                         </dl>
                         <dl class="tent">
-                            <dt><a href="@Url.Action("Index","Configuration")" target="Main-Count"><i class="icon-size fa fa-map"></i></a></dt>
+                            <dt><a href="@Url.Action("Index","Configuration")"><i class="icon-size fa fa-map"></i></a></dt>
                             <dd>系统配置</dd>
                         </dl>
                         <div class="clear"></div>

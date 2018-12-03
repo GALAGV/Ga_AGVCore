@@ -34,6 +34,7 @@ namespace Ga_AGV.Core.API
         /// </summary>
         /// <param name="Rack"></param>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult Rackadd([FromBody] Ga_rack Rackadd)
         {
             if (ga_RackBLL.rackadd(Rackadd)) {
@@ -49,6 +50,7 @@ namespace Ga_AGV.Core.API
         /// </summary>
         /// <param name="Rack"></param>
         /// <returns></returns>
+ 
         public JsonResult editrack([FromBody] Ga_rack rackdata)
         {
             if (ga_RackBLL.edit(rackdata))

@@ -155,7 +155,7 @@
     });
 
     //模态窗体 提交
-    $("#btn_submit").click(function () {
+    $("#btn_QRsubmit").click(function () {
         var data = {
             qrId: $("#txt_qrId").val(),
             qrInfo: $("#txt_qrInfo").val(),

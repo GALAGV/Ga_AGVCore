@@ -9,13 +9,11 @@
 .main-nav {
     width: 220px;
     background-color: rgb(46, 62, 78);
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     bottom: 0px;
     z-index: 1;
-    height: 100%;
-    display: block;
     transition: all 0.3s;
 }
 
@@ -160,6 +158,8 @@ li {
     background: #EDEDED;
     display: block;
     transition: all 0.5s;
+    overflow:auto;
+    padding:8px;
 }
 
 
@@ -307,7 +307,7 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
 /* 手机 */
 @media all and (max-width: 768px) {
 
-    .main-nav {
+    /*.main-nav {
         left: -220px;
     }
     .nav-bodys {
@@ -315,7 +315,7 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
     }
     .brand {
         z-index:-999;
-    }
+    }*/
 }
 
 /* 超小屏幕（苹果SE） */

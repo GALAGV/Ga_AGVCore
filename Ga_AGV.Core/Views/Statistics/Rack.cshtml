@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Rack";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
     ViewBag.PageTitle = "仓库管理";
     ViewBag.PageColumn = "货架管理";
 }
@@ -93,10 +93,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btn_close" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-                    <button type="button" id="btn_submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                    <button type="button" id="Racksubmit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
                 </div>
             </div>
-        </div>1
+        </div>
     </div>
 </form>
 <script>
@@ -148,16 +148,25 @@
     });
 
     //添加/编辑提交
-    $('#btn_submit').click(function () {
+    $('#Racksubmit').click(function () {
+
         if ($("#myModalLabel").text() == "新增") {
-            Addedit('/api/Rack/Rackadd');
+            RackFun('/api/Rack/Rackadd');
         } else {
-            Addedit('/api/Rack/editrack');
+            //console.log("------------");
+            //console.log($('#rackId').val());
+            //console.log($('#rackSerialNum').val());
+            //console.log($('#rack_qrInfo').val());
+            //console.log($('#rackStatus').val());
+            //console.log($('#rack_agvSerailNum').val());
+           
+            RackFun('/api/Rack/editrack');
         }
     });
 
     //编辑/添加
-    function Addedit(url) {
+    function RackFun(url) {
+
         $.ajax({
             type: 'post',
             url: url,

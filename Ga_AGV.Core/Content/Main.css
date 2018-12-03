@@ -5,6 +5,9 @@
     border: 0px;
     text-decoration: none;
 }
+a {
+    text-decoration:none;
+}
 
 .main-nav {
     width: 220px;
@@ -307,7 +310,7 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
 /* 手机 */
 @media all and (max-width: 768px) {
 
-    /*.main-nav {
+    .main-nav {
         left: -220px;
     }
     .nav-bodys {
@@ -315,7 +318,7 @@ sidebar-link, .sidebar-dropdown .sidebar-link:hover {
     }
     .brand {
         z-index:-999;
-    }*/
+    }
 }
 
 /* 超小屏幕（苹果SE） */

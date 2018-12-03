@@ -1376,7 +1376,6 @@
     <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap-theme.min.css.map" />
     <Content Include="Scripts\bootstrap-3.3.7\css\bootstrap.css.map" />

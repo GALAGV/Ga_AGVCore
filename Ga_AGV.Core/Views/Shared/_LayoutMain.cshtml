@@ -8,12 +8,13 @@
     <meta charset="UTF-8">
     <title>Main</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
     <!-- bootstrap样式文件 -->
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <!-- bootstrap默认主题 -->
     <link href="~/Scripts/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <!-- 通用样式 -->
-    <link href="~/Content/commonality.css" rel="stylesheet" />
+
     <!--animate动画文件 -->
     <link href="~/Content/animate.min.css" rel="stylesheet" />
     <!-- table表格组件样式 -->
@@ -27,9 +28,10 @@
     <!--提示框组件样式 -->
     <link href="~/Scripts/toastr-master/toastr.min.css" rel="stylesheet" />
 
-    <link href="~/Content/animate.min.css" rel="stylesheet" />
-
     <link href="~/Content/Main.css" rel="stylesheet" />
+    <!-- 通用样式 -->
+    <link href="~/Content/commonality.css" rel="stylesheet" />
+
     <!--jquery库 -->
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <!--bootstrap库 -->
@@ -204,10 +206,6 @@
                         </li>
                     </ul>
                 </div>
-
-
-
-
             </div>
         </div>
         <!-- 头部菜单end -->
@@ -329,13 +327,15 @@
             } else if (index == 4) {
                 $('#nav4').trigger('click');
             }
-
-
+            //if ($(window).width() < 768) {
+            //        $('.nav-bodys').toggleClass('nav-bodye');
+            //        $('.main-nav').toggleClass('main-navs');
+            //}
             //var sizetype = true;
             //var sizetype1 = true;
-            window.onresize = function () {
-                //$("#external-frame").height($(window).height() - 85);
-            }
+            //window.onresize = function () {
+            //    mainSize();
+            //}
 
             //function mainSize()
             //{
@@ -347,7 +347,7 @@
             //        }
             //        sizetype1 = true;
             //    }
-            //    if ($(window).width() > 768) {
+            //    else{
             //        sizetype = true;
             //        if (sizetype1) {
             //            $('.nav-bodys').toggleClass('nav-bodye');

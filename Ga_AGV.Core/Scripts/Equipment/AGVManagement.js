@@ -108,16 +108,16 @@ $(function () {
     });
 
     //添加/编辑提交
-    $('#btn_submit').click(function () {
+    $('#btn_AGVsubmit').click(function () {
         if ($("#myModalLabel").text() == "新增") {
-            Addedit('/api/agvlist/Addagv');
+            AGVedit('/api/agvlist/Addagv');
         } else {
-            Addedit('/api/agvlist/editagv');
+            AGVedit('/api/agvlist/editagv');
         }
     });
 
     //编辑/添加
-    function Addedit(url) {
+    function AGVedit(url) {
         if (!Verify())
             return;
 
